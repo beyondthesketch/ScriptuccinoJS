@@ -1,0 +1,23 @@
+{
+  "name": "scriptuccinojs",
+  "version": "1.0.0",
+  "description": "Simple set of JavaScript function and utility modules for easily performing some common tasks.",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/beyondthesketch/ScriptuccinoJS.git"
+  },
+  "author": "Nazeer Ruhomutally <nazeer@beyondthesketch.com> (https://www.beyondthesketch.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/beyondthesketch/ScriptuccinoJS/issues"
+  },
+  "homepage": "https://github.com/beyondthesketch/ScriptuccinoJS#readme",
+  "devDependencies": {
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.6.0"
+  }
+}
