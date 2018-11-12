@@ -11,7 +11,7 @@ module.exports = {
         rules: [
             {
                 test: /\.js$/,
-                include: [path.resolve(__dirname, 'src')],
+                include: [path.resolve(__dirname, 'src/events')],
                 exclude: [path.resolve(__dirname, 'node_modules')],
                 loader: 'babel-loader',
                 options: {presets: ['@babel/preset-env']}
