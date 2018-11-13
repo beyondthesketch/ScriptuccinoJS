@@ -3,8 +3,7 @@ import XHR from './../../src/utils/XHR.js';
 const mockXHR = jest.fn(() => (
   {
     open: jest.fn(),
-    send: jest.fn(),
-    onreadystatechange: jest.fn()
+    send: jest.fn()
   }
 ));
 
@@ -100,6 +99,8 @@ test('Calls open with GET if no method supplied', () => {
   });
 
   expect(request.open).toHaveBeenCalledWith('GET', '/foo', true);
+
+  global.XMLHttpRequest = originalXHR;
 });
 
 test('Calls open with supplied method', () => {
@@ -111,4 +112,20 @@ test('Calls open with supplied method', () => {
   });
 
   expect(request.open).toHaveBeenCalledWith('POST', '/foo', true);
+
+  global.XMLHttpRequest = originalXHR;
+});
+
+test('Sets onreadystatechange to a function if onloadstart, onprogress, onload \
+and onerror are not all supported', () => {
+  global.XMLHttpRequest = mockXHR;
+  const request = XHR({
+    uri: '/foo',
+    send: false,
+    onreadystatechange: undefined
+  });
+
+  expect(request.onreadystatechange).toBeInstanceOf(Function);
+
+  global.XMLHttpRequest = originalXHR;
 });
