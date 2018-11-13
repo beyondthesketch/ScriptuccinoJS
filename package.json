@@ -5,8 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build:dev": "webpack",
-    "build": "webpack --config webpack.prod.config.js"
+    "build:modules": "babel src/ --presets minify --no-comments --out-dir dist/modules/",
+    "build:dev": "npm run build:modules && webpack",
+    "build": "npm run build:modules && webpack --config webpack.prod.config.js"
   },
   "repository": {
     "type": "git",
