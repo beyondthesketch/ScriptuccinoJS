@@ -104,7 +104,7 @@ const XHR = (config) => {
           // attach success and complete callbacks
           if ((
               (config.successFn
-              && typeof config.completeFn === 'function')
+              && typeof config.successFn === 'function')
               ||
               (config.completeFn
               && typeof config.completeFn === 'function')
