@@ -90,24 +90,19 @@ const XHR = (config) => {
         }
         else {
           console.log('using event methods');
-          if (
-            'onloadstart' in data_request
-            && config.openedFn
-            && typeof config.openedFn === 'function'
+          if (config.openedFn && typeof config.openedFn === 'function'
           ) {
-              data_request.onloadstart = config.openedFn();
+              data_request.onloadstart = config.openedFn;
           }
 
           // attach loading/progress callback
-          if ('onprogress' in data_request && config.loadingFn
-            && typeof config.loadingFn === 'function'
+          if (config.loadingFn && typeof config.loadingFn === 'function'
           ) {
-              config.loadingFn();
+              data_request.onprogress = config.loadingFn;
           }
 
           // attach success and complete callbacks
-          if ('onload' in data_request
-            && (
+          if ((
               (config.successFn
               && typeof config.completeFn === 'function')
               ||
@@ -115,7 +110,6 @@ const XHR = (config) => {
               && typeof config.completeFn === 'function')
             )
           ) {
-              if (data_request.status === 200) {}
               data_request.onload = () => {
                 if (config.successFn) {
                   config.successFn(
@@ -136,16 +130,6 @@ const XHR = (config) => {
               };
           }
 
-          // attach timeout callback
-          if ('ontimeout' in data_request) {
-            config.timeoutFn && typeof config.timeoutFn === 'function'
-              ?
-              data_request.ontimeout = config.timeoutFn
-              : () => console && console.error(
-                      'xhr: operation timed out - the server did not respond in time'
-                    );
-          }
-
           // attach error callback
           if (
             'onerror' in data_request && config.errorFn
@@ -153,6 +137,16 @@ const XHR = (config) => {
           ) {
             data_request.onerror = config.errorFn;
           }
+        }
+
+        // attach timeout callback
+        if ('ontimeout' in data_request) {
+          config.timeoutFn && typeof config.timeoutFn === 'function'
+            ?
+            data_request.ontimeout = config.timeoutFn
+            : () => console && console.error(
+                    'xhr: operation timed out - the server did not respond in time'
+                  );
         }
 
         // attach abort function
@@ -172,7 +166,6 @@ const XHR = (config) => {
         }
 
         // set headers
-        // set request header
         if (config.setHeaders && typeof config.setHeaders === 'object') {
           for (let i in config.setHeaders) {
             if (config.setHeaders.hasOwnProperty(i)) {
@@ -190,6 +183,7 @@ const XHR = (config) => {
             (
               config.method === 'POST'
               || config.method === 'PATCH'
+              || config.method === 'PUT'
             )
             && config.data
             && typeof config.data === 'object'
