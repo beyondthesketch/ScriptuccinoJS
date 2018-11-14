@@ -7,6 +7,17 @@ const mockXHR = jest.fn(() => (
   }
 ));
 
+const mockXHRWithEventProps = jest.fn(() => (
+  {
+    open: jest.fn(),
+    send: jest.fn(),
+    onloadstart: undefined,
+    onprogress: undefined,
+    onload: undefined,
+    onerror: undefined,
+  }
+));
+
 const originalXHR = Object.assign(Object.create(null), global.XMLHttpRequest);
 
 // beforeEach(() => {
@@ -122,10 +133,37 @@ and onerror are not all supported', () => {
   const request = XHR({
     uri: '/foo',
     send: false,
-    onreadystatechange: undefined
   });
 
   expect(request.onreadystatechange).toBeInstanceOf(Function);
+
+  global.XMLHttpRequest = originalXHR;
+});
+
+test('Sets onloadstart if supported and openedFn supplied in config', () => {
+  global.XMLHttpRequest = mockXHRWithEventProps;
+  const fn = () => null;
+  const request = XHR({
+    uri: '/foo',
+    send: false,
+    openedFn: fn
+  });
+
+  expect(request.onloadstart).toBe(fn);
+
+  global.XMLHttpRequest = originalXHR;
+});
+
+test('Sets onprogress if supported and loadingFn supplied in config', () => {
+  global.XMLHttpRequest = mockXHRWithEventProps;
+  const fn = () => null;
+  const request = XHR({
+    uri: '/foo',
+    send: false,
+    loadingFn: fn
+  });
+
+  expect(request.onprogress).toBe(fn);
 
   global.XMLHttpRequest = originalXHR;
 });
