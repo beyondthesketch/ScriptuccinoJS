@@ -46,97 +46,52 @@ const XHR = (config) => {
             :
             10000;
 
-        data_request.open((config.method || 'GET'), uri, true);
-
-        if (
-          !('onloadstart' in data_request)
-          && !('onprogress' in data_request)
-          && !('onload' in data_request)
-          && !('onerror' in data_request)
+        if ('onloadstart' in data_request && config.openedFn && typeof config.openedFn === 'function'
         ) {
-          console.log('using ready state');
-          // does not support event methods - use readystatechange instead
-          data_request.onreadystatechange = () => {
-            switch (data_request.readyState) {
-              case 1:
-                config.openedFn
-                && typeof config.openedFn === 'function'
-                && config.openedFn();
-                break;
-              case 2:
-                config.loadingFn
-                && typeof config.loadingFn === 'function'
-                && config.loadingFn();
-                break;
-              case 3:
-                config.completeFn
-                && typeof config.completeFn === 'function'
-                && config.completeFn();
-                break;
-              case 4:
-                if (data_request.status === 200) {
-                  config.successFn
-                  && typeof config.successFn === 'function'
-                  && config.successFn();
-                }
-                else if (data_request.status !== 200) {
-                  config.errorFn
-                  && typeof config.errorFn === 'function'
-                  config.errorFn();
-                }
-                break;
-            }
-          };
+            data_request.onloadstart = config.openedFn;
         }
-        else {
-          console.log('using event methods');
-          if (config.openedFn && typeof config.openedFn === 'function'
-          ) {
-              data_request.onloadstart = config.openedFn;
-          }
 
-          // attach loading/progress callback
-          if (config.loadingFn && typeof config.loadingFn === 'function'
-          ) {
-              data_request.onprogress = config.loadingFn;
-          }
+        // attach loading/progress callback
+        if ('onprogress' in data_request && config.loadingFn && typeof config.loadingFn === 'function'
+        ) {
+            data_request.onprogress = config.loadingFn;
+        }
 
-          // attach success and complete callbacks
-          if ((
-              (config.successFn
-              && typeof config.successFn === 'function')
-              ||
-              (config.completeFn
-              && typeof config.completeFn === 'function')
-            )
-          ) {
-              data_request.onload = () => {
-                if (config.successFn) {
-                  config.successFn(
-                    'response' in data_request
+        // attach success and complete callbacks
+        if ((
+            (config.successFn
+            && typeof config.successFn === 'function')
+            ||
+            (config.completeFn
+            && typeof config.completeFn === 'function')
+          )
+        ) {
+            data_request.onload = () => {
+              if (config.successFn) {
+                config.successFn(
+                  'response' in data_request
+                    ?
+                    data_request.response
+                    :
+                    responseType === 'text'
                       ?
-                      data_request.response
-                      :
-                      responseType === 'text'
-                        ?
-                        data_request.responseText
-                        : data_request.responseXML
+                      data_request.responseText
+                      : data_request.responseXML
 
-                  );
-                }
-                if (config.completeFn) {
-                  config.completeFn();
-                }
-              };
-          }
+                );
+              }
+              if (config.completeFn) {
+                config.completeFn();
+              }
+            };
+        }
 
-          // attach error callback
-          if (
-            'onerror' in data_request && config.errorFn
-            && typeof config.errorFn === 'function'
-          ) {
-            data_request.onerror = config.errorFn;
-          }
+        // attach error callback
+        if (
+          'onerror' in data_request && config.errorFn
+          && typeof config.errorFn === 'function'
+        ) {
+          data_request.onerror = config.errorFn;
         }
 
         // attach timeout callback
@@ -177,6 +132,8 @@ const XHR = (config) => {
         if (config.withCredentials) {
           data_request.withCredentials = true;
         }
+
+        data_request.open((config.method || 'GET'), uri, true);
 
         if (!('send' in config) || config.send) {
           data_request.send(
