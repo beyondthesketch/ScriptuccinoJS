@@ -20,14 +20,9 @@ const mockXHRWithEventProps = jest.fn(() => (
 
 const originalXHR = Object.assign(Object.create(null), global.XMLHttpRequest);
 
-// beforeEach(() => {
-//   global.XMLHttpRequest = mockXHR;
-// });
-// afterEach(() => {
-//   Object.defineProperty(global, 'XMLHttpRequest', {
-//     value: originalXHR
-//   });
-// });
+afterEach(() => {
+  global.XMLHttpRequest = originalXHR;
+});
 
 test('Returns instance of XHR', () => {
   const request = XHR({
@@ -60,8 +55,6 @@ test('Sets the responseType if provided', () => {
   });
 
   expect(request.responseType).toBe('json');
-
-  global.XMLHttpRequest = originalXHR;
 });
 
 test('Sets the responseType if provided', () => {
@@ -73,8 +66,6 @@ test('Sets the responseType if provided', () => {
   });
 
   expect(request.responseType).toBe('json');
-
-  global.XMLHttpRequest = originalXHR;
 });
 
 test('Sets the timeout to the supplied value if provided', () => {
@@ -86,8 +77,6 @@ test('Sets the timeout to the supplied value if provided', () => {
   });
 
   expect(request.timeout).toBe(1500);
-
-  global.XMLHttpRequest = originalXHR;
 });
 
 test('Sets the timeout to the 10s if no value provided', () => {
@@ -98,46 +87,6 @@ test('Sets the timeout to the 10s if no value provided', () => {
   });
 
   expect(request.timeout).toBe(10000);
-
-  global.XMLHttpRequest = originalXHR;
-});
-
-test('Calls open with GET if no method supplied', () => {
-  global.XMLHttpRequest = mockXHR;
-  const request = XHR({
-    uri: '/foo',
-    send: false
-  });
-
-  expect(request.open).toHaveBeenCalledWith('GET', '/foo', true);
-
-  global.XMLHttpRequest = originalXHR;
-});
-
-test('Calls open with supplied method', () => {
-  global.XMLHttpRequest = mockXHR;
-  const request = XHR({
-    uri: '/foo',
-    send: false,
-    method: 'POST'
-  });
-
-  expect(request.open).toHaveBeenCalledWith('POST', '/foo', true);
-
-  global.XMLHttpRequest = originalXHR;
-});
-
-test('Sets onreadystatechange to a function if onloadstart, onprogress, onload \
-and onerror are not all supported', () => {
-  global.XMLHttpRequest = mockXHR;
-  const request = XHR({
-    uri: '/foo',
-    send: false,
-  });
-
-  expect(request.onreadystatechange).toBeInstanceOf(Function);
-
-  global.XMLHttpRequest = originalXHR;
 });
 
 test('Sets onloadstart if supported and openedFn supplied in config', () => {
@@ -150,8 +99,6 @@ test('Sets onloadstart if supported and openedFn supplied in config', () => {
   });
 
   expect(request.onloadstart).toBe(fn);
-
-  global.XMLHttpRequest = originalXHR;
 });
 
 test('Sets onprogress if supported and loadingFn supplied in config', () => {
@@ -164,6 +111,47 @@ test('Sets onprogress if supported and loadingFn supplied in config', () => {
   });
 
   expect(request.onprogress).toBe(fn);
+});
 
-  global.XMLHttpRequest = originalXHR;
+test('Sets onload to a function if successFn in supplied in config', () => {
+  global.XMLHttpRequest = mockXHRWithEventProps;
+  const request = XHR({
+    uri: '/foo',
+    send: false,
+    successFn: () => null
+  });
+
+  expect(request.onload).toBeInstanceOf(Function);
+});
+
+test('Sets onload to a function if completeFn in supplied in config', () => {
+  global.XMLHttpRequest = mockXHRWithEventProps;
+  const request = XHR({
+    uri: '/foo',
+    send: false,
+    completeFn: () => null
+  });
+
+  expect(request.onload).toBeInstanceOf(Function);
+});
+
+test('Calls open with GET if no method supplied', () => {
+  global.XMLHttpRequest = mockXHR;
+  const request = XHR({
+    uri: '/foo',
+    send: false
+  });
+
+  expect(request.open).toHaveBeenCalledWith('GET', '/foo', true);
+});
+
+test('Calls open with supplied method', () => {
+  global.XMLHttpRequest = mockXHR;
+  const request = XHR({
+    uri: '/foo',
+    send: false,
+    method: 'POST'
+  });
+
+  expect(request.open).toHaveBeenCalledWith('POST', '/foo', true);
 });
