@@ -96,12 +96,15 @@ const XHR = (config) => {
 
         // attach timeout callback
         if ('ontimeout' in data_request) {
-          config.timeoutFn && typeof config.timeoutFn === 'function'
-            ?
-            data_request.ontimeout = config.timeoutFn
-            : () => console && console.error(
-                    'xhr: operation timed out - the server did not respond in time'
-                  );
+          data_request.ontimeout =
+            config.timeoutFn
+            && typeof config.timeoutFn === 'function'
+              ?
+              config.timeoutFn
+              :
+              () => console && console.error(
+                'xhr: operation timed out - the server did not respond in time'
+              );
         }
 
         // attach abort function
@@ -153,6 +156,5 @@ const XHR = (config) => {
 
         return data_request;
     }
-
 };
 export default XHR;
