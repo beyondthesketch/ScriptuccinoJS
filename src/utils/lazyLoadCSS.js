@@ -17,8 +17,10 @@ const lazyLoadCSS = (
                 successFn: (rules) => {
                   stylesheet.textContent = rules;
                   !!document.head
-                  ? document.head.appendChild(stylesheet)
-                  : document.body.appendChild(stylesheet);
+                    ?
+                    document.head.appendChild(stylesheet)
+                    :
+                    document.body.appendChild(stylesheet);
 
                   if (callback && typeof callback === 'function') {
                     callback();
