@@ -1,3 +1,4 @@
+const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -17,5 +18,8 @@ module.exports = {
                 options: {presets: ['@babel/preset-env']}
             }
         ]
-    }
+    },
+    plugins: [
+      new webpack.BannerPlugin('ScriptuccinoJS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License')
+    ]
 };
