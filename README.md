@@ -85,11 +85,11 @@ SCRIPTUCCINO.events.whenPageLoaded(myFoo);
 
 ## API
 
-#### Modules
+### Modules
 
-ScriptuccinoJS is organised into the following modules, each containing a number of utilities. If using Scriptuccino as ES2015/ES modules you can import them from any of the files they are documented as exported from below. If using the ES5 library, you can access them from the `SCRIPTUCCINO` global/namespace object as described.
+ScriptuccinoJS is organised into the following modules, each containing a number of utilities. If using ScriptuccinoJS as ES2015/ES modules you can import them from any of the files they are documented as being exported from below. If using the ES5 library, you can access them from the `SCRIPTUCCINO` global/namespace object as described.
 
-##### events
+#### events
 
 Utilities and functions for performing operations related to events, such as page load.
 
@@ -98,6 +98,7 @@ Utilities and functions for performing operations related to events, such as pag
 Queue the supplied function for execution once the page is loaded (executes immediately if page is already loaded).
 
 *ES module*
+
 exported as named by:
 `events/index.js`
 
@@ -105,6 +106,7 @@ exported as default by:
 `events/page/whenPageLoaded.js`
 
 *ES5 library*
+
 `SCRIPTUCCINO.events.whenPageLoaded`
 
 
@@ -113,6 +115,7 @@ exported as default by:
 Queue the supplied function for execution once the DOM is ready (executes immediately if the DOM is already ready).
 
 *ES module*
+
 exported as named by:
 `events/index.js`
 
@@ -120,12 +123,13 @@ exported as default by:
 `events/page/whenPageReady.js`
 
 *ES5 library*
+
 `SCRIPTUCCINO.events.whenPageReady`
 
 
-##### utils
+#### utils
 
-Tools for doing common things will a little more ease.
+Tools for doing common things with a little more ease.
 
 
 **XHR( config: Object )**
@@ -133,6 +137,7 @@ Tools for doing common things will a little more ease.
 AJAX (or XMLHttpRequest as it is officially named) is AWESOME! But it's a little fiddly to setup. Use this util to quickly configure and optionally send them.
 
 *ES module*
+
 exported as named by:
 `utils/index.js`
 
@@ -140,15 +145,17 @@ exported as default by:
 `utils/XHR.js`
 
 *ES5 library*
+
 `SCRIPTUCCINO.utils.XHR`
 
 
 **lazyLoadCSS( uri: string [, callbackFn: Function] )**
 *uses: XHR, whenPageLoaded*
 
-Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback funtion, only once the page has loaded.
+Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, only once the page has loaded.
 
 *ES module*
+
 exported as named by:
 `utils/index.js`
 
@@ -156,4 +163,5 @@ exported as default by:
 `utils/lazyLoadCSS.js`
 
 *ES5 library*
+
 `SCRIPTUCCINO.utils.lazyLoadCSS`
