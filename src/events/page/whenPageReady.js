@@ -1,3 +1,4 @@
+/** ScriptuccinoJS - whenPageReady | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
 const whenPageReady = (
   function () {
     if (self.document) {

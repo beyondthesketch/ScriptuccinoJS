@@ -1,28 +1,5 @@
+/** ScriptuccinoJS - XHR | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
 const XHR = (config) => {
-
-    /*
-    config object design
-
-    {
-        uri             : {string},		// url of file or api
-        method          : {string},		// 'GET' or 'POST',
-        data            : {object},     // used with POST requests to submit data to the API/server
-        cached          : {boolean}, 	// Allow a cached response - only used for GET requests
-        completeFn      : {function},	// callback function run on complete - whether successful or not
-        successFn       : {function},	// callback function to run on successful response
-        errorFn         : {function},	// callback function to run when an error/failure occurs
-        openedFn        : {function},	// callback function to run when the request is opened
-        loadingFn       : {function},	// callback function to run when the request enters the loading state
-        abortFn         : {function},	// callback function to run when the request is aborted
-        timeoutFn       : {function},	// callback function to run if the request times out
-        endFn           : {function},   // callback function to run when the loadend event is fired
-        timeoutLimit    : {number},		// an integer of milliseconds to wait before time out
-        responseType    : {string},		// a string of the desired response type
-        setHeaders      : {object}		// an object of headers to be set on the XHR
-        send            : {boolean} // default true - send the request immediately
-        withCredentials : {boolean}
-    }
-    */
     if (typeof config === 'object' && config.uri) {
         const uri =
           config.cached === true
@@ -51,13 +28,11 @@ const XHR = (config) => {
             data_request.onloadstart = config.openedFn;
         }
 
-        // attach loading/progress callback
         if ('onprogress' in data_request && config.loadingFn && typeof config.loadingFn === 'function'
         ) {
             data_request.onprogress = config.loadingFn;
         }
 
-        // attach success and complete callbacks
         if ((
             (config.successFn
             && typeof config.successFn === 'function')
@@ -86,7 +61,6 @@ const XHR = (config) => {
             };
         }
 
-        // attach error callback
         if (
           'onerror' in data_request && config.errorFn
           && typeof config.errorFn === 'function'
@@ -94,7 +68,6 @@ const XHR = (config) => {
           data_request.onerror = config.errorFn;
         }
 
-        // attach timeout callback
         if ('ontimeout' in data_request) {
           data_request.ontimeout =
             config.timeoutFn
@@ -107,7 +80,6 @@ const XHR = (config) => {
               );
         }
 
-        // attach abort function
         if (
           'onabort' in data_request && config.abortFn
           && typeof config.abortFn === 'function'
@@ -115,7 +87,6 @@ const XHR = (config) => {
             data_request.onabort = config.abortFn;
         }
 
-        // attach loadend callback
         if (
           'onloadend' in data_request && config.endFn
           && typeof config.endFn === 'function'
@@ -123,7 +94,6 @@ const XHR = (config) => {
             data_request.onloadend = config.endFn;
         }
 
-        // set headers
         if (config.setHeaders && typeof config.setHeaders === 'object') {
           for (let i in config.setHeaders) {
             if (config.setHeaders.hasOwnProperty(i)) {

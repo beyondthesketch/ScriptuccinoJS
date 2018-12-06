@@ -1,3 +1,4 @@
+/** ScriptuccinoJS - lazyLoadCSS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
 import {whenPageLoaded} from './../events/index.js';
 import {XHR} from './index.js';
 
