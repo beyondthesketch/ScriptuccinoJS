@@ -1,12 +1,12 @@
 const webpack = require('webpack');
 const path = require('path');
 
-module.exports = {
-    mode: 'development',
+module.exports = env => ({
+    mode: env && env.production ? 'production' : 'development',
     entry: './scriptuccino.lib.js',
     output: {
-        path: path.resolve(__dirname, 'dist'),
-        filename: 'scriptuccino.lib.js'
+        path: path.resolve(__dirname, './'),
+        filename: 'scriptuccino.js'
     },
     module: {
         rules: [
@@ -20,6 +20,6 @@ module.exports = {
         ]
     },
     plugins: [
-      new webpack.BannerPlugin('ScriptuccinoJS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License')
+        new webpack.BannerPlugin('ScriptuccinoJS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License')
     ]
-};
+});

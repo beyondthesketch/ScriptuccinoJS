@@ -1,2 +1,2 @@
-export {whenPageLoaded, whenPageReady} from './src/events/index.js';
-export {XHR, lazyLoadCSS} from './src/utils/index.js';
+export {whenPageLoaded, whenPageReady} from './modules/events/index.js';
+export {XHR, lazyLoadCSS} from './modules/utils/index.js';
