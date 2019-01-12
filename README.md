@@ -14,7 +14,7 @@ npm run build
 
 ### ES Modules
 
-Copy the contents of `dist/modules/` directory to a location on your server. E.g. `/js/scriptuccino/`.
+Copy the contents of `modules/` directory to a location on your server. E.g. `/js/scriptuccino/`.
 
 Import the modules you need into your javascript:
 
@@ -57,7 +57,7 @@ module.whenPageLoaded(myFoo);
 
 ### ES5 Library
 
-Copy the `dist/scriptuccino.lib.js` file to a location on your server. E.g. `/js/`.
+Copy the `scriptuccino.js` file to a location on your server. E.g. `/js/`.
 
 Add the library to your webpage, preferably at the bottom of the body - but above your own scripts (external or inline):
 
@@ -67,7 +67,7 @@ Add the library to your webpage, preferably at the bottom of the body - but abov
   <h1>Foo</h1>
   <p>Lorem ipsum dolor sit amet...</p>
 
-  <script src="/js/scriptuccino.lib.js"></script>
+  <script src="/js/scriptuccino.js"></script>
   <script src="/js/your.own.script.js"></script>
 </body>
 
