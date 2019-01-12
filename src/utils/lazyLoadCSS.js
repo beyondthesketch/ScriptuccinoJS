@@ -1,6 +1,6 @@
 /** ScriptuccinoJS - lazyLoadCSS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import {whenPageLoaded} from './../events/index.js';
-import {XHR} from './index.js';
+import whenPageLoaded from './../events/page/whenPageLoaded.js';
+import XHR from './XHR.js';
 
 const lazyLoadCSS = (
   function () {

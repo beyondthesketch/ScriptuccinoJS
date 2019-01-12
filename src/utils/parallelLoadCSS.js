@@ -1,6 +1,6 @@
 /** ScriptuccinoJS - parallelLoadCSS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import {whenPageReady} from './../events/index.js';
-import {XHR} from './index.js';
+import whenPageReady from './../events/page/whenPageReady.js';
+import XHR from './XHR.js';
 
 const parallelLoadCSS = (
   function () {
