@@ -165,3 +165,21 @@ exported as default by:
 *ES5 library*
 
 `SCRIPTUCCINO.utils.lazyLoadCSS`
+
+
+**parallelLoadCSS( uri: string [, callbackFn: Function] )**
+*uses: XHR, whenPageReady*
+
+Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, when the DOM is ready. Useful for deferred load of CSS on larger pages with longer load times.
+
+*ES module*
+
+exported as named by:
+`utils/index.js`
+
+exported as default by:
+`utils/parallelLoadCSS.js`
+
+*ES5 library*
+
+`SCRIPTUCCINO.utils.parallelLoadCSS`
