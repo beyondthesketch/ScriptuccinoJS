@@ -1,6 +1,6 @@
 {
   "name": "scriptuccinojs",
-  "version": "1.0.0",
+  "version": "1.0.0-alpha",
   "description": "Simple set of JavaScript function and utility modules for easily performing some common tasks.",
   "main": "index.js",
   "scripts": {
