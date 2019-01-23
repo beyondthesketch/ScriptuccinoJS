@@ -26,7 +26,7 @@ import whenPageLoaded from '/js/scriptuccino/events/page/whenPageLoaded.js';
 
 const myFoo = () => alert('foo');
 
-whenPageLoaded(myFn);
+whenPageLoaded(myFoo);
 
 ```
 
