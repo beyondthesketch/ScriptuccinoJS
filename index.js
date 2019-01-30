@@ -3,3 +3,7 @@ export {default as whenPageReady} from './modules/events/page/whenPageReady.js';
 export {default as XHR} from './modules/utils/XHR.js';
 export {default as lazyLoadCSS} from './modules/utils/lazyLoadCSS.js';
 export {default as parallelLoadCSS} from './modules/utils/parallelLoadCSS.js';
+export {default as applyTransition} from './modules/fx/applyTransition.js';
+export {default as fadeTo} from './modules/fx/fadeTo.js';
+export {default as fadeIn} from './modules/fx/fadeIn.js';
+export {default as fadeOut} from './modules/fx/fadeOut.js';
