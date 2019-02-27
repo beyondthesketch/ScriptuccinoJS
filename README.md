@@ -183,3 +183,78 @@ exported as default by:
 *ES5 library*
 
 `SCRIPTUCCINO.utils.parallelLoadCSS`
+
+#### fx
+
+Programmatically apply CSS transitions. Great for throw-away transitions or prototyping.
+
+
+**applyTransition( element: HTMLElement, settings: Object|Array, styles: Object [, completeFn: Function] )**
+
+Define and apply CSS transition to an HTML element, and optionally perform a callback function when the transition is complete.
+
+*ES module*
+
+exported as named by:
+`fx/index.js`
+
+exported as default by:
+`fx/applyTransition.js`
+
+*ES5 library*
+
+`SCRIPTUCCINO.fx.applyTransition`
+
+
+**fadeIn( element: HTMLElement [, completeFn: Function, settings: Object] )**
+*uses: applyTransition*
+
+Apply a fade-in transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.
+
+*ES module*
+
+exported as named by:
+`fx/index.js`
+
+exported as default by:
+`fx/fadeIn.js`
+
+*ES5 library*
+
+`SCRIPTUCCINO.fx.fadeIn`
+
+
+**fadeOut( element: HTMLElement [, completeFn: Function, settings: Object] )**
+*uses: applyTransition*
+
+Apply a fade-out transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.
+
+*ES module*
+
+exported as named by:
+`fx/index.js`
+
+exported as default by:
+`fx/fadeOut.js`
+
+*ES5 library*
+
+`SCRIPTUCCINO.fx.fadeOut`
+
+
+**fadeTo( element: HTMLElement, opacity: number [, completeFn: Function, settings: Object] )**
+*uses: applyTransition*
+
+Apply a fade transition to the specified opacity on an HTML element. Optionally perform a callback when complete and define optional settings for the transition.
+
+*ES module*
+
+exported as named by:
+`fx/index.js`
+
+exported as default by:
+`fx/fadeTo.js`
+
+*ES5 library*
+
+`SCRIPTUCCINO.fx.fadeTo`
