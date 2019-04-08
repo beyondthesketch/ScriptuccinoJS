@@ -2,6 +2,22 @@
 
 Simple set of JavaScript function and utility modules for easily performing some common tasks.
 
+## Installation
+
+NPM package:
+
+```shell
+
+npm install --save @beyondthesketch/scriptuccinojs
+
+```
+
+## Manual Install
+
+Alternatively, if you are not using NPM, you can download the modules or library.
+
+Simply save the modules folder and/or the scriptuccino.js file somewhere on your server and reference them as you would any other script.
+
 ## Usage
 
 Build the assets with:
@@ -14,7 +30,6 @@ npm run build
 
 ### ES Modules
 
-Copy the contents of `modules/` directory to a location on your server. E.g. `/js/scriptuccino/`.
 
 Import the modules you need into your javascript:
 
@@ -73,7 +88,7 @@ Add the library to your webpage, preferably at the bottom of the body - but abov
 
 ```
 
-In your own scripts, access the ScriptuccinoJS modules and use the functions you need:
+In your own scripts, use the `SCRIPTUCCINO` global object to access the ScriptuccinoJS modules and use the functions you need:
 
 ```javascript
 
@@ -186,7 +201,7 @@ exported as default by:
 
 #### fx
 
-Programmatically apply CSS transitions. Great for throw-away transitions or prototyping.
+Programmatically apply CSS transitions. Great for throw-away transitions, prototyping or quickly applying complex effects without having to figure out the CSS.
 
 
 **applyTransition( element: HTMLElement, settings: Object|Array, styles: Object [, completeFn: Function] )**
