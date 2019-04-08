@@ -14,12 +14,44 @@
                 font-size: 1.3rem;
             }
 
+            h2, h3, h4 {
+                margin: 1.618em auto 1em;
+            }
+
+            h2 {
+                font-size: 3.4rem;
+            }
+
+            h3 {
+                font-size: 2.6rem;
+            }
+
+            h4 {
+                font-size: 2.1rem;
+            }
+
             p {
                 line-height: 1.618;
             }
 
+            a {
+                color: #444;
+                text-decoration: none;
+            }
+
             code {
                 font: 1.3rem Courier, monospace;
+                width: 100%;
+            }
+
+            #site-header {
+                display: flex;
+                box-sizing: border-box;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+
+                background: #CDCDCD;
             }
 
             #site-content {
@@ -30,19 +62,18 @@
                 text-align: center;
             }
 
-            .site-title {
-                font-size: 5.5rem;
-            }
+            
 
             .code-block {
-                font: 1.6rem1.618 Courier, monospace;
+                font: 1.6rem/1.618 Courier, monospace;
                 font-weight: bold;
                 letter-spacing: 0.05em;
                 display: block;
                 box-sizing: border-box;
                 padding: 4.2rem;
-                margin: 2.1rem auto;
-                overflow: auto hidden;
+                margin: 2.1rem auto 3.4rem;
+                overflow-x: auto;
+                overflow-y: hidden;
 
                 border-radius: 1rem;
                 background-color: black;
@@ -51,9 +82,41 @@
                 color: white;
             }
 
+            .inline-code-snippet,
+            .inline-code-method {
+                font: 1.6rem/1.618 Courier, monospace;
+                letter-spacing: 0.05em;
+                border-radius: 3px;
+            }
+                .inline-code-snippet {
+                    padding: 0.25em 0.5em;
+                    background-color: #F0F0F0;
+                    color: #555;
+                }
+                .inline-code-method {
+                    display: block;
+                    width: 100%;
+                    margin: 3.4rem auto 0;
+                    padding: 0.25em;
+
+                    color: #3c2003;
+                    background-color: rgba(129, 69, 33, 0.144);
+                }
+                    .inline-code-method:first-of-type {
+                        margin-top: 0;
+                    }
+
             @media screen and (max-width: 1024px) {
                 #site-content {
                     flex-direction: column;
+                }
+
+                #site-main {
+                    padding: 3.4rem;
+                }
+
+                .site-title {
+                    font-size: 8.9vw;
                 }
             }
 
@@ -68,23 +131,19 @@
                 #site-header,
                 #site-main,
                 #site-footer {
-                    box-sizing: border-box;
                     flex: 0 50%;
                 }
 
-                #site-header {
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: center;
-                    align-items: center;
-
-                    background: #CDCDCD;
+                .site-title {
+                    font-size: 5.5rem;
                 }
 
                 #site-main {
                     box-sizing: border-box;
                     padding: 4.8rem;
-                    overflow: hidden auto;
+                    height: 100vh;
+                    overflow-x: hidden;
+                    overflow-y: auto;
                 }
 
                 #site-footer {
@@ -101,8 +160,7 @@
         <div id="site-content">
             <header id="site-header">
                 <h1 class="site-title">ScriptuccinoJS</h1>
-                <p><a href="#">Download ES6 Modules</a></p>
-                <p><a href="#">Download ES5 Library</a></p>
+                <p><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank">View on GitHub</a></p>
             </header>
             <main id="site-main">
                 <p><strong>ScriptuccinoJS is a simple set of JavaScript function and utility modules for easily performing some common tasks.</strong></p>
@@ -110,7 +168,7 @@
 
                 <h2 id="usage">Usage</h2>
 
-                <p><strong>The following examples assume that the ScriptuccinoJS modules and library script are being served from a directory named <code>/scriptuccino/modules/</code>.</strong></p>
+                <p><strong>The following examples assume that the ScriptuccinoJS modules and library script are being served from a directory named <code class="inline-code-snippet">/scriptuccino/</code>.</strong></p>
                 
                 <h3>ES modules</h3>
                 <p>Import the modules you need into your javascript:</p>
@@ -194,95 +252,95 @@
 
                 <p>Utilities and functions for performing operations related to events, such as page load.</p>
 
-                <code><b>whenPageLoaded( fn: Function )</b></code>
+                <code class="inline-code-method"><b>whenPageLoaded( fn: Function )</b></code>
 
                 <p>Queue the supplied function for execution once the page is loaded (executes immediately if page is already loaded).</p>
 
                 <b>ES module</b>
 
                 <p>exported as named by:</p>
-                <code>events/index.js</code>
+                <code class="inline-code-snippet">events/index.js</code>
 
                 <p>exported as default by:</p>
-                <code>events/page/whenPageLoaded.js</code>
+                <code class="inline-code-snippet">events/page/whenPageLoaded.js</code>
 
-                <p>ES5 library</p>
+                <p><b>ES5 library</b></p>
 
-                <code>SCRIPTUCCINO.events.whenPageLoaded</code>
+                <code class="inline-code-snippet">SCRIPTUCCINO.events.whenPageLoaded</code>
 
 
-                <code><b>whenPageReady( fn: Function )</b></code>
+                <code class="inline-code-method"><b>whenPageReady( fn: Function )</b></code>
 
                 <p>Queue the supplied function for execution once the DOM is ready (executes immediately if the DOM is already ready).</p>
 
-                <p>ES module</p>
+                <p><b>ES module</b></p>
 
                 <p>exported as named by:</p>
-                <code>events/index.js</code>
+                <code class="inline-code-snippet">events/index.js</code>
 
                 <p>exported as default by:</p>
-                <code>events/page/whenPageReady.js</code>
+                <code class="inline-code-snippet">events/page/whenPageReady.js</code>
 
-                <p>ES5 library</p>
+                <p><b>ES5 library</b></p>
                 
-                <code>SCRIPTUCCINO.events.whenPageReady</code>
+                <code class="inline-code-snippet">SCRIPTUCCINO.events.whenPageReady</code>
 
                 <h4>utils</h4>
 
                 <p>Tools for doing common things with a little more ease.</p>
 
 
-                <code><b>XHR( config: Object )</b></code>
+                <code class="inline-code-method"><b>XHR( config: Object )</b></code>
 
 
                 <p>AJAX (or XMLHttpRequest as it is officially named) is AWESOME! But it's a little fiddly to setup. Use this util to quickly configure and optionally send them.</p>
 
-                <p>ES module</p>
+                <p><b>ES module</b></p>
                 
                 <p>exported as named by:</p>
-                <code>utils/index.js</code>
+                <code class="inline-code-snippet">utils/index.js</code>
 
                 <p>exported as default by:</p>
-                <code>utils/XHR.js</code>
+                <code class="inline-code-snippet">utils/XHR.js</code>
                 
-                <p>ES5 library</p>
+                <p><b>ES5 library</b></p>
 
-                <code>SCRIPTUCCINO.utils.XHR</code>
+                <code class="inline-code-snippet">SCRIPTUCCINO.utils.XHR</code>
 
 
-                <code><b>lazyLoadCSS( uri: string [, callbackFn: Function] )</b></code>
-                <b>uses: XHR, whenPageLoaded</b>
+                <code class="inline-code-method"><b>lazyLoadCSS( uri: string [, callbackFn: Function] )</b></code>
+                <p><b>uses: XHR, whenPageLoaded</b></p>
 
                 <p>Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, only once the page has loaded.</p>
                 
-                <p>ES module</p>
+                <p><b>ES module</b></p>
                 
                 <p>exported as named by:</p>
-                <code>/index.js</code>
+                <code class="inline-code-snippet">/index.js</code>
 
                 <p>exported as default by:</p>
-                <code>utils/lazyLoadCSS.js</code>
+                <code class="inline-code-snippet">utils/lazyLoadCSS.js</code>
                 
-                <p>ES5 library</p>
+                <p><b>ES5 library</b></p>
                 
-                <code>SCRIPTUCCINO.utils.lazyLoadCSS</code>
+                <code class="inline-code-snippet">SCRIPTUCCINO.utils.lazyLoadCSS</code>
 
 
-                <code><b>parallelLoadCSS( uri: string [, callbackFn: Function] )</b></code>
-                <b>uses: XHR, whenPageReady</b>
+                <code class="inline-code-method"><b>parallelLoadCSS( uri: string [, callbackFn: Function] )</b></code>
+                <p><b>uses: XHR, whenPageReady</b></p>
 
                 <p>Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, when the DOM is ready. Useful for deferred load of CSS on larger pages with longer load times.</p>
-                <p>ES module</p>
+                <p><b>ES module</b></p>
                 
                 <p>exported as named by:</p>
-                <code>utils/index.js</code>
+                <code class="inline-code-snippet">utils/index.js</code>
 
                 <p>exported as default by:</p>
-                <code>utils/parallelLoadCSS.js</code>
+                <code class="inline-code-snippet">utils/parallelLoadCSS.js</code>
 
-                <p>ES5 library</p>
+                <p><b>ES5 library</b></p>
 
-                <code>SCRIPTUCCINO.utils.parallelLoadCSS</code>
+                <code class="inline-code-snippet">SCRIPTUCCINO.utils.parallelLoadCSS</code>
 
                 <h4>fx</h4>
                 
@@ -290,80 +348,95 @@
 
 
 
-                <code><b>applyTransition( element: HTMLElement, settings: Object|Array, styles: Object [, completeFn: Function] )</b></code>
+                <code class="inline-code-method"><b>applyTransition( element: HTMLElement, settings: Object|Array, styles: Object [, completeFn: Function] )</b></code>
                 
                 <p>Define and apply CSS transition to an HTML element, and optionally perform a callback function when the transition is complete.</p>
+
+                <p>The optional <code class="inline-code-snippet">settings</code> argument takes either a plain object or an array of objects which determine the specification of the transition/s.</p>
+
+                <p>The properties and types of this object are:</p>
+                <code class="inline-code-method">
+                    {<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;property: String,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;duration: Number,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;curve: String,<br>
+                    &nbsp;&nbsp;&nbsp;&nbsp;delay: Number,<br>
+                    }<br>
+                </code>
+
+                <p>The number values represent milliseconds. The <code class="inline-code-snippet">property</code> property is the CSS property to transition, the <code class="inline-code-snippet">curve</code> is timing function to use, which must be provided as a string.</p>
                 
-                <p>ES module</p>
+                <p><b>ES module</b></p>
 
                 <p>exported as named by:</p>
-                <code>`fx/index.js`</code>
+                <code class="inline-code-snippet">fx/index.js</code>
 
                 <p>exported as default by:</p>
-                <code>`fx/applyTransition.js`</code>
+                <code class="inline-code-snippet">fx/applyTransition.js</code>
 
-                <p>ES5 library</p>
+                <p><b>ES5 library</b></p>
                 
-                <code>SCRIPTUCCINO.fx.applyTransition</code>
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.applyTransition</code>
                 
 
-                <code><b>( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
-                <b>uses: applyTransition</b>
+                <code class="inline-code-method"><b>fadeIn( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
+                <p><b>uses: applyTransition</b></p>
 
                 <p>Apply a fade-in transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
                 
-                <p>ES module</p>
+                <p><b>ES module</b></p>
                 
                 <p>exported as named by:</p>
-                <code>fx/index.js</code>
+                <code class="inline-code-snippet">fx/index.js</code>
 
                 <p>exported as default by:</p>
-                <code>fx/fadeIn.js</code>
+                <code class="inline-code-snippet">fx/fadeIn.js</code>
 
-                <p>ES5 library</p>
+                <p><b>ES5 library</b></p>
                 
-                <code>SCRIPTUCCINO.fx.fadeIn</code>
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.fadeIn</code>
                 
 
-                <code><b>fadeOut( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
-                <b>uses: applyTransition</b>
+                <code class="inline-code-method"><b>fadeOut( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
+                <p><b>uses: applyTransition</b></p>
                 
                 <p>Apply a fade-out transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
 
-                <p>ES module</p>
+                <p><b>ES module</b></p>
                 
                 <p>exported as named by:</p>
-                <code>fx/index.js</code>
+                <code class="inline-code-snippet">fx/index.js</code>
 
                 <p>exported as default by:</p>
-                <code>fx/fadeOut.js</code>
+                <code class="inline-code-snippet">fx/fadeOut.js</code>
 
-                <p>ES5 library</p>
+                <p><b>ES5 library</b></p>
                 
-                <code>SCRIPTUCCINO.fx.fadeOut</code>
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.fadeOut</code>
                 
 
-                <code><b>fadeTo( element: HTMLElement, opacity: number [, completeFn: Function, settings: Object] )</b></code>
-                <b>uses: applyTransition</b>
+                <code class="inline-code-method"><b>fadeTo( element: HTMLElement, opacity: number [, completeFn: Function, settings: Object] )</b></code>
+                <p><b>uses: applyTransition</b></p>
                 
                 <p>Apply a fade transition to the specified opacity on an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
                 
-                <p>ES module</p>
+                <p><b>ES module</b></p>
 
                 <p>exported as named by:</p>
-                <code>fx/index.js</code>
+                <code class="inline-code-snippet">fx/index.js</code>
                 
                 <p>exported as default by:</p>
-                <code>fx/fadeTo.js</code>
+                <code class="inline-code-snippet">fx/fadeTo.js</code>
                 
-                <p>ES5 library</p>
+                <p><b>ES5 library</b></p>
                 
-                <code>SCRIPTUCCINO.fx.fadeTo</code>
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.fadeTo</code>
 
             </main>
             <footer id="site-footer">
                 <small>Copyright &copy; 2018 - 2019 <a href="https://www.beyondthesketch.com">Beyond The Sketch Ltd</a></small>
             </footer>
         </div>
+        <script src="/js/scriptuccino.js"></script>
     </body>
 </html>
