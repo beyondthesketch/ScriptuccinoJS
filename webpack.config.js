@@ -21,5 +21,10 @@ module.exports = env => ({
     },
     plugins: [
         new webpack.BannerPlugin('ScriptuccinoJS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License')
-    ]
+    ],
+    devServer: {
+        contentBase: path.join(__dirname, 'docs'),
+        compress: true,
+        port: 9000
+    }
 });

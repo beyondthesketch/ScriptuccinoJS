@@ -88,7 +88,7 @@ const applyTransition = (function () {
             settings.property
             + (settings.duration ? ' ' + settings.duration + 'ms' : ' 500ms')
             + (settings.curve ? ' ' + settings.curve : ' ease')
-            + (settings.delay ? ' ' + settings.delay : '');
+            + (settings.delay ? ' ' + settings.delay + 'ms' : '');
         }
 
         /* apply the new style rules provided */
