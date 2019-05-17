@@ -89,7 +89,7 @@
                 border-radius: 3px;
             }
                 .inline-code-snippet {
-                    padding: 0.25em 0.5em;
+                    padding: 0.15em 0.5em;
                     background-color: #F0F0F0;
                     color: #555;
                 }
@@ -346,8 +346,6 @@
                 
                 <p>Programmatically apply CSS transitions. Great for throw-away transitions, prototyping or quickly applying complex effects without having to figure out the CSS.</p>
 
-
-
                 <code class="inline-code-method"><b>applyTransition( element: HTMLElement, settings: Object|Array, styles: Object [, completeFn: Function] )</b></code>
                 
                 <p>Define and apply CSS transition to an HTML element, and optionally perform a callback function when the transition is complete.</p>
@@ -364,7 +362,7 @@
                     }<br>
                 </code>
 
-                <p>The number values represent milliseconds. The <code class="inline-code-snippet">property</code> property is the CSS property to transition, the <code class="inline-code-snippet">curve</code> is timing function to use, which must be provided as a string.</p>
+                <p>The number values represent milliseconds. The <code class="inline-code-snippet">property</code> property is the CSS property to transition, the <code class="inline-code-snippet">curve</code> is the timing function to use, which must be provided as a string.</p>
                 
                 <p><b>ES module</b></p>
 
@@ -383,6 +381,7 @@
                 <p><b>uses: applyTransition</b></p>
 
                 <p>Apply a fade-in transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
+                <p>Default duration is <code class="inline-code-snippet">500ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>. The <code class="inline-code-snippet">settings</code> object is the same as for <code class="inline-code-snippet">applyTransition</code>.</p>
                 
                 <p><b>ES module</b></p>
                 
@@ -395,12 +394,21 @@
                 <p><b>ES5 library</b></p>
                 
                 <code class="inline-code-snippet">SCRIPTUCCINO.fx.fadeIn</code>
-                
 
-                <code class="inline-code-method"><b>fadeOut( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
-                <p><b>uses: applyTransition</b></p>
+                <div>
+                    <p><b>Demo</b></p>
+
+                    <div id="fx-fade-in" class="fx-demo">
+                        fadeIn
+                    </div>
+                </div>
                 
+                <code class="inline-code-method"><b>fadeOut( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
+
+                <p><b>uses: applyTransition</b></p>
+
                 <p>Apply a fade-out transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
+                <p>Default duration is <code class="inline-code-snippet">500ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
 
                 <p><b>ES module</b></p>
                 
@@ -420,6 +428,8 @@
                 
                 <p>Apply a fade transition to the specified opacity on an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
                 
+                <p>Default duration is <code class="inline-code-snippet">500ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
+
                 <p><b>ES module</b></p>
 
                 <p>exported as named by:</p>
@@ -438,5 +448,22 @@
             </footer>
         </div>
         <script src="/js/scriptuccino.js"></script>
+        <script>
+            const fadeInElm = document.getElementById('fx-fade-in');
+            fadeInElm.addEventListener(
+                'click',
+                () => {
+                    fadeInElm.style.opacity = '0';
+                    SCRIPTUCCINO.fx.fadeIn(
+                        fadeInElm,
+                        undefined,
+                        {
+                            duration: 2000,
+                            curve: 'ease-in'
+                        });
+                },
+                false
+            );
+        </script>
     </body>
 </html>
