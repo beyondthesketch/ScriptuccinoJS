@@ -51,7 +51,7 @@
                 justify-content: center;
                 align-items: center;
 
-                background: #CDCDCD;
+                background: #CDCDCD url('https://www.beyondthesketch.com/images/scriptuccino-bg.jpg') center/cover no-repeat;
             }
 
             #site-content {
@@ -105,6 +105,64 @@
                     .inline-code-method:first-of-type {
                         margin-top: 0;
                     }
+
+            .site-title {
+                margin-bottom: 0;
+                color: #3c2003;
+                opacity: 0.8;
+            }
+            .site-title__beta-label {
+                margin: 0 auto;
+                font-style: italic;
+                color: rgba(0, 0, 200, 0.7);
+                
+            }
+
+            .project-link {
+                position: relative;
+                z-index: 1;
+                font-weight: bold;
+            }
+            .project-link::after {
+                content: '';
+                display: block;
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                left: 0;
+                box-shadow: 0 0 0.5em 0.5em rgba(255, 255, 255, 0.3);
+                background-color: rgba(255, 255, 255, 0.3);
+                border-radius: 100%;
+                transform: scale(0.95);
+            }
+
+            .fx-demo-wrapper {
+                width: 12rem;
+                height: 12rem;
+                border: dashed 0.4rem #3c2003;
+                margin-top: 2.1rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 0.8rem;
+            }
+
+            .fx-demo {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-weight: bold;
+                width: 10rem;
+                height: 10rem;
+                border-radius: 10rem;
+                background: #CDCDCD;
+                color: #FFF;
+                text-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.5);
+                box-shadow: 0.2rem 0.2rem 0.5rem rgba(0, 0, 0, 0.5);
+                cursor: pointer;
+            }
 
             @media screen and (max-width: 1024px) {
                 #site-content {
@@ -160,7 +218,8 @@
         <div id="site-content">
             <header id="site-header">
                 <h1 class="site-title">ScriptuccinoJS</h1>
-                <p><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank">View on GitHub</a></p>
+                <h2 class="site-title__beta-label">beta</h2>
+                <p class="project-link"><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank">View on GitHub</a></p>
             </header>
             <main id="site-main">
                 <p><strong>ScriptuccinoJS is a simple set of JavaScript function and utility modules for easily performing some common tasks.</strong></p>
@@ -397,9 +456,11 @@
 
                 <div>
                     <p><b>Demo</b></p>
-
-                    <div id="fx-fade-in" class="fx-demo">
-                        fadeIn
+                    <small>Settings: duration: 2 seconds, curve: ease-in</small>
+                    <div class="fx-demo-wrapper">
+                        <div id="fx-fade-in" class="fx-demo" title="Click to demo a fade in">
+                            fadeIn
+                        </div>
                     </div>
                 </div>
                 
@@ -421,6 +482,16 @@
                 <p><b>ES5 library</b></p>
                 
                 <code class="inline-code-snippet">SCRIPTUCCINO.fx.fadeOut</code>
+
+                <div>
+                    <p><b>Demo</b></p>
+                    <small>Settings: duration: 2 seconds, curve: ease-in</small>
+                    <div class="fx-demo-wrapper">
+                        <div id="fx-fade-out" class="fx-demo" title="Click to demo a fade out">
+                            fadeOut
+                        </div>
+                    </div>
+                </div>
                 
 
                 <code class="inline-code-method"><b>fadeTo( element: HTMLElement, opacity: number [, completeFn: Function, settings: Object] )</b></code>
@@ -442,6 +513,17 @@
                 
                 <code class="inline-code-snippet">SCRIPTUCCINO.fx.fadeTo</code>
 
+
+                <div>
+                    <p><b>Demo</b></p>
+                    <small>Settings: opacity: 20, duration: 2 seconds, curve: ease-in</small>
+                    <div class="fx-demo-wrapper">
+                        <div id="fx-fade-to" class="fx-demo" title="Click to demo a fade out">
+                            fadeTo
+                        </div>
+                    </div>
+                </div>
+
             </main>
             <footer id="site-footer">
                 <small>Copyright &copy; 2018 - 2019 <a href="https://www.beyondthesketch.com">Beyond The Sketch Ltd</a></small>
@@ -456,6 +538,39 @@
                     fadeInElm.style.opacity = '0';
                     SCRIPTUCCINO.fx.fadeIn(
                         fadeInElm,
+                        undefined,
+                        {
+                            duration: 2000,
+                            curve: 'ease-in'
+                        });
+                },
+                false
+            );
+
+            const fadeOutElm = document.getElementById('fx-fade-out');
+            fadeOutElm.addEventListener(
+                'click',
+                () => {
+                    fadeOutElm.style.opacity = '1';
+                    SCRIPTUCCINO.fx.fadeOut(
+                        fadeOutElm,
+                        undefined,
+                        {
+                            duration: 2000,
+                            curve: 'ease-in'
+                        });
+                },
+                false
+            );
+
+            const fadeToElm = document.getElementById('fx-fade-to');
+            fadeToElm.addEventListener(
+                'click',
+                () => {
+                    fadeToElm.style.opacity = '1';
+                    SCRIPTUCCINO.fx.fadeTo(
+                        fadeToElm,
+                        20,
                         undefined,
                         {
                             duration: 2000,
