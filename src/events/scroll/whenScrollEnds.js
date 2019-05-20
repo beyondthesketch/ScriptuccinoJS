@@ -2,16 +2,16 @@
 
 function debounce(fn, wait) {
     let t;
-    // return a function
     return function() {
         self.clearTimeout(t);
         t = self.setTimeout(fn.bind(this, arguments), wait);
     }
 }
 
-const whenScrollEnds = (
-    function() {
-        const queue = [];
+const whenScrollEnds = (function() {
+    const queue = [];
+    let implementation = (fn) => {
+        console.log('first');
 
         self.addEventListener(
             'scroll',
@@ -29,15 +29,20 @@ const whenScrollEnds = (
             false
         );
 
-        return (fn) => {
-            if (fn instanceof self.Function) {
-                queue.push(fn);
+        implementation = (fFn) => {
+            console.log('subsequent');
+            if (fFn instanceof self.Function) {
+                queue.push(fFn);
             }
             else {
                 console && console.warn('whenScrollEnds not supplied a function');
             }
         };
 
-    }()
-);
+        implementation(fn);
+    };
+
+    return (f) => implementation(f);
+}())
+    
 export default whenScrollEnds;
