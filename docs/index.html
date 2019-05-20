@@ -179,10 +179,19 @@
             }
 
             @media screen and (min-width: 1024px) {
+                #site-header {
+                    position: fixed;
+                    width: 50vw;
+                    height: 100vh;
+                    left: 0;
+                    bottom: 0;
+                    top: 0;
+                }
+
                 #site-content {
                     flex-direction: row;
+                    justify-content: flex-end;
                     position: relative;
-                    height: 100vh;
                     min-height: 500px;
                 }
 
@@ -199,14 +208,11 @@
                 #site-main {
                     box-sizing: border-box;
                     padding: 4.8rem;
-                    height: 100vh;
-                    overflow-x: hidden;
-                    overflow-y: auto;
                 }
 
                 #site-footer {
                     width: 50%;
-                    position: absolute;
+                    position: fixed;
                     left: 0;
                     bottom: 0;
                     padding: 1.618rem 0;
