@@ -17,7 +17,6 @@ const whenScrollEnds = (function() {
             'scroll',
             debounce(
                 function () {
-                    console.log('debounced!');
                     if (!!queue.length) {
                         queue.forEach(
                             (queuedFn) => queuedFn()
@@ -30,7 +29,6 @@ const whenScrollEnds = (function() {
         );
 
         implementation = (fFn) => {
-            console.log('subsequent');
             if (fFn instanceof self.Function) {
                 queue.push(fFn);
             }
