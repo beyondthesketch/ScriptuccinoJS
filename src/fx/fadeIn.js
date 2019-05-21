@@ -10,7 +10,7 @@ const fadeIn = (element, completeFn, settings) => {
   }
 
   if (settings && typeof settings === 'object') {
-    if (Object.assign == 'function') {
+    if (typeof Object.assign === 'function') {
       Object.assign(config, settings);
     }
     else {

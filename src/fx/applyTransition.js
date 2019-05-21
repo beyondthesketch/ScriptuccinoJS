@@ -1,14 +1,14 @@
 /** ScriptuccinoJS - applyTransition | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
+const vendors = [
+  'webkit',
+  'moz',
+  'o',
+  'ms'
+];
+
 const transitionendProp = (function () {
   if (self.document) {
     let prop = 'transitionend';
-
-    const vendors = [
-      'webkit',
-      'moz',
-      'o',
-      'ms'
-    ];
 
     if ('ontransitionend' in document.body) {
       return prop;
@@ -42,12 +42,6 @@ const transitionProperty = (function () {
     }
     else {
       let prop;
-      const vendors = [
-        'webkit',
-        'moz',
-        'o',
-        'ms'
-      ];
 
       for (let i = vendors.length; i--;) {
         if ((vendors[i] + 'Transition') in document.body.style) {
@@ -74,13 +68,13 @@ const applyTransition = (function () {
       if (typeof settings === 'object') {
         if (Array.isArray(settings)) {
           /* multiple transitions defined... */
-          let rule = '';
+          let rule = [];
 
           for (let i = settings.length; i--;) {
-            rule += settings[i].property + (settings[i].duration ? ' ' + settings[i].duration + 'ms' : ' 500ms') + (settings[i].curve ? ' ' + settings[i].curve : ' ease') + (settings[i].delay ? ' ' + settings[i].delay : '') + (i === 0 ? '' : ',');
+            rule.push( settings[i].property + (settings[i].duration ? ' ' + settings[i].duration + 'ms' : ' 500ms') + (settings[i].curve ? ' ' + settings[i].curve : ' ease') + (settings[i].delay ? ' ' + settings[i].delay : '') );
           }
 
-          elm.style[transitionProp] = rule;
+          elm.style[transitionProp] = rule.join(',');
         }
         else {
           /* single transition defined */
