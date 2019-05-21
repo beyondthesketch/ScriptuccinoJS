@@ -11,7 +11,6 @@ function debounce(fn, wait) {
 const whenScrollEnds = (function() {
     const queue = [];
     let implementation = (fn) => {
-        console.log('first');
 
         self.addEventListener(
             'scroll',

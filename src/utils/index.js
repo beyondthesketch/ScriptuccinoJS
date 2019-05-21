@@ -2,4 +2,4 @@
 export {default as XHR} from './XHR.js';
 export {default as lazyLoadCSS} from './lazyLoadCSS.js';
 export {default as parallelLoadCSS} from './parallelLoadCSS.js';
-export {default as elementComesIntoViewport} from './elementComesIntoViewport.js';
+export {default as elementIsInViewport} from './elementIsInViewport.js';
