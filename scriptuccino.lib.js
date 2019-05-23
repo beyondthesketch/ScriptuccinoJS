@@ -4,7 +4,7 @@ import {default as whenScrollEnds} from './src/events/scroll/whenScrollEnds';
 import {default as XHR} from './src/utils/XHR';
 import {default as lazyLoadCSS} from './src/utils/lazyLoadCSS';
 import {default as parallelLoadCSS} from './src/utils/parallelLoadCSS';
-import {default as elementIsInViewport} from './src/utils/elementIsInViewport';
+import {default as elementScrolledAboveFold} from './src/utils/elementScrolledAboveFold';
 import {default as applyTransition} from './src/fx/applyTransition';
 import {default as fadeTo} from './src/fx/fadeTo';
 import {default as fadeIn} from './src/fx/fadeIn';
@@ -24,7 +24,7 @@ Object.assign(self.SCRIPTUCCINO, {
       fadeTo
    },
    utils: {
-      elementIsInViewport,
+      elementScrolledAboveFold,
       lazyLoadCSS,
       parallelLoadCSS,
       XHR
