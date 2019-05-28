@@ -142,9 +142,46 @@ exported as default by:
 `SCRIPTUCCINO.events.whenPageReady`
 
 
+**whenScrollEnds( fn: Function )**
+
+Run the supplied function when the window scrolling comes to a stop. The scroll detection is debounced to 250 milliseconds.
+
+*ES module*
+
+exported as named by:
+`events/index.js`
+
+exported as default by:
+`events/scroll/whenScrollEnds.js`
+
+*ES5 library*
+
+`SCRIPTUCCINO.events.whenScrollEnds`
+
+
 #### utils
 
 Tools for doing common things with a little more ease.
+
+
+**elementScrolledAboveFold( config: Object )**
+*uses: whenScrollEnds*
+
+Call the supplied function when the window is scrolled so that the specified element or elements are above the page fold.
+
+The callback function `fn` receives a single argument which is the element that has settled above the fold.
+
+*ES module*
+
+exported as named by:
+`utils/index.js`
+
+exported as default by:
+`utils/elementScrolledAboveFold.js`
+
+*ES5 library*
+
+`SCRIPTUCCINO.utils.elementScrolledAboveFold`
 
 
 **XHR( config: Object )**
