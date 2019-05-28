@@ -10,7 +10,7 @@ const elementScrolledAboveFold = (
                     queue.forEach(
                         (elm) => {
                             if (!elm.done && elm.position < 1) {
-                                elm.fn.call(this, elm);
+                                elm.fn.call(this, elm.element);
                                 elm.done = true;
                             }
                         }
