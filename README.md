@@ -164,7 +164,7 @@ exported as default by:
 Tools for doing common things with a little more ease.
 
 
-**elementScrolledAboveFold( config: Object )**
+**elementScrolledAboveFold( elements: Element | NodeList, fn: Function )**
 *uses: whenScrollEnds*
 
 Call the supplied function when the window is scrolled so that the specified element or elements are above the page fold.
