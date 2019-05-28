@@ -122,6 +122,7 @@
                 position: relative;
                 z-index: 1;
                 font-weight: bold;
+                margin: 3.4rem;
             }
             .project-link::after {
                 content: '';
@@ -208,6 +209,7 @@
                 #site-main {
                     box-sizing: border-box;
                     padding: 4.8rem;
+                    width: 50vw;
                 }
 
                 #site-footer {
@@ -225,7 +227,8 @@
             <header id="site-header">
                 <h1 class="site-title">ScriptuccinoJS</h1>
                 <h2 class="site-title__beta-label">beta</h2>
-                <p class="project-link"><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank">View on GitHub</a></p>
+                <small>v1.2.0-beta</small>
+                <p class="project-link"><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank" rel="noopener">View on GitHub</a></p>
             </header>
             <main id="site-main">
                 <p><strong>ScriptuccinoJS is a simple set of JavaScript function and utility modules for easily performing some common tasks.</strong></p>
@@ -243,10 +246,10 @@
                 <div class="code-block">
                     <code>
                         import whenPageLoaded from '/scriptuccino/modules/events/page/whenPageLoaded.js';<br>
-    
+                        <br>
                         const myFoo = () => alert('foo');<br>
-    
-                        whenPageLoaded(myFoo);<br>
+                        <br>
+                        whenPageLoaded(myFoo);
                     </code>
 
                 </div>
@@ -255,11 +258,10 @@
 
                 <div class="code-block">
                     <code>
-
-                        const myFoo = () => alert('foo');
-
-                        import('/scriptuccino/modules/events/page/whenPageLoaded.js').then(
-                            (module) => module.whenPageLoaded(myFoo)
+                        const myFoo = () => alert('foo');<br>
+<br>
+                        import('/scriptuccino/modules/events/page/whenPageLoaded.js').then(<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;(module) => module.whenPageLoaded(myFoo)<br>
                         );
 
                     </code>
@@ -269,13 +271,11 @@
 
                 <div class="code-block">
                     <code>
-
                     const myFoo = () => alert('foo');<br>
-
+                    <br>
                     const module = await import('/scriptuccino/modules/events/page/whenPageLoaded.js');<br>
-
+                    <br>
                     module.whenPageLoaded(myFoo);<br>
-
                     </code>
                 </div>
 
@@ -302,7 +302,7 @@
                 <div class="code-block">
                     <code>
                         const myFoo = () => alert('foo');<br>
-
+                        <br>
                         SCRIPTUCCINO.events.whenPageLoaded(myFoo);<br>
                     </code>
                 </div>
@@ -349,12 +349,48 @@
                 <p><b>ES5 library</b></p>
                 
                 <code class="inline-code-snippet">SCRIPTUCCINO.events.whenPageReady</code>
+ 
+                <code class="inline-code-method"><b>whenScrollEnds( fn: Function )</b></code>
+
+                <p>Run the supplied function when the window scrolling comes to a stop. The scroll detection is debounced to 250 milliseconds.</p>
+
+                <p><b>ES module</b></p>
+
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">events/index.js</code>
+
+                <p>exported as default by:</p>
+                <code class="inline-code-snippet">events/scroll/whenScrollEnds.js</code>
+
+                <p><b>ES5 library</b></p>
+                
+                <code class="inline-code-snippet">SCRIPTUCCINO.events.whenScrollEnds</code>
 
                 <h4>utils</h4>
 
                 <p>Tools for doing common things with a little more ease.</p>
 
 
+                <code class="inline-code-method"><b>elementScrolledAboveFold( elements: Element | Nodelist, fn: Function )</b></code>
+                <p><b>uses: whenScrollEnds</b></p>
+
+
+                <p>Call the supplied function when the window is scrolled so that the specified element or elements are above the page fold.</p>
+                <p>The callback function <code class="inline-code-snippet">fn</code> receives a single argument which is the element that has settled above the fold.</p>
+
+                <p><b>ES module</b></p>
+                
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">utils/index.js</code>
+
+                <p>exported as default by:</p>
+                <code class="inline-code-snippet">utils/elementScrolledAboveFold.js</code>
+                
+                <p><b>ES5 library</b></p>
+
+                <code class="inline-code-snippet">SCRIPTUCCINO.utils.elementScrolledAboveFold</code>
+
+                
                 <code class="inline-code-method"><b>XHR( config: Object )</b></code>
 
 
@@ -463,6 +499,7 @@
                 <div>
                     <p><b>Demo</b></p>
                     <small>Settings: duration: 2 seconds, curve: ease-in</small>
+                    <p>Click to reset and preview</p>
                     <div class="fx-demo-wrapper">
                         <div id="fx-fade-in" class="fx-demo" title="Click to demo a fade in">
                             fadeIn
@@ -492,6 +529,7 @@
                 <div>
                     <p><b>Demo</b></p>
                     <small>Settings: duration: 2 seconds, curve: ease-in</small>
+                    <p>Click to reset and preview</p>
                     <div class="fx-demo-wrapper">
                         <div id="fx-fade-out" class="fx-demo" title="Click to demo a fade out">
                             fadeOut
@@ -523,6 +561,7 @@
                 <div>
                     <p><b>Demo</b></p>
                     <small>Settings: opacity: 20, duration: 2 seconds, curve: ease-in</small>
+                    <p>Click to reset and preview</p>
                     <div class="fx-demo-wrapper">
                         <div id="fx-fade-to" class="fx-demo" title="Click to demo a fade out">
                             fadeTo
