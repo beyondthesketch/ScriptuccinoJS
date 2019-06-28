@@ -9,6 +9,7 @@ import {default as applyTransition} from './src/fx/applyTransition';
 import {default as fadeTo} from './src/fx/fadeTo';
 import {default as fadeIn} from './src/fx/fadeIn';
 import {default as fadeOut} from './src/fx/fadeOut';
+import {default as pop} from './src/fx/pop';
 
 self.SCRIPTUCCINO = self.SCRIPTUCCINO || {};
 Object.assign(self.SCRIPTUCCINO, {
@@ -21,7 +22,8 @@ Object.assign(self.SCRIPTUCCINO, {
       applyTransition,
       fadeIn,
       fadeOut,
-      fadeTo
+      fadeTo,
+      pop
    },
    utils: {
       elementScrolledAboveFold,
