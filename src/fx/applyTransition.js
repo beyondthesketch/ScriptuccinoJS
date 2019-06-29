@@ -35,7 +35,7 @@ const transitionendProp = (function () {
   }
 }());
 
-const transitionProperty = (function () {
+export const transitionProperty = (function () {
   if (self.document) {
     if ('transition' in document.body.style) {
       return 'transition';
@@ -64,17 +64,25 @@ const applyTransition = (function () {
     return (element, settings, styles, completeFn) => {
       const elm = element;
       const transitionProp = transitionProperty;
+      let longestTransition;
 
       if (typeof settings === 'object') {
         if (Array.isArray(settings)) {
           /* multiple transitions defined... */
           let rule = [];
 
+          const reversed = settings.map((x) => x).reverse();
+          const longest = Math.max(...(settings.map( (conf) => conf.duration)));
+
+          longestTransition = reversed.find(
+            (conf) => conf.duration === longest
+          );        
+         
           for (let i = settings.length; i--;) {
             rule.push( settings[i].property + (settings[i].duration ? ' ' + settings[i].duration + 'ms' : ' 500ms') + (settings[i].curve ? ' ' + settings[i].curve : ' ease') + (settings[i].delay ? ' ' + settings[i].delay : '') );
           }
 
-          elm.style[transitionProp] = rule.join(',');
+          elm.style[transitionProp] = rule.join(', ');
         }
         else {
           /* single transition defined */
@@ -99,13 +107,9 @@ const applyTransition = (function () {
           if (
             event.target === elm
             && (
-              event.propertyName === settings.property
-              || event.propertyName === 'width'
-              || event.propertyName === 'height'
-              || event.propertyName === 'font-size'
+              event.propertyName === (!!longestTransition ? longestTransition.property : settings.property)
             )
           ) {
-
             elm.style.removeProperty(transitionProp);
 
             elm.removeEventListener(transitionendProp, transitionendCallback);
