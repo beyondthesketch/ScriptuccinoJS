@@ -1,9 +1,12 @@
 /** ScriptuccinoJS - pop | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import applyTransition from './applyTransition.js';
+import {default as applyTransition, transitionProperty } from './applyTransition.js';
 
 const matrixRegex = /matrix\((.+), (.+), (.+), (.+), (.+), (.+)\)/;
 
 const pop = (element, scale = 1, completeFn) => {
+    if (!!element.style[transitionProperty]) {
+        return null;
+    }
     const config = {
         duration: 250,
         curve: 'cubic-bezier(1, -0.38, 0, 2)',
@@ -25,8 +28,8 @@ const pop = (element, scale = 1, completeFn) => {
             )[1] !== scale
         )
     ) {
-        
-        const newState = currentState === 'none' ? 'matrix(0, 0, 0, 0, 0, 0)' : currentState.replace(matrixRegex, 'matrix(0, $2, $3, 0, $5, $6)');
+        /* must set starting scales to 0.01 to work cross browser, starting with 0 doesn't work */
+        const newState = currentState === 'none' ? 'matrix(0.01, 0, 0, 0.01, 0, 0)' : currentState.replace(matrixRegex, 'matrix(0.01, $2, $3, 0.01, $5, $6)');
         element.style.transform = newState;
         self.setTimeout(
             () => applyTransition(
