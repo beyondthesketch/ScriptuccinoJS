@@ -4,6 +4,10 @@ import {default as applyTransition, transitionProperty } from './applyTransition
 const matrixRegex = /matrix\((.+), (.+), (.+), (.+), (.+), (.+)\)/;
 
 const pop = (element, scale = 1, completeFn) => {
+    if (!element) {
+        return console && console.warn( 'ScriptuccinoJS - pop not supplied an element!' );
+    }
+
     if (!!element.style[transitionProperty]) {
         return null;
     }
@@ -12,10 +16,6 @@ const pop = (element, scale = 1, completeFn) => {
         curve: 'cubic-bezier(1, -0.38, 0, 2)',
         property: 'transform'
     };
-
-    if (!element) {
-        return console && console.warn( 'ScriptuccinoJS - pop not supplied an element!' );
-    }
 
     const currentState = self.getComputedStyle(element).getPropertyValue('transform');
 

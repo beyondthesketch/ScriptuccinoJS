@@ -22,6 +22,13 @@ test('Calls console.warn if no DOM element is supplied for the effect', () => {
     expect(console.warn).toHaveBeenCalledWith('ScriptuccinoJS - pop not supplied an element!');
 });
 
+test('Returns null if the element has an inline transition property applied - i.e. is transitioning with Scriptuccino or something else', () => {
+    const domElement = document.createElement('div');
+    domElement.style.transition = 'opacity';
+    
+    expect(pop(domElement)).toBeNull();
+});
+
 test('Calls applyTransition with correct arguments if the element is supplied and no scale or callback is supplied', () => {
     const domElement = document.createElement('div');
     domElement.style.transform = 'none';
