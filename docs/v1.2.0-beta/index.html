@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="content" content="width=device-width,initial-scale=1">
-        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1.3.0-beta</title>
+        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1.2.0-beta</title>
         <style>
             html {
                 font: 62.5%/1.618 Verdana, Geneva, Tahoma, sans-serif;
@@ -227,7 +227,7 @@
             <header id="site-header">
                 <h1 class="site-title">ScriptuccinoJS</h1>
                 <h2 class="site-title__beta-label">beta</h2>
-                <small>v1.3.0-beta</small>
+                <small>v1.2.0-beta</small>
                 <p class="project-link"><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank" rel="noopener">View on GitHub</a></p>
             </header>
             <main id="site-main">
@@ -569,72 +569,12 @@
                     </div>
                 </div>
 
-                <code class="inline-code-method"><b>pop( element: HTMLElement [, scale: number, completeFn: Function] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-                
-                <p>Apply a 'pop' effect on an HTML element. Optionally provide a scale number to set the css scale transform to, and perform a callback when complete.</p>
-                
-                <p>This is a predefined effect and so does not offer any configuration of the settings other than the final scale. If called without a <code class="inline-code-snippet">scale</code> argument or <code class="inline-code-snippet">completeFn</code>, a <code class="inline-code-snippet">scale</code> value of 1 is used</p>
-
-                <p><b>ES module</b></p>
-
-                <p>exported as named by:</p>
-                <code class="inline-code-snippet">fx/index.js</code>
-                
-                <p>exported as default by:</p>
-                <code class="inline-code-snippet">fx/pop.js</code>
-                
-                <p><b>ES5 library</b></p>
-                
-                <code class="inline-code-snippet">SCRIPTUCCINO.fx.pop</code>
-
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-pop" class="fx-demo" title="Click to demo a pop">
-                            pop
-                        </div>
-                    </div>
-                </div>
-
-                <code class="inline-code-method"><b>slam( element: HTMLElement [, scale: number, completeFn: Function] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-                
-                <p>Apply a 'slam' effect on an HTML element. Optionally provide a scale number to set the css scale transform to, and perform a callback when complete.</p>
-                
-                <p>This is a predefined effect and so does not offer any configuration of the settings other than the final scale. If called without a <code class="inline-code-snippet">scale</code> argument or <code class="inline-code-snippet">completeFn</code>, a <code class="inline-code-snippet">scale</code> value of 1 is used</p>
-
-                <p><b>ES module</b></p>
-
-                <p>exported as named by:</p>
-                <code class="inline-code-snippet">fx/index.js</code>
-                
-                <p>exported as default by:</p>
-                <code class="inline-code-snippet">fx/slam.js</code>
-                
-                <p><b>ES5 library</b></p>
-                
-                <code class="inline-code-snippet">SCRIPTUCCINO.fx.slam</code>
-
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-slam" class="fx-demo" title="Click to demo a slam">
-                            slam
-                        </div>
-                    </div>
-                </div>
-
             </main>
             <footer id="site-footer">
                 <small>Copyright &copy; 2018 - 2019 <a href="https://www.beyondthesketch.com">Beyond The Sketch Ltd</a></small>
             </footer>
         </div>
-        <script src="js/scriptuccino.v1.3.0-beta.js"></script>
+        <script src="js/scriptuccino.v1.2.0-beta.js"></script>
         <script>
             const fadeInElm = document.getElementById('fx-fade-in');
             fadeInElm.addEventListener(
@@ -681,28 +621,6 @@
                             duration: 2000,
                             curve: 'ease-in'
                         });
-                },
-                false
-            );
-
-            const popElm = document.getElementById('fx-pop');
-            popElm.addEventListener(
-                'click',
-                () => {
-                    SCRIPTUCCINO.fx.pop(
-                        popElm
-                    );
-                },
-                false
-            );
-
-            const slamElm = document.getElementById('fx-slam');
-            slamElm.addEventListener(
-                'click',
-                () => {
-                    SCRIPTUCCINO.fx.slam(
-                        slamElm
-                    );
                 },
                 false
             );
