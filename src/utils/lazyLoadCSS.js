@@ -8,7 +8,6 @@ const lazyLoadCSS = (
       return (uri, callback) => {
         if (typeof uri === 'string') {
           const stylesheet = document.createElement('style');
-          stylesheet.setAttribute('rel', 'stylesheet');
 
           whenPageLoaded(() => {
             XHR(

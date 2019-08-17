@@ -32,7 +32,7 @@ test('Calls setAttribute', () => {
   );
   parallelLoadCSS('/bar.css');
 
-  expect(mockElementInstance.setAttribute).toHaveBeenCalledWith(
+  expect(mockElementInstance.setAttribute).not.toHaveBeenCalledWith(
     'rel',
     'stylesheet'
   );
