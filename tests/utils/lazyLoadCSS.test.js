@@ -23,7 +23,7 @@ test('Calls document.createElement with \'style\'', () => {
 });
 
 
-test('Calls setAttribute', () => {
+test('Does not set any attributes', () => {
   const mockElementInstance = {
     setAttribute: jest.fn()
   };
@@ -32,7 +32,8 @@ test('Calls setAttribute', () => {
   );
   lazyLoadCSS('/foo.css');
 
-  expect(mockElementInstance.setAttribute).toHaveBeenCalledWith(
+
+  expect(mockElementInstance.setAttribute).not.toHaveBeenCalledWith(
     'rel',
     'stylesheet'
   );
