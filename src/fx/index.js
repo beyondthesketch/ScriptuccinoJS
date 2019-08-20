@@ -8,3 +8,5 @@ export {default as slam} from './slam.js';
 export {default as moveIn} from './moveIn.js';
 export {default as shiftFadeIn} from './shiftFadeIn.js';
 export {default as shiftFadeOut} from './shiftFadeOut.js';
+export {default as lift} from './lift.js';
+export {default as flip} from './flip.js';

@@ -16,6 +16,8 @@ import {default as slam} from './src/fx/slam';
 import {default as moveIn} from './src/fx/moveIn';
 import {default as shiftFadeIn} from './src/fx/shiftFadeIn';
 import {default as shiftFadeOut} from './src/fx/shiftFadeOut';
+import {default as lift} from './src/fx/lift';
+import {default as flip} from './src/fx/flip';
 
 self.SCRIPTUCCINO = self.SCRIPTUCCINO || {};
 Object.assign(self.SCRIPTUCCINO, {
@@ -33,7 +35,9 @@ Object.assign(self.SCRIPTUCCINO, {
       slam,
       moveIn,
       shiftFadeIn,
-      shiftFadeOut
+      shiftFadeOut,
+      lift,
+      flip
    },
    utils: {
       elementComesIntoViewport,

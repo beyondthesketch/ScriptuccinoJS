@@ -671,7 +671,6 @@
                     </div>
                 </div>
 
-
                 <code class="inline-code-method"><b>moveIn( element: HTMLElement [, fromDirection: String, completeFn: Function] )</b></code>
                 <p><b>uses: applyTransition</b></p>
                 
@@ -704,12 +703,14 @@
                 
                 <p>Fade in an element with a small shift from the specified side.</p>
                 <p><code class="inline-code-snippet">fromDirection</code> must be a string of one of <code class="inline-code-snippet">'top'</code>, <code class="inline-code-snippet">'right'</code>, <code class="inline-code-snippet">'bottom'</code> or <code class="inline-code-snippet">'left'</code></p>
+
                 <p><b>ES module</b></p>
 
                 <p>exported as named by:</p>
                 <code class="inline-code-snippet">fx/index.js</code>
                 
                 <p>exported as default by:</p>
+
                 <code class="inline-code-snippet">fx/shiftFadeIn.js</code>
                 
                 <p><b>ES5 library</b></p>
@@ -750,6 +751,66 @@
                     <div class="fx-demo-wrapper">
                         <div id="fx-shiftFadeOut" class="fx-demo" title="Click to demo a shiftFadeOut">
                             shiftFadeOut
+                        </div>
+                    </div>
+                </div>
+
+                <code class="inline-code-method"><b>flip( element: HTMLElement [, completeFn: Function] )</b></code>
+                <p><b>uses: applyTransition</b></p>
+
+                <p>Apply a 'flip' effect on an HTML element. Optionally provide a callback function to perform when complete.</p>
+
+                <p>This is a predefined effect and so does not offer any configuration of the settings.</p>
+
+                <p><b>ES module</b></p>
+
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">fx/index.js</code>
+                
+                <p>exported as default by:</p>
+
+                <code class="inline-code-snippet">fx/flip.js</code>
+                
+                <p><b>ES5 library</b></p>
+                
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.flip</code>
+
+                <div>
+                    <p><b>Demo</b></p>
+                    <p>Click to reset and preview</p>
+                    <div class="fx-demo-wrapper">
+                        <div id="fx-flip" class="fx-demo" title="Click to demo a lift">
+                            flip
+                        </div>
+                    </div>
+                </div>
+
+                <code class="inline-code-method"><b>lift( element: HTMLElement [, completeFn: Function] )</b></code>
+                <p><b>uses: applyTransition</b></p>
+
+                <p>Apply a 'lift' effect on an HTML element. Optionally provide a callback function to perform when complete.</p>
+
+                <p>This is a predefined effect and so does not offer any configuration of the settings.</p>
+
+                <p><b>ES module</b></p>
+
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">fx/index.js</code>
+                
+                <p>exported as default by:</p>
+
+                <code class="inline-code-snippet">fx/lift.js</code>
+                
+                <p><b>ES5 library</b></p>
+                
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.lift</code>
+
+                <div>
+                    <p><b>Demo</b></p>
+                    <p>Click to reset and preview</p>
+                    <div class="fx-demo-wrapper">
+                        <div id="fx-lift" class="fx-demo" title="Click to demo a lift">
+                            lift
                         </div>
                     </div>
                 </div>
@@ -878,6 +939,20 @@
                         () => {
                             shiftFadeOutElm.style.transform = null;
                             shiftFadeOutElm.style.opacity = null;
+                        }
+                        );
+                },
+                false
+            );
+
+            const flipElm = document.getElementById('fx-flip');
+            flipElm.addEventListener(
+                'click',
+                () => {
+                    SCRIPTUCCINO.fx.flip(
+                        flipElm,
+                        () => {
+                            flipElm.style.transform = null;
                         }
                     );
                 },
