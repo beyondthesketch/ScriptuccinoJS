@@ -1,13 +1,14 @@
 {
   "name": "@beyondthesketch/scriptuccinojs",
-  "version": "1.3.3-beta",
-  "description": "Simple set of JavaScript function and utility modules for easily performing some common tasks.",
+  "version": "1.4.0-alpha",
+  "description": "A simple set of JavaScript function and utility modules for easily performing some common tasks.",
   "main": "index.js",
   "scripts": {
     "test": "jest",
     "build:dev": "babel src/ --out-dir modules/ && webpack",
     "build": "npm test && babel src/ --presets minify --out-dir modules/ && webpack --env.production",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "start": "webpack-dev-server"
   },
   "repository": {
     "type": "git",

@@ -7,6 +7,7 @@ const elementComesIntoViewport = (
         let implementation = (iElement, iFn) => {
     
             if (self.IntersectionObserver) {
+                console && console.warn('ScriptuccinoJS: Using working draft implementation of IntersectionObserver - This may cause errors!');
                 implementation = (elements, fn) => {
                     let elementCollection;
                     if (elements instanceof self.NodeList) {
@@ -17,6 +18,11 @@ const elementComesIntoViewport = (
                     }
                     else {
                         console && console.warn('elementComesIntoViewport not supplied with a DOM element');
+                        return null;
+                    }
+
+                    if (!(fn instanceof self.Function)) {
+                        console && console.warn('elementComesIntoViewport not supplied a function');
                         return null;
                     }
 
