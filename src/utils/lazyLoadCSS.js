@@ -6,50 +6,28 @@ const lazyLoadCSS = (
   function () {
     if (self.document) {
       return (uri, callback) => {
-        if (typeof uri === 'string' || Array.isArray(uri)) {
-          whenPageLoaded(() => {
-            Array.isArray(uri)
-              ?
-              uri.forEach(
-                (i) => XHR(
-                  {
-                    uri: i,
-                    response_type: 'text',
-                    successFn: (rules) => {
-                      const stylesheet = document.createElement('style');
-                      stylesheet.textContent = rules;
-                      !!document.head
-                        ?
-                        document.head.appendChild(stylesheet)
-                        :
-                        document.body.appendChild(stylesheet);
-  
-                      if (callback && typeof callback === 'function') {
-                        callback();
-                      }
-                    },
-                  }
-                )
-              )
-              : XHR(
-                {
-                  uri,
-                  response_type: 'text',
-                  successFn: (rules) => {
-                    const stylesheet = document.createElement('style');
-                    stylesheet.textContent = rules;
-                    !!document.head
-                      ?
-                      document.head.appendChild(stylesheet)
-                      :
-                      document.body.appendChild(stylesheet);
+        if (typeof uri === 'string') {
+          const stylesheet = document.createElement('style');
 
-                    if (callback && typeof callback === 'function') {
-                      callback();
-                    }
-                  },
-                }
-              );
+          whenPageLoaded(() => {
+            XHR(
+              {
+                uri,
+                response_type: 'text',
+                successFn: (rules) => {
+                  stylesheet.textContent = rules;
+                  !!document.head
+                    ?
+                    document.head.appendChild(stylesheet)
+                    :
+                    document.body.appendChild(stylesheet);
+
+                  if (callback && typeof callback === 'function') {
+                    callback();
+                  }
+                },
+              }
+            );
           });
         }
         else {
