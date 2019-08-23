@@ -6,6 +6,7 @@ export {default as lazyLoadCSS} from './modules/utils/lazyLoadCSS.js';
 export {default as parallelLoadCSS} from './modules/utils/parallelLoadCSS.js';
 export {default as applyTransition} from './modules/fx/applyTransition.js';
 export {default as elementComesIntoViewport} from './modules/utils/elementComesIntoViewport.js';
+export {default as elementIsAboveFold} from './modules/utils/elementIsAboveFold.js';
 export {default as elementScrolledAboveFold} from './modules/utils/elementScrolledAboveFold.js';
 export {default as fadeTo} from './modules/fx/fadeTo.js';
 export {default as fadeIn} from './modules/fx/fadeIn.js';
