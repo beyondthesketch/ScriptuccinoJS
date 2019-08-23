@@ -371,15 +371,17 @@
                 <p>Tools for doing common things with a little more ease.</p>
 
 
-                <code class="inline-code-method"><b>elementComesIntoViewport( elements: Element | Nodelist, fn: Function )</b></code>
-                <p><b>uses: elementScrolledAboveFold</b></p>
+                <code class="inline-code-method"><b>elementComesIntoViewport( elements: Element | Nodelist, fn: Function[, options: Object] )</b></code>
+                <p><b>uses: elementScrolledAboveFold</b> (as fallback)</p>
 
                 <p><strong>WARNING: This utility uses experimental web features (Intersection Observer) which is not yet finalised and could change. IT MAY BREAK/THROW ERRORS if the user agent uses a different implementation.</strong></p>
                 <p><strong>It fallsback to <code class="inline-code-snippet">elementScrolledAboveFold</code> functionality if Intersection Observer is not supported at all.</strong></p>
 
-                <p>Call the supplied function as soon as the specified element is scrolled into the viewport.</p>
-                <p>The callback function <code class="inline-code-snippet">fn</code> receives a single argument which is the element that has entered the viewport.</p>
-
+                <p>Call the supplied function as soon as the specified element is scrolled into the viewport using the IntersectionObserver API.</p>
+                <p>The callback function <code class="inline-code-snippet">fn</code> receives 2 arguments, the first is the element that has entered the viewport and the second is the IntersectionObserver instance.</p>
+                <p>The <code class="inline-code-snippet">options</code> argument is a plain object to customise the observer that is created. Please see IntersectionObserver API documents for details on what properties this can take.</p>
+                <p>There is only one IntersectionObserver instance created for all nodes that are passed to this utility. The element will continue to trigger intersections unless you unobserve it in the supplied function.</p>
+                
                 <p><b>ES module</b></p>
                 
                 <p>exported as named by:</p>

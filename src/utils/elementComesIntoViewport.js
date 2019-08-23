@@ -1,14 +1,16 @@
 /** ScriptuccinoJS - elementComesIntoViewport | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
 import whenScrollEnds from './../events/scroll/whenScrollEnds.js';
 
+// TODO: review intersection ratio
+
 const elementComesIntoViewport = (
     function() {
         const queue = [];
-        let implementation = (iElement, iFn) => {
+        let implementation = (iElement, iFn, iOptions = undefined) => {
     
             if (self.IntersectionObserver) {
                 console && console.warn('ScriptuccinoJS: Using working draft implementation of IntersectionObserver - This may cause errors!');
-                implementation = (elements, fn) => {
+                implementation = (elements, fn, options) => {
                     let elementCollection;
                     if (elements instanceof self.NodeList) {
                         elementCollection = elements;
@@ -26,22 +28,23 @@ const elementComesIntoViewport = (
                         return null;
                     }
 
-                    elementCollection.forEach(
-                        (elm) => {
-                            const observer = new IntersectionObserver(
-                                (entries) => {
-                                    if (entries[0].intersectionRatio <= 0) {
-                                        return null;
-                                    }
-
-                                    if (fn && (fn instanceof Function)) {
-                                        fn.call(this, elm, observer);
+                    const observer = new IntersectionObserver(
+                        (entries, observer) => {
+                            entries.forEach(
+                                (entry) => {
+                                    if (entry.intersectionRatio > 0) {
+                                        if (fn && (fn instanceof Function)) {
+                                            fn.call(this, entry.target, observer);
+                                        }
                                     }
                                 }
-                            );
-                        
-                            observer.observe(elm);
-                        }
+                            )
+                        },
+                        options
+                    );
+
+                    elementCollection.forEach(
+                        (elm) => observer.observe(elm)
                     );
                 }
             }
@@ -90,10 +93,10 @@ const elementComesIntoViewport = (
                 };
             }
 
-            implementation(iElement, iFn);
+            implementation(iElement, iFn, iOptions);
         };
 
-        return (elm, f) => implementation(elm, f);
+        return (elm, f, o) => implementation(elm, f, o);
     }()
 );
 export default elementComesIntoViewport;
