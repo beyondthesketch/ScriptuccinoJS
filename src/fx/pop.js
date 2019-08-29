@@ -24,8 +24,8 @@ const pop = (element, scale = 1, completeFn) => {
         || (
             currentState.match(matrixRegex)
             && parseFloat(
-                currentState.match(matrixRegex)
-            )[1] !== scale
+                currentState.match(matrixRegex)[1]
+            ) !== scale
         )
     ) {
         /* must set starting scales to 0.01 to work cross browser, starting with 0 doesn't work */
