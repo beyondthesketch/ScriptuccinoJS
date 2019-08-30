@@ -13,3 +13,6 @@ export {default as fadeIn} from './modules/fx/fadeIn.js';
 export {default as fadeOut} from './modules/fx/fadeOut.js';
 export {default as pop} from './modules/fx/pop.js';
 export {default as slam} from './modules/fx/slam.js';
+export {default as moveIn} from './modules/fx/moveIn.js';
+export {default as shiftFadeIn} from './modules/fx/shiftFadeIn.js';
+export {default as shiftFadeOut} from './modules/fx/shiftFadeOut.js';
