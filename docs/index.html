@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="content" content="width=device-width,initial-scale=1">
-        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1.3.1-beta</title>
+        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1.4.0-beta</title>
         <style>
             html {
                 font: 62.5%/1.618 Verdana, Geneva, Tahoma, sans-serif;
@@ -227,7 +227,7 @@
             <header id="site-header">
                 <h1 class="site-title">ScriptuccinoJS</h1>
                 <h2 class="site-title__beta-label">beta</h2>
-                <small>v1.3.2-beta</small>
+                <small>v1.4.0-beta</small>
                 <p class="project-link"><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank" rel="noopener">View on GitHub</a></p>
             </header>
             <main id="site-main">
@@ -371,6 +371,48 @@
                 <p>Tools for doing common things with a little more ease.</p>
 
 
+                <code class="inline-code-method"><b>elementComesIntoViewport( elements: Element | Nodelist, fn: Function[, options: Object] )</b></code>
+                <p><b>uses: elementScrolledAboveFold</b> (as fallback)</p>
+
+                <p><strong>WARNING: This utility uses experimental web features (Intersection Observer) which is not yet finalised and could change. IT MAY BREAK/THROW ERRORS if the user agent uses a different implementation.</strong></p>
+                <p><strong>It fallsback to <code class="inline-code-snippet">elementScrolledAboveFold</code> functionality if Intersection Observer is not supported at all.</strong></p>
+
+                <p>Call the supplied function as soon as the specified element is scrolled into the viewport using the IntersectionObserver API.</p>
+                <p>The callback function <code class="inline-code-snippet">fn</code> receives 2 arguments, the first is the element that has entered the viewport and the second is the IntersectionObserver instance.</p>
+                <p>The <code class="inline-code-snippet">options</code> argument is a plain object to customise the observer that is created. Please see IntersectionObserver API documents for details on what properties this can take.</p>
+                <p>There is only one IntersectionObserver instance created for all nodes that are passed to this utility. The element will continue to trigger intersections unless you unobserve it in the supplied function.</p>
+                
+                <p><b>ES module</b></p>
+                
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">utils/index.js</code>
+
+                <p>exported as default by:</p>
+                <code class="inline-code-snippet">utils/elementComesIntoViewport.js</code>
+                
+                <p><b>ES5 library</b></p>
+
+                <code class="inline-code-snippet">SCRIPTUCCINO.utils.elementComesIntoViewport</code>
+
+
+
+                <code class="inline-code-method"><b>elementIsAboveFold( element: Element )</b></code>
+                <p>Return `true` if the supplied element is currently above the page fold/viewport, otherwise returns `false`.</p>
+                
+                <p><b>ES module</b></p>
+                
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">utils/index.js</code>
+
+                <p>exported as default by:</p>
+                <code class="inline-code-snippet">utils/elementIsAboveFold.js</code>
+                
+                <p><b>ES5 library</b></p>
+
+                <code class="inline-code-snippet">SCRIPTUCCINO.utils.elementIsAboveFold</code>
+
+               
+                
                 <code class="inline-code-method"><b>elementScrolledAboveFold( elements: Element | Nodelist, fn: Function )</b></code>
                 <p><b>uses: whenScrollEnds</b></p>
 
@@ -629,12 +671,95 @@
                     </div>
                 </div>
 
+
+                <code class="inline-code-method"><b>moveIn( element: HTMLElement [, fromDirection: String, completeFn: Function] )</b></code>
+                <p><b>uses: applyTransition</b></p>
+                
+                <p>moveIn from the specified side</p>
+                <p><b>ES module</b></p>
+
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">fx/index.js</code>
+                
+                <p>exported as default by:</p>
+                <code class="inline-code-snippet">fx/moveIn.js</code>
+                
+                <p><b>ES5 library</b></p>
+                
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.moveIn</code>
+
+                <div>
+                    <p><b>Demo</b></p>
+                    <p>Click to reset and preview</p>
+                    <div class="fx-demo-wrapper">
+                        <div id="fx-movein" class="fx-demo" title="Click to demo a moveIn">
+                            moveIn
+                        </div>
+                    </div>
+                </div>
+
+
+                <code class="inline-code-method"><b>shiftFadeIn( element: HTMLElement [, fromDirection: String, completeFn: Function] )</b></code>
+                <p><b>uses: applyTransition</b></p>
+                
+                <p>Fade in an element with a small shift from the specified side.</p>
+                <p><code class="inline-code-snippet">fromDirection</code> must be a string of one of <code class="inline-code-snippet">'top'</code>, <code class="inline-code-snippet">'right'</code>, <code class="inline-code-snippet">'bottom'</code> or <code class="inline-code-snippet">'left'</code></p>
+                <p><b>ES module</b></p>
+
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">fx/index.js</code>
+                
+                <p>exported as default by:</p>
+                <code class="inline-code-snippet">fx/shiftFadeIn.js</code>
+                
+                <p><b>ES5 library</b></p>
+                
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.shiftFadeIn</code>
+
+                <div>
+                    <p><b>Demo</b></p>
+                    <p>Click to reset and preview</p>
+                    <div class="fx-demo-wrapper">
+                        <div id="fx-shiftFadeIn" class="fx-demo" title="Click to demo a shiftFadeIn">
+                            shiftFadeIn
+                        </div>
+                    </div>
+                </div>
+
+
+                <code class="inline-code-method"><b>shiftFadeOut( element: HTMLElement [, toDirection: String, completeFn: Function] )</b></code>
+                <p><b>uses: applyTransition</b></p>
+                
+                <p>Fade out an element with a small shift toward the specified side.</p>
+                <p><code class="inline-code-snippet">toDirection</code> must be a string of one of <code class="inline-code-snippet">'top'</code>, <code class="inline-code-snippet">'right'</code>, <code class="inline-code-snippet">'bottom'</code> or <code class="inline-code-snippet">'left'</code></p>
+                <p><b>ES module</b></p>
+
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">fx/index.js</code>
+                
+                <p>exported as default by:</p>
+                <code class="inline-code-snippet">fx/shiftFadeOut.js</code>
+                
+                <p><b>ES5 library</b></p>
+                
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.shiftFadeOut</code>
+
+                <div>
+                    <p><b>Demo</b></p>
+                    <p>Click to reset and preview</p>
+                    <div class="fx-demo-wrapper">
+                        <div id="fx-shiftFadeOut" class="fx-demo" title="Click to demo a shiftFadeOut">
+                            shiftFadeOut
+                        </div>
+                    </div>
+                </div>
+
             </main>
             <footer id="site-footer">
                 <small>Copyright &copy; 2018 - 2019 <a href="https://www.beyondthesketch.com">Beyond The Sketch Ltd</a></small>
             </footer>
         </div>
-        <script src="js/scriptuccino.v1.3.2-beta.js"></script>
+        <script src="js/scriptuccino.v1.4.0-beta.js"></script>
         <script>
             const fadeInElm = document.getElementById('fx-fade-in');
             fadeInElm.addEventListener(
@@ -656,10 +781,12 @@
             fadeOutElm.addEventListener(
                 'click',
                 () => {
-                    fadeOutElm.style.opacity = '1';
+                    
                     SCRIPTUCCINO.fx.fadeOut(
                         fadeOutElm,
-                        undefined,
+                        () => {
+                            fadeOutElm.style.opacity = null;
+                        },
                         {
                             duration: 2000,
                             curve: 'ease-in'
@@ -689,8 +816,9 @@
             popElm.addEventListener(
                 'click',
                 () => {
+                    popElm.style.transform = 'scale(0)';
                     SCRIPTUCCINO.fx.pop(
-                        popElm
+                        popElm,
                     );
                 },
                 false
@@ -700,8 +828,57 @@
             slamElm.addEventListener(
                 'click',
                 () => {
+                    slamElm.style.transform = 'scale(0)';
                     SCRIPTUCCINO.fx.slam(
                         slamElm
+                    );
+                },
+                false
+            );
+
+            const moveInElm = document.getElementById('fx-movein');
+            moveInElm.addEventListener(
+                'click',
+                () => {
+                    SCRIPTUCCINO.fx.moveIn(
+                        moveInElm,
+                        'right',
+                        () => {
+                            moveInElm.style.transform = null;
+                        }
+                    );
+                },
+                false
+            );
+
+            const shiftFadeInElm = document.getElementById('fx-shiftFadeIn');
+            shiftFadeInElm.addEventListener(
+                'click',
+                () => {
+                    SCRIPTUCCINO.fx.shiftFadeIn(
+                        shiftFadeInElm,
+                        'right',
+                        () => {
+                            shiftFadeInElm.style.transform = null;
+                            shiftFadeInElm.style.opacity = null;
+                        }
+                    );
+                },
+                false
+            );
+
+            const shiftFadeOutElm = document.getElementById('fx-shiftFadeOut');
+            shiftFadeOutElm.addEventListener(
+                'click',
+                () => {
+                    
+                    SCRIPTUCCINO.fx.shiftFadeOut(
+                        shiftFadeOutElm,
+                        'right',
+                        () => {
+                            shiftFadeOutElm.style.transform = null;
+                            shiftFadeOutElm.style.opacity = null;
+                        }
                     );
                 },
                 false

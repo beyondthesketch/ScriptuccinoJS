@@ -29,8 +29,8 @@ const slam = (element, scale = 1, completeFn) => {
         || (
             currentState.match(matrixRegex)
             && parseFloat(
-                currentState.match(matrixRegex)
-            )[1] !== scale
+                currentState.match(matrixRegex)[1]
+            ) !== scale
         ))
     ) {
         
