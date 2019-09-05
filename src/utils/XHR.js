@@ -43,17 +43,19 @@ const XHR = (config) => {
         ) {
             data_request.onload = () => {
               if (config.successFn) {
-                config.successFn(
-                  'response' in data_request
-                    ?
-                    data_request.response
-                    :
-                    responseType === 'text'
+                if (data_request.status === 200) {
+                  config.successFn(
+                    'response' in data_request
                       ?
-                      data_request.responseText
-                      : data_request.responseXML
-
-                );
+                      data_request.response
+                      :
+                      responseType === 'text'
+                        ?
+                        data_request.responseText
+                        : data_request.responseXML
+  
+                  );
+                }
               }
               if (config.completeFn) {
                 config.completeFn();
