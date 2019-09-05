@@ -44,3 +44,30 @@ test('Calls whenPageLoaded', () => {
 
   expect(whenPageLoaded).toHaveBeenCalled();
 });
+
+test('Does not call document.createElement if a non .css file is supplied', () => {
+  global.document.createElement = jest.fn().mockReturnValue({
+    setAttribute: jest.fn()
+  });
+  lazyLoadCSS('/foo.js');
+
+  expect(global.document.createElement).not.toHaveBeenCalled();
+});
+
+test('Does not call whenPageLoaded if a non .css file is supplied', () => {
+  lazyLoadCSS('/public/data/foo.js');
+
+  expect(whenPageLoaded).not.toHaveBeenCalled();
+});
+
+test('Calls console.warn if a non .css file is supplied', () => {
+  global.console.warn = jest.fn();
+  lazyLoadCSS('/public/data/foo.js');
+
+  expect(console.warn).toHaveBeenCalledWith('lazyLoadCSS: supplied url was not for a css file');
+});
+
+test('Returns null if a non .css file is supplied', () => {
+
+  expect(lazyLoadCSS('/public/data/foo.js')).toBeNull();
+});
