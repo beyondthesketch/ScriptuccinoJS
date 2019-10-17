@@ -18,15 +18,19 @@ Alternatively, if you are not using NPM, you can download the modules or library
 
 Simply save the modules folder and/or the scriptuccino.js file somewhere on your server and reference them as you would any other script.
 
-## Usage
+## Building The Modules & Library
 
-Build the assets with:
+On installation via NPM, the production ready ES modules and ES5 Library are built automatically. If you need to reduild you can do so with:
 
 ```shell
 
 npm run build
 
 ```
+
+## Usage With Bundlers & Transpilers
+
+If you are using a bundler like Webpack, please note that the production ES6 modules are used when you import them, if you need these modules transpiled, ensure that the `node_modules/@beyondthesketch/scriptuccinojs` directory is included in you files being transpiled.
 
 ### ES Modules
 
