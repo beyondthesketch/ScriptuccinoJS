@@ -8,10 +8,10 @@ const mockXHRWithEventProps = jest.fn(() => (
     onloadstart: undefined,
     onprogress: undefined,
     onload: undefined,
-    onerror: undefined,
+    onerror: jest.fn(),
     ontimeout: undefined,
     onabort: undefined,
-    onloadend: undefined
+    onloadend: jest.fn()
   }
 ));
 
@@ -180,7 +180,7 @@ test('Sets onabort if supported and abortFn is supplied in config', () => {
   expect(request.onabort).toBe(fn);
 });
 
-test('Sets onloadend if supported and endFn is supplied in config', () => {
+test('Sets onloadend to be an anonymous function if supported', () => {
   global.XMLHttpRequest = mockXHRWithEventProps;
   const fn = () => null;
   const request = XHR({
@@ -189,7 +189,7 @@ test('Sets onloadend if supported and endFn is supplied in config', () => {
     endFn: fn
   });
 
-  expect(request.onloadend).toBe(fn);
+  expect(request.onloadend).toBeInstanceOf(Function);
 });
 
 test('Calls setRequestHeader on the XHR with the expected values if setHeaders \
@@ -292,7 +292,7 @@ test('Calls send if send is not defined in the supplied config', () => {
   expect(request.send).toHaveBeenCalled();
 });
 
-test('Calls send if send is a truty in the supplied config', () => {
+test('Calls send if send is a truthy in the supplied config', () => {
   global.XMLHttpRequest = mockXHRWithEventProps;
   const request = XHR({
     uri: '/foo',

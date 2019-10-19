@@ -64,8 +64,9 @@ const XHR = (config) => {
         }
 
         if (
-          'onerror' in data_request && config.errorFn
-          && typeof config.errorFn === 'function'
+          ('onerror' in data_request)
+          && config.errorFn
+          && (typeof config.errorFn === 'function')
         ) {
           data_request.onerror = config.errorFn;
         }
@@ -89,11 +90,21 @@ const XHR = (config) => {
             data_request.onabort = config.abortFn;
         }
 
-        if (
-          'onloadend' in data_request && config.endFn
-          && typeof config.endFn === 'function'
-        ) {
-            data_request.onloadend = config.endFn;
+        if ('onloadend' in data_request) {
+            data_request.onloadend = () => {
+              if (
+                (data_request.status < 200)
+                || (data_request.status > 399)
+              ) {
+                config.errorFn(data_request.status);  // pass status code as argument to allow different errors to be handled
+              }
+              if (
+                config.endFn
+                && (typeof config.endFn === 'function')
+              ) {
+                config.endFn();
+              }
+            };
         }
 
         if (config.setHeaders && typeof config.setHeaders === 'object') {
