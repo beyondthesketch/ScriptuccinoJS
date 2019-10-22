@@ -43,29 +43,3 @@ test('Calls whenPageReady', () => {
 
   expect(whenPageReady).toHaveBeenCalled();
 });
-
-test('Does not Calls document.createElement if a non .css file is supplied', () => {
-  global.document.createElement = jest.fn().mockReturnValue({
-    setAttribute: jest.fn()
-  });
-  parallelLoadCSS('/bar.js');
-
-  expect(global.document.createElement).not.toHaveBeenCalledWith('style');
-});
-
-test('Does not calls whenPageReady if a non .css file is supplied', () => {
-  parallelLoadCSS('/bar.js');
-
-  expect(whenPageReady).not.toHaveBeenCalled();
-});
-
-test('Calls console.warn  if a non .css file is supplied', () => {
-  global.console.warn = jest.fn();
-  parallelLoadCSS('/bar.js');
-
-  expect(console.warn).toHaveBeenCalledWith('parallelLoadCSS: supplied url was not for a css file');
-});
-
-test('Returns null if a non .css file is supplied', () => {
-  expect(parallelLoadCSS('/bar.js')).toBeNull();
-});

@@ -7,11 +7,6 @@ const parallelLoadCSS = (
     if (self.document) {
       return (uri, callback) => {
         if (typeof uri === 'string') {
-          if (!(/\.css$/.test(uri))) {
-            console && console.warn('parallelLoadCSS: supplied url was not for a css file');
-            return null;
-          }
-
           const stylesheet = document.createElement('style');
 
           whenPageReady(() => {
