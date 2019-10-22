@@ -7,11 +7,6 @@ const lazyLoadCSS = (
     if (self.document) {
       return (uri, callback) => {
         if (typeof uri === 'string') {
-          if (!(/\.css$/.test(uri))) {
-            console && console.warn('lazyLoadCSS: supplied url was not for a css file');
-            return null;
-          }
-
           const stylesheet = document.createElement('style');
 
           whenPageLoaded(() => {
