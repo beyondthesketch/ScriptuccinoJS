@@ -2,6 +2,7 @@
 
 Simple set of JavaScript function and utility modules for easily performing some common tasks.
 
+
 ## Installation
 
 NPM package:
@@ -12,11 +13,13 @@ npm install --save @beyondthesketch/scriptuccinojs
 
 ```
 
+
 ## Manual Install
 
 Alternatively, if you are not using NPM, you can download the modules or library.
 
 Simply save the modules folder and/or the scriptuccino.js file somewhere on your server and reference them as you would any other script.
+
 
 ## Building The Modules & Library
 
@@ -28,9 +31,13 @@ npm run build
 
 ```
 
+
 ## Usage With Bundlers & Transpilers
 
-If you are using a bundler like Webpack, please note that the production ES6 modules are used when you import them, if you need these modules transpiled, ensure that the `node_modules/@beyondthesketch/scriptuccinojs` directory is included in you files being transpiled.
+If you are using a bundler like Webpack, please note that the production ES6 modules are used when you import them, if you need these modules transpiled, ensure that the `node_modules/@beyondthesketch/scriptuccinojs` directory is included in the files being transpiled.
+
+
+## Usage
 
 ### ES Modules
 
@@ -101,6 +108,11 @@ const myFoo = () => alert('foo');
 SCRIPTUCCINO.events.whenPageLoaded(myFoo);
 
 ```
+
+## Community
+
+Tweet us [@beyondthesketch](https://twitter.com/beyondthesketch)
+
 
 ## API
 
@@ -206,7 +218,7 @@ exported as default by:
 
 
 **lazyLoadCSS( uri: string [, callbackFn: Function] )**
-*uses: XHR, whenPageLoaded*
+*uses: whenPageLoaded*
 
 Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, only once the page has loaded.
 
@@ -224,7 +236,7 @@ exported as default by:
 
 
 **parallelLoadCSS( uri: string [, callbackFn: Function] )**
-*uses: XHR, whenPageReady*
+*uses: whenPageReady*
 
 Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, when the DOM is ready. Useful for deferred load of CSS on larger pages with longer load times.
 
