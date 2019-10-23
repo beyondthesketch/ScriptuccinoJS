@@ -218,7 +218,7 @@ exported as default by:
 
 
 **lazyLoadCSS( uri: string [, callbackFn: Function] )**
-*uses: XHR, whenPageLoaded*
+*uses: whenPageLoaded*
 
 Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, only once the page has loaded.
 
@@ -236,7 +236,7 @@ exported as default by:
 
 
 **parallelLoadCSS( uri: string [, callbackFn: Function] )**
-*uses: XHR, whenPageReady*
+*uses: whenPageReady*
 
 Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, when the DOM is ready. Useful for deferred load of CSS on larger pages with longer load times.
 
