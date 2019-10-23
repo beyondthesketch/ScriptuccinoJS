@@ -1,38 +1,43 @@
 /** ScriptuccinoJS - lazyLoadCSS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
 import whenPageLoaded from './../events/page/whenPageLoaded.js';
-import XHR from './XHR.js';
 
 const lazyLoadCSS = (
   function () {
     if (self.document) {
       return (uri, callback) => {
         if (typeof uri === 'string') {
-          if (!(/\.css$/.test(uri))) {
-            console && console.warn('lazyLoadCSS: supplied url was not for a css file');
-            return null;
-          }
-
-          const stylesheet = document.createElement('style');
-
           whenPageLoaded(() => {
-            XHR(
-              {
-                uri,
-                response_type: 'text',
-                successFn: (rules) => {
-                  stylesheet.textContent = rules;
-                  !!document.head
-                    ?
-                    document.head.appendChild(stylesheet)
-                    :
-                    document.body.appendChild(stylesheet);
+            const req = new XMLHttpRequest();
+            req.responseType = 'text';
 
-                  if (callback && typeof callback === 'function') {
-                    callback();
-                  }
-                },
+            req.onreadystatechange = function () {
+              if (this.readyState === this.HEADERS_RECEIVED) {
+                const contentType = req.getResponseHeader('Content-Type');
+
+                if (contentType.split(';')[0] !== 'text/css') {
+                  console && console.warn('lazyLoadCSS: supplied url was not for a css file');
+                  req.abort();
+                }
               }
-            );
+            };
+
+            req.onload = () => {
+              const stylesheet = document.createElement('style');
+              stylesheet.textContent = req.responseText || req.response;
+
+              !!document.head
+                ?
+                document.head.appendChild(stylesheet)
+                :
+                document.body.appendChild(stylesheet);
+
+              if (callback && typeof callback === 'function') {
+                callback();
+              }
+            };
+
+            req.open('GET', uri, true);
+            req.send();
           });
         }
         else {
