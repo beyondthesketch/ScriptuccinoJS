@@ -11,18 +11,6 @@ const XHR = (config) => {
 
         const data_request = new XMLHttpRequest();
 
-        if ( config.responseType ) {
-          data_request.responseType = config.responseType.toLowerCase();
-        }
-
-        data_request.timeout =
-          config.timeoutLimit
-          && typeof config.timeoutLimit === 'number'
-            ?
-            config.timeoutLimit
-            :
-            10000;
-
         if ('onloadstart' in data_request && config.openedFn && typeof config.openedFn === 'function'
         ) {
             data_request.onloadstart = config.openedFn;
@@ -107,6 +95,20 @@ const XHR = (config) => {
             };
         }
 
+        data_request.open((config.method || 'GET'), uri, true);
+
+        data_request.timeout =
+          config.timeoutLimit
+          && typeof config.timeoutLimit === 'number'
+            ?
+            config.timeoutLimit
+            :
+            10000;
+
+        if ( config.responseType ) {
+          data_request.responseType = config.responseType.toLowerCase();
+        }
+
         if (config.setHeaders && typeof config.setHeaders === 'object') {
           for (let i in config.setHeaders) {
             if (config.setHeaders.hasOwnProperty(i)) {
@@ -118,8 +120,6 @@ const XHR = (config) => {
         if (config.withCredentials) {
           data_request.withCredentials = true;
         }
-
-        data_request.open((config.method || 'GET'), uri, true);
 
         if (!('send' in config) || config.send) {
           data_request.send(
