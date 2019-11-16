@@ -3,25 +3,16 @@ const XHR = (config) => {
     if (typeof config === 'object' && config.uri) {
         const uri =
           config.cached === true
-          && config.method === 'GET'
             ?
-            config.uri + '?c=' + (new Date()).getTime()
+            config.uri
             :
-            config.uri;
+            (!config.method || config.method === 'GET') && (config.cached === false || !config.cached)
+              ?
+              config.uri + '?c=' + (new Date()).getTime()
+              :
+              config.uri;
 
         const data_request = new XMLHttpRequest();
-
-        if ( config.responseType ) {
-          data_request.responseType = config.responseType.toLowerCase();
-        }
-
-        data_request.timeout =
-          config.timeoutLimit
-          && typeof config.timeoutLimit === 'number'
-            ?
-            config.timeoutLimit
-            :
-            10000;
 
         if ('onloadstart' in data_request && config.openedFn && typeof config.openedFn === 'function'
         ) {
@@ -96,7 +87,7 @@ const XHR = (config) => {
                 (data_request.status < 200)
                 || (data_request.status > 399)
               ) {
-                config.errorFn(data_request.status);  // pass status code as argument to allow different errors to be handled
+                config.errorFn && (typeof config.errorFn === 'function') && config.errorFn(data_request.status);  // pass status code as argument to allow different errors to be handled
               }
               if (
                 config.endFn
@@ -105,6 +96,20 @@ const XHR = (config) => {
                 config.endFn();
               }
             };
+        }
+
+        data_request.open((config.method || 'GET'), uri, true);
+
+        data_request.timeout =
+          config.timeoutLimit
+          && typeof config.timeoutLimit === 'number'
+            ?
+            config.timeoutLimit
+            :
+            10000;
+
+        if ( config.responseType ) {
+          data_request.responseType = config.responseType.toLowerCase();
         }
 
         if (config.setHeaders && typeof config.setHeaders === 'object') {
@@ -118,8 +123,6 @@ const XHR = (config) => {
         if (config.withCredentials) {
           data_request.withCredentials = true;
         }
-
-        data_request.open((config.method || 'GET'), uri, true);
 
         if (!('send' in config) || config.send) {
           data_request.send(
