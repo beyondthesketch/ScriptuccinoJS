@@ -383,6 +383,19 @@ describe('Cache buster', () => {
     expect(call[1]).toBe('/foo');
   });
 
+  test('Is not used if cached is true and method is GET', () => {
+    global.XMLHttpRequest = mockXHRWithEventProps;
+    const request = XHR({
+      uri: '/foo',
+      method: 'GET',
+      cached: true
+    });
+
+    const call = request.open.mock.calls[0];
+
+    expect(call[1]).toBe('/foo');
+  });
+
   test('Is used if cached is false and method is not supplied', () => {
     global.XMLHttpRequest = mockXHRWithEventProps;
     const request = XHR({
@@ -401,6 +414,18 @@ describe('Cache buster', () => {
       uri: '/foo',
       method: 'GET',
       cached: false
+    });
+
+    const call = request.open.mock.calls[0];
+
+    expect(/\/foo\?c\=(\d*)$/.test(call[1])).toBe(true);
+  });
+
+  test('Is used if cached is not supplied and method is GET', () => {
+    global.XMLHttpRequest = mockXHRWithEventProps;
+    const request = XHR({
+      uri: '/foo',
+      method: 'GET'
     });
 
     const call = request.open.mock.calls[0];

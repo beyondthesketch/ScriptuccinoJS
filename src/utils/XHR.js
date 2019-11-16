@@ -4,17 +4,9 @@ const XHR = (config) => {
         const uri =
           config.cached === true
             ?
-              (!config.method)
-                ?
-                config.uri
-                :
-                config.method !== 'GET'
-                  ?
-                  config.uri
-                  :
-                  config.uri + '?c=' + (new Date()).getTime()
+            config.uri
             :
-            (!config.method || config.method === 'GET')
+            (!config.method || config.method === 'GET') && (config.cached === false || !config.cached)
               ?
               config.uri + '?c=' + (new Date()).getTime()
               :
@@ -95,7 +87,7 @@ const XHR = (config) => {
                 (data_request.status < 200)
                 || (data_request.status > 399)
               ) {
-                config.errorFn(data_request.status);  // pass status code as argument to allow different errors to be handled
+                config.errorFn && (typeof config.errorFn === 'function') && config.errorFn(data_request.status);  // pass status code as argument to allow different errors to be handled
               }
               if (
                 config.endFn
