@@ -269,7 +269,8 @@ test('Calls open with GET if no method supplied', () => {
     send: false
   });
 
-  expect(request.open).toHaveBeenCalledWith('GET', '/foo', true);
+  const call = request.open.mock.calls[0];
+  expect(call[0]).toBe('GET');
 });
 
 test('Calls open with supplied method', () => {
@@ -342,3 +343,68 @@ test('Calls send with null if method is GET', () => {
 
     expect(request.send).toHaveBeenCalledWith(null);
   });
+
+describe('Cache buster', () => {
+  test('Is not used if cached is true and method is not supplied', () => {
+    global.XMLHttpRequest = mockXHRWithEventProps;
+    const request = XHR({
+      uri: '/foo',
+      cached: true
+    });
+
+    const call = request.open.mock.calls[0];
+
+    expect(call[1]).toBe('/foo');
+  });
+
+  test('Is not used if cached is true and method is not GET', () => {
+    global.XMLHttpRequest = mockXHRWithEventProps;
+    const request = XHR({
+      uri: '/foo',
+      method: 'POST',
+      cached: true
+    });
+
+    const call = request.open.mock.calls[0];
+
+    expect(call[1]).toBe('/foo');
+  });
+
+  test('Is not used if cached is false and method is not GET', () => {
+    global.XMLHttpRequest = mockXHRWithEventProps;
+    const request = XHR({
+      uri: '/foo',
+      method: 'POST',
+      cached: false
+    });
+
+    const call = request.open.mock.calls[0];
+
+    expect(call[1]).toBe('/foo');
+  });
+
+  test('Is used if cached is false and method is not supplied', () => {
+    global.XMLHttpRequest = mockXHRWithEventProps;
+    const request = XHR({
+      uri: '/foo',
+      cached: false
+    });
+
+    const call = request.open.mock.calls[0];
+
+    expect(/\/foo\?c\=(\d*)$/.test(call[1])).toBe(true);
+  });
+
+  test('Is used if cached is false and method is GET', () => {
+    global.XMLHttpRequest = mockXHRWithEventProps;
+    const request = XHR({
+      uri: '/foo',
+      method: 'GET',
+      cached: false
+    });
+
+    const call = request.open.mock.calls[0];
+
+    expect(/\/foo\?c\=(\d*)$/.test(call[1])).toBe(true);
+  });
+});

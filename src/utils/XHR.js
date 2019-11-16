@@ -3,11 +3,22 @@ const XHR = (config) => {
     if (typeof config === 'object' && config.uri) {
         const uri =
           config.cached === true
-          && config.method === 'GET'
             ?
-            config.uri + '?c=' + (new Date()).getTime()
+              (!config.method)
+                ?
+                config.uri
+                :
+                config.method !== 'GET'
+                  ?
+                  config.uri
+                  :
+                  config.uri + '?c=' + (new Date()).getTime()
             :
-            config.uri;
+            (!config.method || config.method === 'GET')
+              ?
+              config.uri + '?c=' + (new Date()).getTime()
+              :
+              config.uri;
 
         const data_request = new XMLHttpRequest();
 
