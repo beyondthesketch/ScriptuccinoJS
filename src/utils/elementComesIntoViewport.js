@@ -7,9 +7,6 @@ const elementComesIntoViewport = (
     function() {
         const queue = [];
         let implementation = (iElement, iFn, ...otherArgs) => {
-            const outFn = (typeof otherArgs[0] === 'function' && otherArgs[0]) || undefined;
-            const options = (typeof otherArgs[0] === 'object' && otherArgs[0]) || (typeof otherArgs[1] === 'object' && otherArgs[1]) || undefined;
-
             if (self.IntersectionObserver) {
                 console && console.warn('ScriptuccinoJS: Using working draft implementation of IntersectionObserver - This may cause errors!');
                 implementation = (elements, fn, ...otherArgs) => {
@@ -112,7 +109,7 @@ const elementComesIntoViewport = (
                 };
             }
 
-            implementation(iElement, iFn, outFn, options);
+            implementation(iElement, iFn, ((typeof otherArgs[0] === 'function' && otherArgs[0]) || undefined), ((typeof otherArgs[0] === 'object' && otherArgs[0]) || (typeof otherArgs[1] === 'object' && otherArgs[1]) || undefined));
         };
 
         return (elm, f, ...arg) => implementation(elm, f, ...arg);
