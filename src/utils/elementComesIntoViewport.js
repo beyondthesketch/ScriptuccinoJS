@@ -6,11 +6,13 @@ import whenScrollEnds from './../events/scroll/whenScrollEnds.js';
 const elementComesIntoViewport = (
     function() {
         const queue = [];
-        let implementation = (iElement, iFn, iOptions = undefined) => {
-    
+        let implementation = (iElement, iFn, ...otherArgs) => {
             if (self.IntersectionObserver) {
                 console && console.warn('ScriptuccinoJS: Using working draft implementation of IntersectionObserver - This may cause errors!');
-                implementation = (elements, fn, options) => {
+                implementation = (elements, fn, ...otherArgs) => {
+                    const outFn = (typeof otherArgs[0] === 'function' && otherArgs[0]) || undefined;
+                    const options = (typeof otherArgs[0] === 'object' && otherArgs[0]) || (typeof otherArgs[1] === 'object' && otherArgs[1]) || undefined;
+
                     let elementCollection;
                     if (elements instanceof self.NodeList) {
                         elementCollection = elements;
@@ -37,6 +39,9 @@ const elementComesIntoViewport = (
                                             fn.call(this, entry.target, observer);
                                         }
                                     }
+                                    else if (outFn) {
+                                        outFn.call(this, entry.target, observer);
+                                    }
                                 }
                             )
                         },
@@ -54,9 +59,13 @@ const elementComesIntoViewport = (
                         if (!!queue.length) {
                             queue.forEach(
                                 (elm) => {
-                                    if (!elm.done && elm.position < 1) {
+                                    if (!elm.done && ((!elm.inView && elm.position < 1) && ((elm.position + self.innerHeight) > 0))) {
                                         elm.fn();
-                                        elm.done = true;
+                                        elm.inView = true;
+                                    }
+                                    else if (!elm.done && ((elm.inView && (elm.element.getBoundingClientRect().top < 0)) || (elm.inView && (elm.element.getBoundingClientRect().top > self.innerHeight)))) {
+                                        elm.outFn();
+                                        elm.inView = false;
                                     }
                                 }
                             )
@@ -65,7 +74,9 @@ const elementComesIntoViewport = (
                     }
                 );
 
-                implementation = (elements, fn) => {
+                implementation = (elements, fn, ...otherArgs) => {
+                    const outFn = (typeof otherArgs[0] === 'function' && otherArgs[0]) || undefined;
+
                     let elementCollection;
                     if (elements instanceof self.NodeList) {
                         elementCollection = elements;
@@ -83,7 +94,12 @@ const elementComesIntoViewport = (
                             queue.push({
                                 element,
                                 done: false,
-                                fn: function () { fn(this.element); },
+                                inView: false,
+                                fn: function () { fn(this.element, this); },
+                                outFn: function () { outFn(this.element, this); },
+                                unobserve: function (elm) {
+                                    this.done = true;
+                                },
                                 get position() {
                                    return this.element.getBoundingClientRect().top - self.innerHeight;
                                 }
@@ -93,10 +109,10 @@ const elementComesIntoViewport = (
                 };
             }
 
-            implementation(iElement, iFn, iOptions);
+            implementation(iElement, iFn, ((typeof otherArgs[0] === 'function' && otherArgs[0]) || undefined), ((typeof otherArgs[0] === 'object' && otherArgs[0]) || (typeof otherArgs[1] === 'object' && otherArgs[1]) || undefined));
         };
 
-        return (elm, f, o) => implementation(elm, f, o);
+        return (elm, f, ...arg) => implementation(elm, f, ...arg);
     }()
 );
 export default elementComesIntoViewport;

@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="content" content="width=device-width,initial-scale=1">
-        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1.5.1-beta</title>
+        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1.6.0-alpha</title>
         <style>
             html {
                 font: 62.5%/1.618 Verdana, Geneva, Tahoma, sans-serif;
@@ -227,7 +227,7 @@
             <header id="site-header">
                 <h1 class="site-title">ScriptuccinoJS</h1>
                 <h2 class="site-title__beta-label">beta</h2>
-                <small>v1.5.1-beta</small>
+                <small>v1.6.0-alpha</small>
                 <p class="project-link"><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank" rel="noopener">View on GitHub</a></p>
             </header>
             <main id="site-main">
@@ -371,14 +371,70 @@
                 <p>Tools for doing common things with a little more ease.</p>
 
 
-                <code class="inline-code-method"><b>elementComesIntoViewport( elements: Element | Nodelist, fn: Function[, options: Object] )</b></code>
-                <p><b>uses: elementScrolledAboveFold</b> (as fallback)</p>
+                <code class="inline-code-method"><b>elementComesIntoViewport( elements: Element | Nodelist, fn: Function[, (outFn?: Function), options: Object ] )</b></code>
+                <p><b>uses: whenScrollEnds</b> (as fallback)</p>
 
                 <p><strong>WARNING: This utility uses experimental web features (Intersection Observer) which is not yet finalised and could change. IT MAY BREAK/THROW ERRORS if the user agent uses a different implementation.</strong></p>
-                <p><strong>It fallsback to <code class="inline-code-snippet">elementScrolledAboveFold</code> functionality if Intersection Observer is not supported at all.</strong></p>
+                <p><strong>It falls back to <code class="inline-code-snippet">whenScrollEnds</code> functionality if Intersection Observer is not supported at all. Note that this fallback implementation only considers movement through the viewport vertically and no horizontally.</strong></p>
 
-                <p>Call the supplied function as soon as the specified element is scrolled into the viewport using the IntersectionObserver API.</p>
-                <p>The callback function <code class="inline-code-snippet">fn</code> receives 2 arguments, the first is the element that has entered the viewport and the second is the IntersectionObserver instance.</p>
+                <p>While this function's purpose is to detect when an element <em>enters</em> the viewport, it is also often useful to detect when that element <em>exits</em> too. As a result, this function has 2 forms of use:</p>
+                <ol>
+                    <li>
+                        <p>Call the supplied function as soon as the specified element is scrolled into the viewport using the IntersectionObserver API.</p>
+                        <p>This form takes one callback function and an optional <code class="inline-code-snippet">options</code> object for configuring the observer instance.</p>
+
+                        <code class="inline-code-method">
+                            elementComesIntoViewport(
+                                <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('foo'),
+                                <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;(element, observer) => {
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do something
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;},
+                                <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;{
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;threshold: 0.25
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br>
+                            );
+                        </code>
+                    </li>
+                    <li>
+                        <p>Call the first supplied function as soon as the specified element is scrolled into the viewport, and call the second supplied function as soon as the element is scrolled out of the viewport, using the IntersectionObserver API.</p>
+                        <p>The second form takes two callback functions and an optional <code class="inline-code-snippet">options</code> object for configuring the observer instance.</p>
+
+                        <code class="inline-code-method">
+                            elementComesIntoViewport(
+                                <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('foo'),
+                                <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;(element, observer) => {
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do something on entering viewport
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;},
+                                <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;(element, observer) => {
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do something on leaving viewport
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;},
+                                <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;{
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;threshold: 0.25
+                                    <br>
+                            &nbsp;&nbsp;&nbsp;&nbsp;}
+                                <br>
+                            );
+                        </code>
+                    </li>
+                </ol>
+                <p>The callback functions <code class="inline-code-snippet">fn</code> and <code class="inline-code-snippet">outFn</code> both receive 2 arguments, the first is the element being observed and the second is the IntersectionObserver instance.</p>
                 <p>The <code class="inline-code-snippet">options</code> argument is a plain object to customise the observer that is created. Please see IntersectionObserver API documents for details on what properties this can take.</p>
                 <p>There is only one IntersectionObserver instance created for all nodes that are passed to this utility. The element will continue to trigger intersections unless you unobserve it in the supplied function.</p>
                 
@@ -759,7 +815,7 @@
                 <small>Copyright &copy; 2018 - 2019 <a href="https://www.beyondthesketch.com">Beyond The Sketch Ltd</a></small>
             </footer>
         </div>
-        <script src="js/scriptuccino.v1.5.1-beta.js"></script>
+        <script src="js/scriptuccino.v1.6.0-beta.js"></script>
         <script>
             const fadeInElm = document.getElementById('fx-fade-in');
             fadeInElm.addEventListener(
