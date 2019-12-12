@@ -19,7 +19,8 @@ module.exports = env => ({
                     presets: ['@babel/preset-env'],
                     plugins: [
                         '@babel/plugin-transform-spread',
-                        '@babel/plugin-proposal-object-rest-spread'
+                        '@babel/plugin-proposal-object-rest-spread',
+                        '@babel/plugin-transform-object-assign'
                     ]
                 }
             }
