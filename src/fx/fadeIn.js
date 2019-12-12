@@ -10,16 +10,7 @@ const fadeIn = (element, completeFn, settings) => {
   }
 
   if (settings && typeof settings === 'object') {
-    if (typeof Object.assign === 'function') {
-      Object.assign(config, settings);
-    }
-    else {
-      for (let i in settings) {
-        if (settings.hasOwnProperty(i)) {
-          config[i] = settings[i];
-        }
-      }
-    }
+    Object.assign(config, settings);
   }
 
   if (parseFloat(self.getComputedStyle(element).getPropertyValue('opacity')) !== 1) {

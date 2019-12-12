@@ -15,7 +15,14 @@ module.exports = env => ({
                 include: [path.resolve(__dirname, 'src')],
                 exclude: [path.resolve(__dirname, 'node_modules')],
                 loader: 'babel-loader',
-                options: {presets: ['@babel/preset-env']}
+                options: {
+                    presets: ['@babel/preset-env'],
+                    plugins: [
+                        '@babel/plugin-transform-spread',
+                        '@babel/plugin-proposal-object-rest-spread',
+                        '@babel/plugin-transform-object-assign'
+                    ]
+                }
             }
         ]
     },
