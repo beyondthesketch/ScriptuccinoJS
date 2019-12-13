@@ -12,7 +12,6 @@ module.exports = env => ({
         rules: [
             {
                 test: /\.js$/,
-                include: [path.resolve(__dirname, 'src')],
                 exclude: [path.resolve(__dirname, 'node_modules')],
                 loader: 'babel-loader',
                 options: {
