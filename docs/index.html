@@ -817,128 +817,130 @@
         </div>
         <script src="js/scriptuccino.v1.6.1-alpha.2.js"></script>
         <script>
-            const fadeInElm = document.getElementById('fx-fade-in');
-            fadeInElm.addEventListener(
-                'click',
-                () => {
-                    fadeInElm.style.opacity = '0';
-                    SCRIPTUCCINO.fx.fadeIn(
-                        fadeInElm,
-                        undefined,
-                        {
-                            duration: 2000,
-                            curve: 'ease-in'
-                        });
-                },
-                false
-            );
-
-            const fadeOutElm = document.getElementById('fx-fade-out');
-            fadeOutElm.addEventListener(
-                'click',
-                () => {
-                    
-                    SCRIPTUCCINO.fx.fadeOut(
-                        fadeOutElm,
-                        () => {
-                            fadeOutElm.style.opacity = null;
-                        },
-                        {
-                            duration: 2000,
-                            curve: 'ease-in'
-                        });
-                },
-                false
-            );
-
-            const fadeToElm = document.getElementById('fx-fade-to');
-            fadeToElm.addEventListener(
-                'click',
-                () => {
-                    fadeToElm.style.opacity = '1';
-                    SCRIPTUCCINO.fx.fadeTo(
-                        fadeToElm,
-                        20,
-                        undefined,
-                        {
-                            duration: 2000,
-                            curve: 'ease-in'
-                        });
-                },
-                false
-            );
-
-            const popElm = document.getElementById('fx-pop');
-            popElm.addEventListener(
-                'click',
-                () => {
-                    popElm.style.transform = 'scale(0)';
-                    SCRIPTUCCINO.fx.pop(
-                        popElm,
-                    );
-                },
-                false
-            );
-
-            const slamElm = document.getElementById('fx-slam');
-            slamElm.addEventListener(
-                'click',
-                () => {
-                    slamElm.style.transform = 'scale(0)';
-                    SCRIPTUCCINO.fx.slam(
-                        slamElm
-                    );
-                },
-                false
-            );
-
-            const moveInElm = document.getElementById('fx-movein');
-            moveInElm.addEventListener(
-                'click',
-                () => {
-                    SCRIPTUCCINO.fx.moveIn(
-                        moveInElm,
-                        'right',
-                        () => {
-                            moveInElm.style.transform = null;
-                        }
-                    );
-                },
-                false
-            );
-
-            const shiftFadeInElm = document.getElementById('fx-shiftFadeIn');
-            shiftFadeInElm.addEventListener(
-                'click',
-                () => {
-                    SCRIPTUCCINO.fx.shiftFadeIn(
-                        shiftFadeInElm,
-                        'right',
-                        () => {
-                            shiftFadeInElm.style.transform = null;
-                            shiftFadeInElm.style.opacity = null;
-                        }
-                    );
-                },
-                false
-            );
-
-            const shiftFadeOutElm = document.getElementById('fx-shiftFadeOut');
-            shiftFadeOutElm.addEventListener(
-                'click',
-                () => {
-                    
-                    SCRIPTUCCINO.fx.shiftFadeOut(
-                        shiftFadeOutElm,
-                        'right',
-                        () => {
-                            shiftFadeOutElm.style.transform = null;
-                            shiftFadeOutElm.style.opacity = null;
-                        }
-                    );
-                },
-                false
-            );
+            (function() {
+                var fadeInElm = document.getElementById('fx-fade-in');
+                fadeInElm.addEventListener(
+                    'click',
+                    function() {
+                        fadeInElm.style.opacity = '0';
+                        SCRIPTUCCINO.fx.fadeIn(
+                            fadeInElm,
+                            undefined,
+                            {
+                                duration: 2000,
+                                curve: 'ease-in'
+                            });
+                    },
+                    false
+                );
+    
+                var fadeOutElm = document.getElementById('fx-fade-out');
+                fadeOutElm.addEventListener(
+                    'click',
+                    function() {
+                        
+                        SCRIPTUCCINO.fx.fadeOut(
+                            fadeOutElm,
+                            function() {
+                                fadeOutElm.style.opacity = null;
+                            },
+                            {
+                                duration: 2000,
+                                curve: 'ease-in'
+                            });
+                    },
+                    false
+                );
+    
+                var fadeToElm = document.getElementById('fx-fade-to');
+                fadeToElm.addEventListener(
+                    'click',
+                    function() {
+                        fadeToElm.style.opacity = '1';
+                        SCRIPTUCCINO.fx.fadeTo(
+                            fadeToElm,
+                            20,
+                            undefined,
+                            {
+                                duration: 2000,
+                                curve: 'ease-in'
+                            });
+                    },
+                    false
+                );
+    
+                var popElm = document.getElementById('fx-pop');
+                popElm.addEventListener(
+                    'click',
+                    function() {
+                        popElm.style.transform = 'scale(0)';
+                        SCRIPTUCCINO.fx.pop(
+                            popElm,
+                        );
+                    },
+                    false
+                );
+    
+                var slamElm = document.getElementById('fx-slam');
+                slamElm.addEventListener(
+                    'click',
+                    function() {
+                        slamElm.style.transform = 'scale(0)';
+                        SCRIPTUCCINO.fx.slam(
+                            slamElm
+                        );
+                    },
+                    false
+                );
+    
+                var moveInElm = document.getElementById('fx-movein');
+                moveInElm.addEventListener(
+                    'click',
+                    function() {
+                        SCRIPTUCCINO.fx.moveIn(
+                            moveInElm,
+                            'right',
+                            function() {
+                                moveInElm.style.transform = null;
+                            }
+                        );
+                    },
+                    false
+                );
+    
+                var shiftFadeInElm = document.getElementById('fx-shiftFadeIn');
+                shiftFadeInElm.addEventListener(
+                    'click',
+                    function() {
+                        SCRIPTUCCINO.fx.shiftFadeIn(
+                            shiftFadeInElm,
+                            'right',
+                            function() {
+                                shiftFadeInElm.style.transform = null;
+                                shiftFadeInElm.style.opacity = null;
+                            }
+                        );
+                    },
+                    false
+                );
+    
+                var shiftFadeOutElm = document.getElementById('fx-shiftFadeOut');
+                shiftFadeOutElm.addEventListener(
+                    'click',
+                    function() {
+                        
+                        SCRIPTUCCINO.fx.shiftFadeOut(
+                            shiftFadeOutElm,
+                            'right',
+                            function() {
+                                shiftFadeOutElm.style.transform = null;
+                                shiftFadeOutElm.style.opacity = null;
+                            }
+                        );
+                    },
+                    false
+                );
+            }());
         </script>
     </body>
 </html>
