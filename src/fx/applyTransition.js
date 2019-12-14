@@ -74,10 +74,13 @@ const applyTransition = (function () {
           const reversed = settings.map((x) => x).reverse();
           const longest = Math.max(...(settings.map( (conf) => conf.duration)));
 
-          longestTransition = reversed.find(
-            (conf) => conf.duration === longest
-          );        
-         
+          for (let i; i < reversed.length; i++) {
+            if (reversed[i].duration === longest) {
+              longestTransition = reversed[i];
+              break;
+            }
+          }
+
           for (let i = settings.length; i--;) {
             rule.push( settings[i].property + (settings[i].duration ? ' ' + settings[i].duration + 'ms' : ' 500ms') + (settings[i].curve ? ' ' + settings[i].curve : ' ease') + (settings[i].delay ? ' ' + settings[i].delay : '') );
           }
