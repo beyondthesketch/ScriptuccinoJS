@@ -74,7 +74,7 @@ const applyTransition = (function () {
           const reversed = settings.map((x) => x).reverse();
           const longest = Math.max(...(settings.map( (conf) => conf.duration)));
 
-          for (let i; i < reversed.length; i++) {
+          for (let i = 0; i < reversed.length; i++) {
             if (reversed[i].duration === longest) {
               longestTransition = reversed[i];
               break;
