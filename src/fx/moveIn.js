@@ -87,10 +87,10 @@ const moveIn = (element, fromDirection, completeFn) => {
                 },
                 () => {
                     // NOTE: force reflow and recalc - hack necessary for removing extra space created by the translation on certain browsers
-                    element.style.opacity = 0.999;
+                    element.style.opacity = '0.999';
                     self.setTimeout(
                         () => {
-                            element.style.opacity = 1;
+                            element.style.opacity = '1';
                         },
                         0
                     );

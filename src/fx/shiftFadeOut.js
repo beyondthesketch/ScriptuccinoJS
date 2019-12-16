@@ -73,7 +73,7 @@ const shiftFadeOut = (element, toDirection, completeFn) => {
                     transformValues[6]
             })`;
         element.style.transform = newState;
-        element.style.opacity = element.style.opacity || 1;
+        element.style.opacity = element.style.opacity || '1';
 
         self.setTimeout(
             () => applyTransition(
@@ -93,7 +93,7 @@ const shiftFadeOut = (element, toDirection, completeFn) => {
                             :
                             (transformValues && transformValues[6]) || 0
                     })`),
-                    'opacity': 0
+                    'opacity': '0'
                 },
                 completeFn
             ),
