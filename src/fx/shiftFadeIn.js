@@ -85,7 +85,7 @@ const shiftFadeIn = (element, fromDirection, completeFn) => {
                     transformValues[6]
             })`;
         element.style.transform = newState;
-        element.style.opacity = 0;
+        element.style.opacity = '0';
 
         self.setTimeout(
             () => applyTransition(
@@ -93,7 +93,7 @@ const shiftFadeIn = (element, fromDirection, completeFn) => {
                 config,
                 {
                     'transform': self.getComputedStyle(element).getPropertyValue('transform').replace(matrixRegex, `matrix($1, $2, $3, $4, ${ (transformValues && transformValues[5]) || 0}, ${ (transformValues && transformValues[6]) || 0})`),
-                    'opacity': 1
+                    'opacity': '1'
                 },
                 completeFn
             ),

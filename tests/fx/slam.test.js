@@ -54,7 +54,7 @@ test('Calls applyTransition with correct arguments if the element is supplied an
         ],
         {
             transform: 'matrix(1, 0, 0, 1, 0, 0)',
-            opacity: 1
+            opacity: '1'
         },
         undefined
     );
@@ -84,7 +84,7 @@ test('Calls applyTransition with correct arguments if the element is supplied an
         ],
         {
             transform: 'matrix(2, 0, 0, 2, 0, 0)',
-            opacity: 1
+            opacity: '1'
         },
         undefined
     );
@@ -115,7 +115,7 @@ test('Calls applyTransition with correct arguments if the element is supplied an
         ],
         {
             transform: 'matrix(2, 0, 0, 2, 0, 0)',
-            opacity: 1
+            opacity: '1'
         },
         callback
     );
@@ -146,7 +146,7 @@ test('Does not affect any existing transforms', () => {
         ],
         {
             transform: 'matrix(2, 0.5888, 0.78292, 2, 0, 0)',
-            opacity: 1
+            opacity: '1'
         },
         callback
     );

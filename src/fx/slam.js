@@ -33,17 +33,16 @@ const slam = (element, scale = 1, completeFn) => {
             ) !== scale
         ))
     ) {
-        
         const newState = currentState === 'none' ? `matrix(${scale * 2}, 0, 0, ${scale * 2}, 0, 0)` : currentState.replace(matrixRegex, `matrix(${scale * 2}, $2, $3, ${scale * 2}, $5, $6)`);
         element.style.transform = newState;
-        element.style.opacity = 0;
+        element.style.opacity = '0';
         self.setTimeout(
             () => applyTransition(
                 element,
                 config,
                 {
                     'transform' : self.getComputedStyle(element).getPropertyValue('transform').replace(matrixRegex, `matrix(${scale}, $2, $3, ${scale}, $5, $6)`),
-                    'opacity': 1
+                    'opacity': '1'
                 },
                 completeFn
             ),

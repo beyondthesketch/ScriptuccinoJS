@@ -809,7 +809,7 @@
                 <small>Copyright &copy; 2018 - 2019 <a href="https://www.beyondthesketch.com">Beyond The Sketch Ltd</a></small>
             </footer>
         </div>
-        <script src="js/scriptuccino.v1.6.1-alpha.4.js"></script>
+        <script src="../scriptuccino.js"></script>
         <script>
             (function() {
                 var fadeInElm = document.getElementById('fx-fade-in');
@@ -827,7 +827,7 @@
                     },
                     false
                 );
-    
+
                 var fadeOutElm = document.getElementById('fx-fade-out');
                 fadeOutElm.addEventListener(
                     'click',
@@ -836,7 +836,7 @@
                         SCRIPTUCCINO.fx.fadeOut(
                             fadeOutElm,
                             function() {
-                                fadeOutElm.style.opacity = null;
+                                fadeOutElm.style.opacity = '';
                             },
                             {
                                 duration: 2000,
@@ -845,7 +845,7 @@
                     },
                     false
                 );
-    
+
                 var fadeToElm = document.getElementById('fx-fade-to');
                 fadeToElm.addEventListener(
                     'click',
@@ -862,7 +862,7 @@
                     },
                     false
                 );
-    
+
                 var popElm = document.getElementById('fx-pop');
                 popElm.addEventListener(
                     'click',
@@ -874,7 +874,7 @@
                     },
                     false
                 );
-    
+
                 var slamElm = document.getElementById('fx-slam');
                 slamElm.addEventListener(
                     'click',
@@ -886,7 +886,7 @@
                     },
                     false
                 );
-    
+
                 var moveInElm = document.getElementById('fx-movein');
                 moveInElm.addEventListener(
                     'click',
@@ -895,13 +895,13 @@
                             moveInElm,
                             'right',
                             function() {
-                                moveInElm.style.transform = null;
+                                moveInElm.style.transform = '';
                             }
                         );
                     },
                     false
                 );
-    
+
                 var shiftFadeInElm = document.getElementById('fx-shiftFadeIn');
                 shiftFadeInElm.addEventListener(
                     'click',
@@ -910,14 +910,14 @@
                             shiftFadeInElm,
                             'right',
                             function() {
-                                shiftFadeInElm.style.transform = null;
-                                shiftFadeInElm.style.opacity = null;
+                                shiftFadeInElm.style.transform = '';
+                                shiftFadeInElm.style.opacity = '';
                             }
                         );
                     },
                     false
                 );
-    
+
                 var shiftFadeOutElm = document.getElementById('fx-shiftFadeOut');
                 shiftFadeOutElm.addEventListener(
                     'click',
@@ -927,8 +927,8 @@
                             shiftFadeOutElm,
                             'right',
                             function() {
-                                shiftFadeOutElm.style.transform = null;
-                                shiftFadeOutElm.style.opacity = null;
+                                shiftFadeOutElm.style.transform = '';
+                                shiftFadeOutElm.style.opacity = '';
                             }
                         );
                     },
