@@ -1,12 +1,13 @@
 {
   "name": "@beyondthesketch/scriptuccinojs",
-  "version": "1.7.1",
+  "version": "2.0.0-alpha",
   "description": "A simple set of JavaScript function and utility modules for easily performing some common tasks.",
   "main": "index.js",
+  "module": "src/index.js",
   "scripts": {
     "test": "jest",
-    "build:dev": "babel src/ --out-dir modules/ && webpack",
-    "build": "babel src/ --presets minify --out-dir modules/ && webpack --env.production",
+    "build:dev": "babel src/**/* --ignore='src/**/*/index.js' --out-dir esm/ && webpack",
+    "build": "npm test && babel src/**/* --ignore='src/**/*/index.js' --presets minify --out-dir esm/ && webpack --env.production",
     "prepare": "npm run build",
     "start": "webpack-dev-server",
     "semantic-release": "semantic-release"
@@ -38,12 +39,28 @@
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
+  "jest": {
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "modules"
+    ],
+    "moduleNameMapper": {
+      "^whenPageReady.js$": "<rootDir>/src/events/page/whenPageReady.js",
+      "^whenPageLoaded.js$": "<rootDir>/src/events/page/whenPageLoaded.js",
+      "^whenScrollEnds.js$": "<rootDir>/src/events/scroll/whenScrollEnds.js",
+      "^applyTransition.js$": "<rootDir>/src/fx/applyTransition.js",
+      "^simpleDebounce.js$": "<rootDir>/src/utils/simpleDebounce.js"
+    }
+  },
   "files": [
     "LICENSE",
     "README.md",
     "index.js",
-    "scriptuccino.js",
-    "modules/"
+    "esm/",
+    "umd/"
   ],
   "publishConfig": {
     "access": "public",

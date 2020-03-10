@@ -3,7 +3,7 @@ import whenPageLoaded from './../../../src/events/page/whenPageLoaded.js';
 const originalDocument = Object.assign({}, global.document);
 
 beforeEach(() => {
-  global.SCRIPTUCCINO.load_queue.splice(0);
+  global.__SCRIPTUCCINO__.load_queue.splice(0);
 });
 afterEach(() => {
   Object.defineProperty(global, 'document', {
@@ -19,13 +19,13 @@ test('Adds function to the load queue if the document ready state is not\
   });
   const functionToCall = () => null;
 
-  expect(global.SCRIPTUCCINO.load_queue.length).toBe(0);
+  expect(global.__SCRIPTUCCINO__.load_queue.length).toBe(0);
 
   whenPageLoaded(functionToCall);
 
-  expect(global.SCRIPTUCCINO.load_queue.length)
+  expect(global.__SCRIPTUCCINO__.load_queue.length)
     .toBe(1);
-  expect(global.SCRIPTUCCINO.load_queue[0])
+  expect(global.__SCRIPTUCCINO__.load_queue[0])
     .toBe(functionToCall);
 });
 
@@ -53,5 +53,5 @@ test('Calls the supplied function immediately if the document readyState\
    whenPageLoaded(functionToCall);
 
    expect(functionToCall).toHaveBeenCalled();
-   expect(global.SCRIPTUCCINO.load_queue.length).toBe(0);
+   expect(global.__SCRIPTUCCINO__.load_queue.length).toBe(0);
 });

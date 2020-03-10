@@ -3,7 +3,7 @@ import whenPageReady from './../../../src/events/page/whenPageReady.js';
 const originalDocument = Object.assign({}, global.document);
 
 beforeEach(() => {
-  global.SCRIPTUCCINO.ready_queue.splice(0);
+  global.__SCRIPTUCCINO__.ready_queue.splice(0);
 });
 afterEach(() => {
   Object.defineProperty(global, 'document', {
@@ -19,13 +19,13 @@ test('Adds function to the ready queue if the document ready state is \
   });
   const functionToCall = () => null;
 
-  expect(global.SCRIPTUCCINO.ready_queue.length).toBe(0);
+  expect(global.__SCRIPTUCCINO__.ready_queue.length).toBe(0);
 
   whenPageReady(functionToCall);
 
-  expect(global.SCRIPTUCCINO.ready_queue.length)
+  expect(global.__SCRIPTUCCINO__.ready_queue.length)
     .toBe(1);
-  expect(global.SCRIPTUCCINO.ready_queue[0])
+  expect(global.__SCRIPTUCCINO__.ready_queue[0])
     .toBe(functionToCall);
 });
 
@@ -53,7 +53,7 @@ test('Calls the supplied function immediately if the document readyState\
    whenPageReady(functionToCall);
 
    expect(functionToCall).toHaveBeenCalled();
-   expect(global.SCRIPTUCCINO.ready_queue.length).toBe(0);
+   expect(global.__SCRIPTUCCINO__.ready_queue.length).toBe(0);
 });
 
 test('Calls the supplied function immediately if the document readyState\
@@ -67,5 +67,5 @@ test('Calls the supplied function immediately if the document readyState\
    whenPageReady(functionToCall);
 
    expect(functionToCall).toHaveBeenCalled();
-   expect(global.SCRIPTUCCINO.ready_queue.length).toBe(0);
+   expect(global.__SCRIPTUCCINO__.ready_queue.length).toBe(0);
 });

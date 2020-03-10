@@ -2,8 +2,8 @@
 const whenPageLoaded = (
   function () {
     if (self.document) {
-      self.SCRIPTUCCINO = self.SCRIPTUCCINO || {};
-      const ns = self.SCRIPTUCCINO;
+      self.__SCRIPTUCCINO__ = self.__SCRIPTUCCINO__ || {};
+      const ns = self.__SCRIPTUCCINO__;
 
       const load_queue = ns.load_queue || (
           Object.defineProperty(ns, 'load_queue', {

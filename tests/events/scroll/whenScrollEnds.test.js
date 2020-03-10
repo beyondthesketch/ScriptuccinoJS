@@ -14,7 +14,6 @@ test('Calls addEventListener on first run', () => {
     whenScrollEnds(() => null);
 
     expect(addEventListenerSpy).toHaveBeenCalled();
-
 });
 
 test('Calls addEventListener on first run with the expected arguments', () => {
