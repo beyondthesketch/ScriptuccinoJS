@@ -1,5 +1,5 @@
 /** ScriptuccinoJS - parallelLoadCSS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import whenPageReady from './../events/page/whenPageReady.js';
+import whenPageReady from 'whenPageReady.js';
 
 const parallelLoadCSS = (
   function () {

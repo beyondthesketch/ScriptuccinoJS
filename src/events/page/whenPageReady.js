@@ -2,8 +2,8 @@
 const whenPageReady = (
   function () {
     if (self.document) {
-      self.SCRIPTUCCINO = self.SCRIPTUCCINO || {};
-      const ns = self.SCRIPTUCCINO;
+      self.__SCRIPTUCCINO__ = self.__SCRIPTUCCINO__ || {};
+      const ns = self.__SCRIPTUCCINO__;
       const ready_queue = ns.ready_queue || (
           Object.defineProperty(ns, 'ready_queue', {
             value: [],
@@ -41,6 +41,7 @@ const whenPageReady = (
       }
 
       return (fn) => {
+        // console.log(ready_queue, ns.ready_queue, ns, self);
         document.readyState === 'interactive'
         || document.readyState === 'complete'
           ?

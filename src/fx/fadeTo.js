@@ -1,5 +1,5 @@
 /** ScriptuccinoJS - fadeTo | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import applyTransition from './applyTransition.js';
+import applyTransition from 'applyTransition.js';
 
 /* TODO: Handle elements that are display: none */
 const fadeTo = (element, opacity, completeFn, settings) => {

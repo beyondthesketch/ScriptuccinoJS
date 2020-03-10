@@ -1,5 +1,5 @@
 /** ScriptuccinoJS - elementScrolledAboveFold | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import whenScrollEnds from './../events/scroll/whenScrollEnds.js';
+import whenScrollEnds from 'whenScrollEnds.js';
 
 const elementScrolledAboveFold = (
     function() {

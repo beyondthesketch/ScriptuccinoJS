@@ -1,3 +1,7 @@
+# *** ALPHA DEVELOPMENT - WIP - NOT SUITABLE FOR PRODUCTION USE ***
+
+## This version is still in VERY early development stages and should not be used for public, production websites or apps
+
 # ScriptuccinoJS
 
 Simple set of JavaScript function and utility modules for easily performing some common tasks.
@@ -5,7 +9,7 @@ Simple set of JavaScript function and utility modules for easily performing some
 
 ## Installation
 
-NPM package:
+npm package:
 
 ```shell
 
@@ -13,17 +17,25 @@ npm install --save @beyondthesketch/scriptuccinojs
 
 ```
 
+In browser (via CDN):
+
+```html
+
+<script src="https://unpkg.com/@beyondthesketch/scriptuccinojs@2.0.0-alpha/umd/scriptuccino.js"></script>
+
+```
+
 
 ## Manual Install
 
-Alternatively, if you are not using NPM, you can download the modules or library.
+If you are not using npm, you can download the modules or library.
 
-Simply save the modules folder and/or the scriptuccino.js file somewhere on your server and reference them as you would any other script.
+Simply save the `esm` modules folder and/or the `umd/scriptuccino.js` file somewhere on your server and reference them as you would any other script.
 
 
 ## Building The Modules & Library
 
-On installation via NPM, the production ready ES modules and ES5 Library are built automatically. If you need to reduild you can do so with:
+On installation via npm, the production ready ES2015 modules (ES6) and UMD file (ES5) are built automatically. If you need to reduild you can do so with:
 
 ```shell
 
@@ -32,23 +44,18 @@ npm run build
 ```
 
 
-## Usage With Bundlers & Transpilers
-
-If you are using a bundler like Webpack, please note that the production ES6 modules are used when you import them, if you need these modules transpiled, ensure that the `node_modules/@beyondthesketch/scriptuccinojs` directory is included in the files being transpiled.
-
-
 ## Usage
 
-### ES Modules
 
+### ES2015 Modules (ES6)
 
-Import the modules you need into your javascript:
+Import the modules you need from the `esm` folder into your javascript (assuming Scriptuccino is installed in a folder named `/scriptuccino/`):
 
 Use static `import`:
 
 ```javascript
 
-import whenPageLoaded from '/js/scriptuccino/events/page/whenPageLoaded.js';
+import whenPageLoaded from 'scriptuccino/esm/whenPageLoaded.js';
 
 const myFoo = () => alert('foo');
 
@@ -62,7 +69,7 @@ Using dynamic `import`:
 
 const myFoo = () => alert('foo');
 
-import('/js/scriptuccino/events/page/whenPageLoaded.js')
+import('scriptuccino/esm/whenPageLoaded.js')
   .then(
     (module) => module.whenPageLoaded(myFoo)
   );
@@ -75,15 +82,15 @@ Using dynamic import with `await`:
 
 const myFoo = () => alert('foo');
 
-const module = await import('/js/scriptuccino/events/page/whenPageLoaded.js');
+const module = await import('scriptuccino/esm/whenPageLoaded.js');
 
 module.whenPageLoaded(myFoo);
 
 ```
 
-### ES5 Library
+### ES5 Library Using UMD
 
-Copy the `scriptuccino.js` file to a location on your server. E.g. `/js/`.
+Copy the `umd/scriptuccino.js` file to a location on your server. E.g. `js/`.
 
 Add the library to your webpage, preferably at the bottom of the body - but above your own scripts (external or inline):
 
@@ -93,8 +100,8 @@ Add the library to your webpage, preferably at the bottom of the body - but abov
   <h1>Foo</h1>
   <p>Lorem ipsum dolor sit amet...</p>
 
-  <script src="/js/scriptuccino.js"></script>
-  <script src="/js/your.own.script.js"></script>
+  <script src="js/scriptuccino.js"></script>
+  <script src="js/your.own.script.js"></script>
 </body>
 
 ```
@@ -105,7 +112,7 @@ In your own scripts, use the `SCRIPTUCCINO` global object to access the Scriptuc
 
 const myFoo = () => alert('foo');
 
-SCRIPTUCCINO.events.whenPageLoaded(myFoo);
+SCRIPTUCCINO.whenPageLoaded(myFoo);
 
 ```
 
@@ -128,51 +135,15 @@ Utilities and functions for performing operations related to events, such as pag
 
 Queue the supplied function for execution once the page is loaded (executes immediately if page is already loaded).
 
-*ES module*
-
-exported as named by:
-`events/index.js`
-
-exported as default by:
-`events/page/whenPageLoaded.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.events.whenPageLoaded`
-
 
 **whenPageReady( fn: Function )**
 
 Queue the supplied function for execution once the DOM is ready (executes immediately if the DOM is already ready).
 
-*ES module*
-
-exported as named by:
-`events/index.js`
-
-exported as default by:
-`events/page/whenPageReady.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.events.whenPageReady`
-
 
 **whenScrollEnds( fn: Function )**
 
 Run the supplied function when the window scrolling comes to a stop. The scroll detection is debounced to 250 milliseconds.
-
-*ES module*
-
-exported as named by:
-`events/index.js`
-
-exported as default by:
-`events/scroll/whenScrollEnds.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.events.whenScrollEnds`
 
 
 #### utils
@@ -187,34 +158,10 @@ Call the supplied function when the window is scrolled so that the specified ele
 
 The callback function `fn` receives a single argument which is the element that has settled above the fold.
 
-*ES module*
-
-exported as named by:
-`utils/index.js`
-
-exported as default by:
-`utils/elementScrolledAboveFold.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.utils.elementScrolledAboveFold`
-
 
 **XHR( config: Object )**
 
 AJAX (or XMLHttpRequest as it is officially named) is AWESOME! But it's a little fiddly to setup. Use this util to quickly configure and optionally send them.
-
-*ES module*
-
-exported as named by:
-`utils/index.js`
-
-exported as default by:
-`utils/XHR.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.utils.XHR`
 
 
 **lazyLoadCSS( uri: string [, callbackFn: Function] )**
@@ -222,35 +169,16 @@ exported as default by:
 
 Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, only once the page has loaded.
 
-*ES module*
-
-exported as named by:
-`utils/index.js`
-
-exported as default by:
-`utils/lazyLoadCSS.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.utils.lazyLoadCSS`
-
 
 **parallelLoadCSS( uri: string [, callbackFn: Function] )**
 *uses: whenPageReady*
 
 Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, when the DOM is ready. Useful for deferred load of CSS on larger pages with longer load times.
 
-*ES module*
+**simpleDebounce( fn: Function, wait: number )**
 
-exported as named by:
-`utils/index.js`
+A very, very simple debounce utility. Runs function `fn` after the number value `wait` for milliseconds, has elapsed since the last attempt to call `fn`.
 
-exported as default by:
-`utils/parallelLoadCSS.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.utils.parallelLoadCSS`
 
 #### fx
 
@@ -261,35 +189,11 @@ Programmatically apply CSS transitions. Great for throw-away transitions, protot
 
 Define and apply CSS transition to an HTML element, and optionally perform a callback function when the transition is complete.
 
-*ES module*
-
-exported as named by:
-`fx/index.js`
-
-exported as default by:
-`fx/applyTransition.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.fx.applyTransition`
-
 
 **fadeIn( element: HTMLElement [, completeFn: Function, settings: Object] )**
 *uses: applyTransition*
 
 Apply a fade-in transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.
-
-*ES module*
-
-exported as named by:
-`fx/index.js`
-
-exported as default by:
-`fx/fadeIn.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.fx.fadeIn`
 
 
 **fadeOut( element: HTMLElement [, completeFn: Function, settings: Object] )**
@@ -297,32 +201,8 @@ exported as default by:
 
 Apply a fade-out transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.
 
-*ES module*
-
-exported as named by:
-`fx/index.js`
-
-exported as default by:
-`fx/fadeOut.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.fx.fadeOut`
-
 
 **fadeTo( element: HTMLElement, opacity: number [, completeFn: Function, settings: Object] )**
 *uses: applyTransition*
 
 Apply a fade transition to the specified opacity on an HTML element. Optionally perform a callback when complete and define optional settings for the transition.
-
-*ES module*
-
-exported as named by:
-`fx/index.js`
-
-exported as default by:
-`fx/fadeTo.js`
-
-*ES5 library*
-
-`SCRIPTUCCINO.fx.fadeTo`
