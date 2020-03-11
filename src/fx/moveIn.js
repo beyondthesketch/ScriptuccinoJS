@@ -21,11 +21,12 @@ const moveIn = (element, fromDirection, completeFn) => {
     const currentState = computedStyles.getPropertyValue('transform');
     const direction = (fromDirection && fromDirection.toLowerCase()) || 'bottom';
     const transformValues = currentState.match(matrixRegex);
+    const boundingRects = element.getBoundingClientRect();
     const amount = (direction === 'bottom' || direction === 'top')
         ?
         (
             (
-                (parseInt(computedStyles.getPropertyValue('width'), 10)/100) * 1000
+                (direction === 'bottom' ? self.innerHeight - boundingRects.top : boundingRects.bottom)
             ) + (
                 (transformValues && (parseFloat(transformValues[5]) * (direction === 'bottom' ? 1 : -1))) || 0
             )
@@ -33,7 +34,7 @@ const moveIn = (element, fromDirection, completeFn) => {
         :
         (
             (
-                (parseInt(computedStyles.getPropertyValue('height'), 10)/100) * 1000
+                (direction === 'right' ? self.innerWidth - boundingRects.left : boundingRects.right)
             ) + (
                 (transformValues && (parseFloat(transformValues[6]) * (direction === 'right' ? 1 : -1))) || 0
             )
