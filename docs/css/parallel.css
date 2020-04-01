@@ -1,0 +1,4 @@
+#site-footer > small > a {
+    color: #000;
+    text-decoration: underline;
+}
