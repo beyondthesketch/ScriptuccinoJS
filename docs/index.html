@@ -625,6 +625,10 @@
         <script src="js/scriptuccino.js?v=2_0_0_alpha"></script>
         <script>
             (function() {
+
+                scriptuccino.lazyLoadCSS('css/lazy.css', () => console && console.log('Lazy load css complete'));
+                scriptuccino.parallelLoadCSS('css/parallel.css', () => console && console.log('Parallel load css complete'));
+
                 var fadeInElm = document.getElementById('fx-fade-in');
                 fadeInElm.addEventListener(
                     'click',
