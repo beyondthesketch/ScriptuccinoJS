@@ -116,93 +116,11 @@ SCRIPTUCCINO.whenPageLoaded(myFoo);
 
 ```
 
+## API
+
+View the [docs](https://beyondthesketch.github.io/ScriptuccinoJS) for details on how to use the functions and utilities.
+
+
 ## Community
 
 Tweet us [@beyondthesketch](https://twitter.com/beyondthesketch)
-
-
-## API
-
-### Modules
-
-ScriptuccinoJS is organised into the following modules, each containing a number of utilities. If using ScriptuccinoJS as ES2015/ES modules you can import them from any of the files they are documented as being exported from below. If using the ES5 library, you can access them from the `SCRIPTUCCINO` global/namespace object as described.
-
-#### events
-
-Utilities and functions for performing operations related to events, such as page load.
-
-**whenPageLoaded( fn: Function )**
-
-Queue the supplied function for execution once the page is loaded (executes immediately if page is already loaded).
-
-
-**whenPageReady( fn: Function )**
-
-Queue the supplied function for execution once the DOM is ready (executes immediately if the DOM is already ready).
-
-
-**whenScrollEnds( fn: Function )**
-
-Run the supplied function when the window scrolling comes to a stop. The scroll detection is debounced to 250 milliseconds.
-
-
-#### utils
-
-Tools for doing common things with a little more ease.
-
-
-**elementScrolledAboveFold( elements: Element | NodeList, fn: Function )**
-*uses: whenScrollEnds*
-
-Call the supplied function when the window is scrolled so that the specified element or elements are above the page fold.
-
-The callback function `fn` receives a single argument which is the element that has settled above the fold.
-
-
-**XHR( config: Object )**
-
-AJAX (or XMLHttpRequest as it is officially named) is AWESOME! But it's a little fiddly to setup. Use this util to quickly configure and optionally send them.
-
-
-**lazyLoadCSS( uri: string [, callbackFn: Function] )**
-*uses: whenPageLoaded*
-
-Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, only once the page has loaded.
-
-
-**parallelLoadCSS( uri: string [, callbackFn: Function] )**
-*uses: whenPageReady*
-
-Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, when the DOM is ready. Useful for deferred load of CSS on larger pages with longer load times.
-
-**simpleDebounce( fn: Function, wait: number )**
-
-A very, very simple debounce utility. Runs function `fn` after the number value `wait` for milliseconds, has elapsed since the last attempt to call `fn`.
-
-
-#### fx
-
-Programmatically apply CSS transitions. Great for throw-away transitions, prototyping or quickly applying complex effects without having to figure out the CSS.
-
-
-**applyTransition( element: HTMLElement, settings: Object|Array, styles: Object [, completeFn: Function] )**
-
-Define and apply CSS transition to an HTML element, and optionally perform a callback function when the transition is complete.
-
-
-**fadeIn( element: HTMLElement [, completeFn: Function, settings: Object] )**
-*uses: applyTransition*
-
-Apply a fade-in transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.
-
-
-**fadeOut( element: HTMLElement [, completeFn: Function, settings: Object] )**
-*uses: applyTransition*
-
-Apply a fade-out transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.
-
-
-**fadeTo( element: HTMLElement, opacity: number [, completeFn: Function, settings: Object] )**
-*uses: applyTransition*
-
-Apply a fade transition to the specified opacity on an HTML element. Optionally perform a callback when complete and define optional settings for the transition.
