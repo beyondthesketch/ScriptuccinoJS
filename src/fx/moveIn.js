@@ -13,11 +13,10 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
     }
     const config = {
         duration: 750,
-        curve: 'ease-out',
+        curve: 'ease',
     };
     settings && typeof settings === 'object' && Object.assign(config, settings);
-    config && config.property && (config.property = 'transform');
-
+    config.property = 'transform';
 
     const currentState = (self.getComputedStyle(element)).getPropertyValue('transform');
     const direction = (fromDirection && fromDirection.toLowerCase()) || 'bottom';
