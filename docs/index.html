@@ -86,8 +86,15 @@
                 transform: translate(0, 0);
             }
 
+            #site-main {
+                box-sizing: border-box;
+                padding: 4.8rem;
+                margin: auto;
+            }
+
             #site-footer {
                 text-align: center;
+                padding: 1.618rem 0;
             }
 
             .code-block {
@@ -170,6 +177,10 @@
                 cursor: pointer;
             }
 
+            .api__method {
+                margin: 2rem auto 7.5rem;
+            }
+
             @media screen and (max-width: 1024px) {
                 #site-content {
                     flex-direction: column;
@@ -183,14 +194,7 @@
             @media screen and (min-width: 1024px) {
 
                 #site-main {
-                    box-sizing: border-box;
-                    padding: 4.8rem;
                     width: 66vw;
-                    margin: auto;
-                }
-
-                #site-footer {
-                    padding: 1.618rem 0;
                 }
             }
         </style>
@@ -289,122 +293,138 @@
 
                 <p>Utilities and functions for performing operations related to events, such as page load.</p>
 
-                <code class="inline-code-method"><b>whenPageLoaded( fn: Function )</b></code>
+                <div class="api__method">
+                    <code class="inline-code-method"><b>whenPageLoaded( fn: Function )</b></code>
+    
+                    <p>Queue the supplied function for execution once the page is loaded (executes immediately if page is already loaded).</p>
+                </div>
 
-                <p>Queue the supplied function for execution once the page is loaded (executes immediately if page is already loaded).</p>
+                <div class="api__method">
+                    <code class="inline-code-method"><b>whenPageReady( fn: Function )</b></code>
+    
+                    <p>Queue the supplied function for execution once the DOM is ready (executes immediately if the DOM is already ready).</p>
+                </div>
 
 
-                <code class="inline-code-method"><b>whenPageReady( fn: Function )</b></code>
-
-                <p>Queue the supplied function for execution once the DOM is ready (executes immediately if the DOM is already ready).</p>
-
-
-                <code class="inline-code-method"><b>whenScrollEnds( fn: Function )</b></code>
-
-                <p>Run the supplied function when the window scrolling comes to a stop. The scroll detection is debounced to 250 milliseconds.</p>
+                <div class="api__method">
+                    <code class="inline-code-method"><b>whenScrollEnds( fn: Function )</b></code>
+    
+                    <p>Run the supplied function when the window scrolling comes to a stop. The scroll detection is debounced to 250 milliseconds.</p>
+                </div>
 
 
                 <h4>utils</h4>
 
                 <p>Tools for doing common things with a little more ease.</p>
 
+                <div class="api__method">
 
-                <code class="inline-code-method"><b>elementComesIntoViewport( elements: Element | Nodelist, fn: Function[, (outFn?: Function), options: Object ] )</b></code>
-                <p><b>uses: whenScrollEnds</b> (as fallback)</p>
-
-                <p><strong>WARNING: This utility uses experimental web features (Intersection Observer) which is not yet finalised and could change. IT MAY BREAK/THROW ERRORS if the user agent uses a different implementation.</strong></p>
-                <p><strong>It falls back to <code class="inline-code-snippet">whenScrollEnds</code> functionality if Intersection Observer is not supported at all. Note that this fallback implementation only considers movement through the viewport vertically and no horizontally.</strong></p>
-
-                <p>While this function's purpose is to detect when an element <em>enters</em> the viewport, it is also often useful to detect when that element <em>exits</em> too. As a result, this function has 2 forms of use:</p>
-                <ol>
-                    <li>
-                        <p>Call the supplied function as soon as the specified element is scrolled into the viewport using the IntersectionObserver API.</p>
-                        <p>This form takes one callback function and an optional <code class="inline-code-snippet">options</code> object for configuring the observer instance.</p>
-
-                        <code class="inline-code-method">
-                            elementComesIntoViewport(
-                                <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('foo'),
-                                <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;(element, observer) => {
+                    <code class="inline-code-method"><b>elementComesIntoViewport( elements: Element | Nodelist, fn: Function[, (outFn?: Function), options: Object ] )</b></code>
+                    <p><b>uses: whenScrollEnds</b> (as fallback)</p>
+    
+                    <p><strong>WARNING: This utility uses experimental web features (Intersection Observer) which is not yet finalised and could change. IT MAY BREAK/THROW ERRORS if the user agent uses a different implementation.</strong></p>
+                    <p><strong>It falls back to <code class="inline-code-snippet">whenScrollEnds</code> functionality if Intersection Observer is not supported at all. Note that this fallback implementation only considers movement through the viewport vertically and no horizontally.</strong></p>
+    
+                    <p>While this function's purpose is to detect when an element <em>enters</em> the viewport, it is also often useful to detect when that element <em>exits</em> too. As a result, this function has 2 forms of use:</p>
+                    <ol>
+                        <li>
+                            <p>Call the supplied function as soon as the specified element is scrolled into the viewport using the IntersectionObserver API.</p>
+                            <p>This form takes one callback function and an optional <code class="inline-code-snippet">options</code> object for configuring the observer instance.</p>
+    
+                            <code class="inline-code-method">
+                                elementComesIntoViewport(
                                     <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do something
+                                &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('foo'),
                                     <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;},
-                                <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;{
+                                &nbsp;&nbsp;&nbsp;&nbsp;(element, observer) => {
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do something
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;},
                                     <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;threshold: 0.25
+                                &nbsp;&nbsp;&nbsp;&nbsp;{
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;threshold: 0.25
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;}
                                     <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;}
-                                <br>
-                            );
-                        </code>
-                    </li>
-                    <li>
-                        <p>Call the first supplied function as soon as the specified element is scrolled into the viewport, and call the second supplied function as soon as the element is scrolled out of the viewport, using the IntersectionObserver API.</p>
-                        <p>The second form takes two callback functions and an optional <code class="inline-code-snippet">options</code> object for configuring the observer instance.</p>
-
-                        <code class="inline-code-method">
-                            elementComesIntoViewport(
-                                <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('foo'),
-                                <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;(element, observer) => {
+                                );
+                            </code>
+                        </li>
+                        <li>
+                            <p>Call the first supplied function as soon as the specified element is scrolled into the viewport, and call the second supplied function as soon as the element is scrolled out of the viewport, using the IntersectionObserver API.</p>
+                            <p>The second form takes two callback functions and an optional <code class="inline-code-snippet">options</code> object for configuring the observer instance.</p>
+    
+                            <code class="inline-code-method">
+                                elementComesIntoViewport(
                                     <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do something on entering viewport
+                                &nbsp;&nbsp;&nbsp;&nbsp;document.getElementById('foo'),
                                     <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;},
-                                <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;(element, observer) => {
+                                &nbsp;&nbsp;&nbsp;&nbsp;(element, observer) => {
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do something on entering viewport
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;},
                                     <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do something on leaving viewport
+                                &nbsp;&nbsp;&nbsp;&nbsp;(element, observer) => {
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// do something on leaving viewport
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;},
                                     <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;},
-                                <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;{
+                                &nbsp;&nbsp;&nbsp;&nbsp;{
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;threshold: 0.25
+                                        <br>
+                                &nbsp;&nbsp;&nbsp;&nbsp;}
                                     <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;threshold: 0.25
-                                    <br>
-                            &nbsp;&nbsp;&nbsp;&nbsp;}
-                                <br>
-                            );
-                        </code>
-                    </li>
-                </ol>
-                <p>The callback functions <code class="inline-code-snippet">fn</code> and <code class="inline-code-snippet">outFn</code> both receive 2 arguments, the first is the element being observed and the second is the IntersectionObserver instance.</p>
-                <p>The <code class="inline-code-snippet">options</code> argument is a plain object to customise the observer that is created. Please see IntersectionObserver API documents for details on what properties this can take.</p>
-                <p>There is only one IntersectionObserver instance created for all nodes that are passed to this utility. The element will continue to trigger intersections unless you unobserve it in the supplied function.</p>
+                                );
+                            </code>
+                        </li>
+                    </ol>
+                    <p>The callback functions <code class="inline-code-snippet">fn</code> and <code class="inline-code-snippet">outFn</code> both receive 2 arguments, the first is the element being observed and the second is the IntersectionObserver instance.</p>
+                    <p>The <code class="inline-code-snippet">options</code> argument is a plain object to customise the observer that is created. Please see IntersectionObserver API documents for details on what properties this can take.</p>
+                    <p>There is only one IntersectionObserver instance created for all nodes that are passed to this utility. The element will continue to trigger intersections unless you unobserve it in the supplied function.</p>
+                </div>
+
+                <div class="api__method">
+                    <code class="inline-code-method"><b>elementIsAboveFold( element: Element )</b></code>
+                    <p>Return `true` if the supplied element is currently above the page fold/viewport, otherwise returns `false`.</p>
+                </div>
 
 
-                <code class="inline-code-method"><b>elementIsAboveFold( element: Element )</b></code>
-                <p>Return `true` if the supplied element is currently above the page fold/viewport, otherwise returns `false`.</p>
+                <div class="api__method">
+                    <code class="inline-code-method"><b>elementScrolledAboveFold( elements: Element | Nodelist, fn: Function )</b></code>
+                    <p><b>uses: whenScrollEnds</b></p>
+    
+    
+                    <p>Call the supplied function when the window is scrolled so that the specified element or elements are above the page fold.</p>
+                    <p>The callback function <code class="inline-code-snippet">fn</code> receives a single argument which is the element that has settled above the fold.</p>
+                </div>
 
 
-                <code class="inline-code-method"><b>elementScrolledAboveFold( elements: Element | Nodelist, fn: Function )</b></code>
-                <p><b>uses: whenScrollEnds</b></p>
+                <div class="api__method">
+                    <code class="inline-code-method"><b>XHR( config: Object )</b></code>
+    
+    
+                    <p>AJAX (or XMLHttpRequest as it is officially named) is AWESOME! But it's a little fiddly to setup. Use this util to quickly configure and optionally send them.</p>
+                </div>
 
 
-                <p>Call the supplied function when the window is scrolled so that the specified element or elements are above the page fold.</p>
-                <p>The callback function <code class="inline-code-snippet">fn</code> receives a single argument which is the element that has settled above the fold.</p>
+                <div class="api__method">
+                    <code class="inline-code-method"><b>lazyLoadCSS( uri: string [, callbackFn: Function] )</b></code>
+                    <p><b>uses: XHR, whenPageLoaded</b></p>
+    
+                    <p>Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, only once the page has loaded.</p>
+                </div>
 
 
-                <code class="inline-code-method"><b>XHR( config: Object )</b></code>
-
-
-                <p>AJAX (or XMLHttpRequest as it is officially named) is AWESOME! But it's a little fiddly to setup. Use this util to quickly configure and optionally send them.</p>
-
-
-                <code class="inline-code-method"><b>lazyLoadCSS( uri: string [, callbackFn: Function] )</b></code>
-                <p><b>uses: XHR, whenPageLoaded</b></p>
-
-                <p>Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, only once the page has loaded.</p>
-
-
-                <code class="inline-code-method"><b>parallelLoadCSS( uri: string [, callbackFn: Function] )</b></code>
-                <p><b>uses: XHR, whenPageReady</b></p>
-
-                <p>Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, when the DOM is ready. Useful for deferred load of CSS on larger pages with longer load times.</p>
+                <div class="api__method">
+                    <code class="inline-code-method"><b>parallelLoadCSS( uri: string [, callbackFn: Function] )</b></code>
+                    <p><b>uses: XHR, whenPageReady</b></p>
+    
+                    <p>Download (asynchronously with AJAX) and apply a stylesheet to the page, and optionally execute a callback function, when the DOM is ready. Useful for deferred load of CSS on larger pages with longer load times.</p>
+                </div>
 
 
 
@@ -427,193 +447,181 @@
                 
                 <p>Programmatically apply CSS transitions. Great for throw-away transitions, prototyping or quickly applying complex effects without having to figure out the CSS.</p>
 
-                <code class="inline-code-method"><b>applyTransition( element: HTMLElement, settings: Object|Array, styles: Object [, completeFn: Function] )</b></code>
-                
-                <p>Define and apply CSS transition to an HTML element, and optionally perform a callback function when the transition is complete.</p>
+                <div class="api__method">
+                    <code class="inline-code-method"><b>applyTransition( element: HTMLElement, settings: Object|Array, styles: Object [, completeFn: Function] )</b></code>
+                    
+                    <p>Define and apply CSS transition to an HTML element, and optionally perform a callback function when the transition is complete.</p>
+    
+                    <p>The optional <code class="inline-code-snippet">settings</code> argument takes either a plain object or an array of objects which determine the specification of the transition/s.</p>
+    
+                    <p>The properties and types of this object are:</p>
+                    <code class="inline-code-method">
+                        {<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;property: String,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;duration: Number,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;curve: String,<br>
+                        &nbsp;&nbsp;&nbsp;&nbsp;delay: Number,<br>
+                        }<br>
+                    </code>
+    
+                    <p>The number values represent milliseconds. The <code class="inline-code-snippet">property</code> property is the CSS property to transition, the <code class="inline-code-snippet">curve</code> is the timing function to use, which must be provided as a string.</p>
+                </div>
 
-                <p>The optional <code class="inline-code-snippet">settings</code> argument takes either a plain object or an array of objects which determine the specification of the transition/s.</p>
 
-                <p>The properties and types of this object are:</p>
-                <code class="inline-code-method">
-                    {<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;property: String,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;duration: Number,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;curve: String,<br>
-                    &nbsp;&nbsp;&nbsp;&nbsp;delay: Number,<br>
-                    }<br>
-                </code>
-
-                <p>The number values represent milliseconds. The <code class="inline-code-snippet">property</code> property is the CSS property to transition, the <code class="inline-code-snippet">curve</code> is the timing function to use, which must be provided as a string.</p>
-
-
-                <code class="inline-code-method"><b>fadeIn( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-
-                <p>Apply a fade-in transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
-                <p>Default duration is <code class="inline-code-snippet">500ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>. The <code class="inline-code-snippet">settings</code> object is the same as for <code class="inline-code-snippet">applyTransition</code>.</p>
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <small>Settings: duration: 2 seconds, curve: ease-in</small>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-fade-in" class="fx-demo" title="Click to demo a fade in">
-                            fadeIn
+                <div class="api__method">
+                    <code class="inline-code-method"><b>fadeIn( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
+                    <p><b>uses: applyTransition</b></p>
+    
+                    <p>Apply a fade-in transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
+                    <p>Default duration is <code class="inline-code-snippet">500ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>. The <code class="inline-code-snippet">settings</code> object is the same as for <code class="inline-code-snippet">applyTransition</code>.</p>
+                    <p>The <code class="inline-code-snippet">settings</code> object supports any of the relevant transitions property except <code class="inline-code-snippet">property</code>, which is predefined - if supplied in the object, it will simply be ignored.</p>
+    
+                    <div>
+                        <p><b>Demo</b></p>
+                        <small>Settings: duration: 2 seconds, curve: ease-in</small>
+                        <p>Click to reset and preview</p>
+                        <div class="fx-demo-wrapper">
+                            <div id="fx-fade-in" class="fx-demo" title="Click to demo a fade in">
+                                fadeIn
+                            </div>
                         </div>
                     </div>
                 </div>
                 
-                <code class="inline-code-method"><b>fadeOut( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
-
-                <p><b>uses: applyTransition</b></p>
-
-                <p>Apply a fade-out transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
-                <p>Default duration is <code class="inline-code-snippet">500ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <small>Settings: duration: 2 seconds, curve: ease-in</small>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-fade-out" class="fx-demo" title="Click to demo a fade out">
-                            fadeOut
+                <div class="api__method">
+                    <code class="inline-code-method"><b>fadeOut( element: HTMLElement [, completeFn: Function, settings: Object] )</b></code>
+    
+                    <p><b>uses: applyTransition</b></p>
+    
+                    <p>Apply a fade-out transition to an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
+                    <p>Default duration is <code class="inline-code-snippet">500ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
+    
+                    <div>
+                        <p><b>Demo</b></p>
+                        <small>Settings: duration: 2 seconds, curve: ease-in</small>
+                        <p>Click to reset and preview</p>
+                        <div class="fx-demo-wrapper">
+                            <div id="fx-fade-out" class="fx-demo" title="Click to demo a fade out">
+                                fadeOut
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <code class="inline-code-method"><b>fadeTo( element: HTMLElement, opacity: number [, completeFn: Function, settings: Object] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-                
-                <p>Apply a fade transition to the specified opacity on an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
-                
-                <p>Default duration is <code class="inline-code-snippet">500ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
-
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <small>Settings: opacity: 20, duration: 2 seconds, curve: ease-in</small>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-fade-to" class="fx-demo" title="Click to demo a fade out">
-                            fadeTo
+                <div class="api__method">
+                    <code class="inline-code-method"><b>fadeTo( element: HTMLElement, opacity: number [, completeFn: Function, settings: Object] )</b></code>
+                    <p><b>uses: applyTransition</b></p>
+                    
+                    <p>Apply a fade transition to the specified opacity on an HTML element. Optionally perform a callback when complete and define optional settings for the transition.</p>
+                    
+                    <p>Default duration is <code class="inline-code-snippet">500ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
+    
+    
+                    <div>
+                        <p><b>Demo</b></p>
+                        <small>Settings: opacity: 20, duration: 2 seconds, curve: ease-in</small>
+                        <p>Click to reset and preview</p>
+                        <div class="fx-demo-wrapper">
+                            <div id="fx-fade-to" class="fx-demo" title="Click to demo a fade out">
+                                fadeTo
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <code class="inline-code-method"><b>pop( element: HTMLElement [, scale: number, completeFn: Function] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-                
-                <p>Apply a 'pop' effect on an HTML element. Optionally provide a scale number to set the css scale transform to, and perform a callback when complete.</p>
-                
-                <p>This is a predefined effect and so does not offer any configuration of the settings other than the final scale. If called without a <code class="inline-code-snippet">scale</code> argument or <code class="inline-code-snippet">completeFn</code>, a <code class="inline-code-snippet">scale</code> value of 1 is used</p>
-
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-pop" class="fx-demo" title="Click to demo a pop">
-                            pop
+                <div class="api__method">
+                    <code class="inline-code-method"><b>pop( element: HTMLElement [, scale: number, completeFn: Function] )</b></code>
+                    <p><b>uses: applyTransition</b></p>
+                    
+                    <p>Apply a 'pop' effect on an HTML element. Optionally provide a scale number to set the css scale transform to, and perform a callback when complete.</p>
+                    
+                    <p>This is a predefined effect and so does not offer any configuration of the settings other than the final scale. If called without a <code class="inline-code-snippet">scale</code> argument or <code class="inline-code-snippet">completeFn</code>, a <code class="inline-code-snippet">scale</code> value of 1 is used</p>
+    
+    
+                    <div>
+                        <p><b>Demo</b></p>
+                        <p>Click to reset and preview</p>
+                        <div class="fx-demo-wrapper">
+                            <div id="fx-pop" class="fx-demo" title="Click to demo a pop">
+                                pop
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <code class="inline-code-method"><b>slam( element: HTMLElement [, scale: number, completeFn: Function] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-                
-                <p>Apply a 'slam' effect on an HTML element. Optionally provide a scale number to set the css scale transform to, and perform a callback when complete.</p>
-                
-                <p>This is a predefined effect and so does not offer any configuration of the settings other than the final scale. If called without a <code class="inline-code-snippet">scale</code> argument or <code class="inline-code-snippet">completeFn</code>, a <code class="inline-code-snippet">scale</code> value of 1 is used</p>
-
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-slam" class="fx-demo" title="Click to demo a slam">
-                            slam
-                        </div>
-                    </div>
-                </div>
-
-
-                <code class="inline-code-method"><b>moveIn( element: HTMLElement [, fromDirection: String, completeFn: Function, settings: Object] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-                
-                <p>moveIn from the specified side</p>
-
-                <p>Default duration is <code class="inline-code-snippet">750ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-movein" class="fx-demo" title="Click to demo a moveIn">
-                            moveIn
+                <div class="api__method">
+                    <code class="inline-code-method"><b>slam( element: HTMLElement [, scale: number, completeFn: Function] )</b></code>
+                    <p><b>uses: applyTransition</b></p>
+                    
+                    <p>Apply a 'slam' effect on an HTML element. Optionally provide a scale number to set the css scale transform to, and perform a callback when complete.</p>
+                    
+                    <p>This is a predefined effect and so does not offer any configuration of the settings other than the final scale. If called without a <code class="inline-code-snippet">scale</code> argument or <code class="inline-code-snippet">completeFn</code>, a <code class="inline-code-snippet">scale</code> value of 1 is used</p>
+    
+    
+                    <div>
+                        <p><b>Demo</b></p>
+                        <p>Click to reset and preview</p>
+                        <div class="fx-demo-wrapper">
+                            <div id="fx-slam" class="fx-demo" title="Click to demo a slam">
+                                slam
+                            </div>
                         </div>
                     </div>
                 </div>
 
 
-
-                <code class="inline-code-method"><b>moveOut( element: HTMLElement [, toDirection: String, completeFn: Function, settings: Object] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-                
-                <p>moveOut from the specified side</p>
-                <p>Default duration is <code class="inline-code-snippet">750ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
-
-                <p><b>ES module</b></p>
-
-                <p>exported as named by:</p>
-                <code class="inline-code-snippet">fx/index.js</code>
-                
-                <p>exported as default by:</p>
-                <code class="inline-code-snippet">fx/moveOut.js</code>
-                
-                <p><b>ES5 library</b></p>
-                
-                <code class="inline-code-snippet">SCRIPTUCCINO.fx.moveOut</code>
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-moveout" class="fx-demo" title="Click to demo a moveOut">
-                            moveOut
+                <div class="api__method">
+                    <code class="inline-code-method"><b>moveIn( element: HTMLElement [, fromDirection: String, completeFn: Function, settings: Object] )</b></code>
+                    <p><b>uses: applyTransition</b></p>
+                    
+                    <p>Move element in from the specified side of the viewport.</p>
+                    <p>The optional <code class="inline-code-snippet">fromDirection</code> must be a string of one of <code class="inline-code-snippet">'top'</code>, <code class="inline-code-snippet">'right'</code> (default), <code class="inline-code-snippet">'bottom'</code> or <code class="inline-code-snippet">'left'</code></p>
+                    <p>The <code class="inline-code-snippet">settings</code> object supports any of the relevant transitions property except <code class="inline-code-snippet">property</code>, which is predefined - if supplied in the object, it will simply be ignored.</p>
+    
+                    <div>
+                        <p><b>Demo</b></p>
+                        <small>Settings: fromDirection: 'right', duration: 750 milliseconds, curve: ease</small>
+                        <p>Click to reset and preview</p>
+                        <div class="fx-demo-wrapper">
+                            <div id="fx-movein" class="fx-demo" title="Click to demo a moveIn">
+                                moveIn
+                            </div>
                         </div>
                     </div>
                 </div>
 
-
-                <code class="inline-code-method"><b>shiftFadeIn( element: HTMLElement [, fromDirection: String, completeFn: Function] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-                
-                <p>Fade in an element with a small shift from the specified side.</p>
-                <p><code class="inline-code-snippet">fromDirection</code> must be a string of one of <code class="inline-code-snippet">'top'</code>, <code class="inline-code-snippet">'right'</code>, <code class="inline-code-snippet">'bottom'</code> or <code class="inline-code-snippet">'left'</code></p>
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-shiftFadeIn" class="fx-demo" title="Click to demo a shiftFadeIn">
-                            shiftFadeIn
+                <div class="api__method">
+                    <code class="inline-code-method"><b>shiftFadeIn( element: HTMLElement [, fromDirection: String, completeFn: Function] )</b></code>
+                    <p><b>uses: applyTransition</b></p>
+                    
+                    <p>Fade in an element with a small shift from the specified side.</p>
+                    <p><code class="inline-code-snippet">fromDirection</code> must be a string of one of <code class="inline-code-snippet">'top'</code>, <code class="inline-code-snippet">'right'</code>, <code class="inline-code-snippet">'bottom'</code> or <code class="inline-code-snippet">'left'</code></p>
+    
+                    <div>
+                        <p><b>Demo</b></p>
+                        <p>Click to reset and preview</p>
+                        <div class="fx-demo-wrapper">
+                            <div id="fx-shiftFadeIn" class="fx-demo" title="Click to demo a shiftFadeIn">
+                                shiftFadeIn
+                            </div>
                         </div>
                     </div>
                 </div>
 
-
-                <code class="inline-code-method"><b>shiftFadeOut( element: HTMLElement [, toDirection: String, completeFn: Function] )</b></code>
-                <p><b>uses: applyTransition</b></p>
-                
-                <p>Fade out an element with a small shift toward the specified side.</p>
-                <p><code class="inline-code-snippet">toDirection</code> must be a string of one of <code class="inline-code-snippet">'top'</code>, <code class="inline-code-snippet">'right'</code>, <code class="inline-code-snippet">'bottom'</code> or <code class="inline-code-snippet">'left'</code></p>
-
-                <div>
-                    <p><b>Demo</b></p>
-                    <p>Click to reset and preview</p>
-                    <div class="fx-demo-wrapper">
-                        <div id="fx-shiftFadeOut" class="fx-demo" title="Click to demo a shiftFadeOut">
-                            shiftFadeOut
+                <div class="api__method">
+                    <code class="inline-code-method"><b>shiftFadeOut( element: HTMLElement [, toDirection: String, completeFn: Function] )</b></code>
+                    <p><b>uses: applyTransition</b></p>
+                    
+                    <p>Fade out an element with a small shift toward the specified side.</p>
+                    <p><code class="inline-code-snippet">toDirection</code> must be a string of one of <code class="inline-code-snippet">'top'</code>, <code class="inline-code-snippet">'right'</code>, <code class="inline-code-snippet">'bottom'</code> or <code class="inline-code-snippet">'left'</code></p>
+    
+                    <div>
+                        <p><b>Demo</b></p>
+                        <p>Click to reset and preview</p>
+                        <div class="fx-demo-wrapper">
+                            <div id="fx-shiftFadeOut" class="fx-demo" title="Click to demo a shiftFadeOut">
+                                shiftFadeOut
+                            </div>
                         </div>
                     </div>
                 </div>
