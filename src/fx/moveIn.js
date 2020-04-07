@@ -3,7 +3,7 @@ import {default as applyTransition, transitionProperty } from './applyTransition
 
 const matrixRegex = /matrix\((.+), (.+), (.+), (.+), (.+), (.+)\)/;
 
-const moveIn = (element, fromDirection, completeFn) => {
+const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
     if (!element) {
         return console && console.warn( 'ScriptuccinoJS - moveIn not supplied an element!' );
     }
@@ -13,12 +13,12 @@ const moveIn = (element, fromDirection, completeFn) => {
     }
     const config = {
         duration: 750,
-        curve: 'ease-out',
-        property: 'transform'
+        curve: 'ease',
     };
+    settings && typeof settings === 'object' && Object.assign(config, settings);
+    config.property = 'transform';
 
-    const computedStyles = self.getComputedStyle(element);
-    const currentState = computedStyles.getPropertyValue('transform');
+    const currentState = (self.getComputedStyle(element)).getPropertyValue('transform');
     const direction = (fromDirection && fromDirection.toLowerCase()) || 'bottom';
     const transformValues = currentState.match(matrixRegex);
     const boundingRects = element.getBoundingClientRect();
@@ -88,10 +88,11 @@ const moveIn = (element, fromDirection, completeFn) => {
                 },
                 () => {
                     // NOTE: force reflow and recalc - hack necessary for removing extra space created by the translation on certain browsers
+                    // TODO: Investigate this hack - may not be effective
                     element.style.opacity = '0.999';
                     self.setTimeout(
                         () => {
-                            element.style.opacity = '1';
+                            element.style.opacity = '';
                         },
                         0
                     );
