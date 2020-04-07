@@ -13,10 +13,11 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
     }
     const config = {
         duration: 750,
-        curve: 'ease',
+        curve: 'ease-out',
     };
     settings && typeof settings === 'object' && Object.assign(config, settings);
-    config.property = 'transform';
+    config && config.property && (config.property = 'transform');
+
 
     const currentState = (self.getComputedStyle(element)).getPropertyValue('transform');
     const direction = (fromDirection && fromDirection.toLowerCase()) || 'bottom';
@@ -97,6 +98,10 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
                         0
                     );
                     if (completeFn && typeof completeFn === 'function') {
+                        self.setTimeout(
+                            () => {element.style.opacity = ''},
+                            0
+                        );
                         completeFn.call(element);
                     }
                 }
