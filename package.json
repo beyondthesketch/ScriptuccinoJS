@@ -1,6 +1,6 @@
 {
   "name": "@beyondthesketch/scriptuccinojs",
-  "version": "1.7.0-beta2",
+  "version": "1.7.0-beta3",
   "description": "A simple set of JavaScript function and utility modules for easily performing some common tasks.",
   "main": "index.js",
   "scripts": {

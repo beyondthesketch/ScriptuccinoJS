@@ -19,6 +19,7 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
     config.property = 'transform';
 
     const currentState = (self.getComputedStyle(element)).getPropertyValue('transform');
+    const initialStyleProp = element.style.transform;
     const direction = (fromDirection && fromDirection.toLowerCase()) || 'bottom';
     const transformValues = currentState.match(matrixRegex);
     const boundingRects = element.getBoundingClientRect();
@@ -28,7 +29,7 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
             (
                 (direction === 'bottom' ? self.innerHeight - boundingRects.top : boundingRects.bottom)
             ) + (
-                (transformValues && (parseFloat(transformValues[5]) * (direction === 'bottom' ? 1 : -1))) || 0
+                (transformValues && (parseFloat(transformValues[6]) * (direction === 'bottom' ? 1 : -1))) || 0
             )
         ) * (direction === 'bottom' ? 1 : -1)
         :
@@ -36,7 +37,7 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
             (
                 (direction === 'right' ? self.innerWidth - boundingRects.left : boundingRects.right)
             ) + (
-                (transformValues && (parseFloat(transformValues[6]) * (direction === 'right' ? 1 : -1))) || 0
+                (transformValues && (parseFloat(transformValues[5]) * (direction === 'right' ? 1 : -1))) || 0
             )
         ) * (direction === 'right' ? 1 : -1);
 
@@ -69,13 +70,13 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
                     ?
                     amount
                     :
-                    transformValues[6]
+                    transformValues[5]
             }, ${
                 (direction === 'bottom' || direction === 'top')
                     ?
                     amount
                     :
-                    transformValues[5]
+                    transformValues[6]
             })`;
         element.style.transform = newState;
 
@@ -84,7 +85,7 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
                 element,
                 config,
                 {
-                    'transform': self.getComputedStyle(element).getPropertyValue('transform').replace(matrixRegex, `matrix($1, $2, $3, $4, ${ (transformValues && transformValues[6]) || 0}, ${ (transformValues && transformValues[5]) || 0})`),
+                    'transform': self.getComputedStyle(element).getPropertyValue('transform').replace(matrixRegex, `matrix($1, $2, $3, $4, ${ (transformValues && transformValues[5]) || 0}, ${ (transformValues && transformValues[6]) || 0})`),
                 },
                 () => {
                     // NOTE: force reflow and recalc - hack necessary for removing extra space created by the translation on certain browsers
@@ -93,6 +94,7 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
                     self.setTimeout(
                         () => {
                             element.style.opacity = '';
+                            initialStyleProp && (element.style.transform = initialStyleProp);
                         },
                         0
                     );
