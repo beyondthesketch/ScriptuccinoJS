@@ -94,7 +94,6 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
                     self.setTimeout(
                         () => {
                             element.style.opacity = '';
-                            initialStyleProp && (element.style.transform = initialStyleProp);
                         },
                         0
                     );
