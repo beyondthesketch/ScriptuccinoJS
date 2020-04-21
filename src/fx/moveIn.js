@@ -19,7 +19,6 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
     config.property = 'transform';
 
     const currentState = (self.getComputedStyle(element)).getPropertyValue('transform');
-    const initialStyleProp = element.style.transform;
     const direction = (fromDirection && fromDirection.toLowerCase()) || 'bottom';
     const transformValues = currentState.match(matrixRegex);
     const boundingRects = element.getBoundingClientRect();
