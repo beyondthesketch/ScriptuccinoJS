@@ -1,3 +1,4 @@
+/** ScriptuccinoJS - elementIsAboveFold | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
 const elementIsAboveFold = (element) => {
     if (!(element instanceof self.Element)) {
         console && console.warn('elementIsAboveFold not supplied with a DOM element');

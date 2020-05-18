@@ -3,15 +3,13 @@ import applyTransition from './applyTransition.js';
 
 /* TODO: Handle elements that are display: none */
 const fadeIn = (element, completeFn, settings) => {
-  const config = { property: 'opacity' };
-
   if (!element) {
     return console && console.warn( 'ScriptuccinoJS - fadeIn not supplied an element to fade in!' );
   }
+  const config = {};
 
-  if (settings && typeof settings === 'object') {
-    Object.assign(config, settings);
-  }
+  settings && typeof settings === 'object' && Object.assign(config, settings);
+  config.property = 'opacity';
 
   if (parseFloat(self.getComputedStyle(element).getPropertyValue('opacity')) !== 1) {
     applyTransition(element, config, { 'opacity' : '1' }, completeFn);

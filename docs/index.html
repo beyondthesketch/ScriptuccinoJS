@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="content" content="width=device-width,initial-scale=1">
-        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1.6.2</title>
+        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1.7.0</title>
         <style>
             html {
                 font: 62.5%/1.618 Verdana, Geneva, Tahoma, sans-serif;
@@ -214,7 +214,7 @@
         <div id="site-content">
             <header id="site-header">
                 <h1 class="site-title">ScriptuccinoJS</h1>
-                <small>v1.6.2</small>
+                <small>v1.7.0</small>
                 <p class="project-link"><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank" rel="noopener">View on GitHub</a></p>
             </header>
             <main id="site-main">
@@ -715,10 +715,12 @@
                 </div>
 
 
-                <code class="inline-code-method"><b>moveIn( element: HTMLElement [, fromDirection: String, completeFn: Function] )</b></code>
+                <code class="inline-code-method"><b>moveIn( element: HTMLElement [, fromDirection: String, completeFn: Function, settings: Object] )</b></code>
                 <p><b>uses: applyTransition</b></p>
                 
                 <p>moveIn from the specified side</p>
+                <p>Default duration is <code class="inline-code-snippet">750ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
+
                 <p><b>ES module</b></p>
 
                 <p>exported as named by:</p>
@@ -737,6 +739,36 @@
                     <div class="fx-demo-wrapper">
                         <div id="fx-movein" class="fx-demo" title="Click to demo a moveIn">
                             moveIn
+                        </div>
+                    </div>
+                </div>
+
+
+
+                <code class="inline-code-method"><b>moveOut( element: HTMLElement [, toDirection: String, completeFn: Function, settings: Object] )</b></code>
+                <p><b>uses: applyTransition</b></p>
+                
+                <p>moveOut from the specified side</p>
+                <p>Default duration is <code class="inline-code-snippet">750ms</code>. Default timing function is <code class="inline-code-snippet">ease</code>.</p>
+
+                <p><b>ES module</b></p>
+
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">fx/index.js</code>
+                
+                <p>exported as default by:</p>
+                <code class="inline-code-snippet">fx/moveOut.js</code>
+                
+                <p><b>ES5 library</b></p>
+                
+                <code class="inline-code-snippet">SCRIPTUCCINO.fx.moveOut</code>
+
+                <div>
+                    <p><b>Demo</b></p>
+                    <p>Click to reset and preview</p>
+                    <div class="fx-demo-wrapper">
+                        <div id="fx-moveout" class="fx-demo" title="Click to demo a moveOut">
+                            moveOut
                         </div>
                     </div>
                 </div>
@@ -802,7 +834,7 @@
                 <small>Copyright &copy; 2018 - 2020 <a href="https://www.beyondthesketch.com">Beyond The Sketch Ltd</a></small>
             </footer>
         </div>
-        <script src="js/scriptuccino.v1.6.2.js"></script>
+        <script src="js/scriptuccino.v1.7.0.js"></script>
         <script>
             (function() {
                 var fadeInElm = document.getElementById('fx-fade-in');
@@ -889,6 +921,21 @@
                             'right',
                             function() {
                                 moveInElm.style.transform = '';
+                            }
+                        );
+                    },
+                    false
+                );
+
+                var moveout = document.getElementById('fx-moveout');
+                moveout.addEventListener(
+                    'click',
+                    function() {
+                        SCRIPTUCCINO.fx.moveOut(
+                            moveout,
+                            'right',
+                            function() {
+                                moveout.style.transform = '';
                             }
                         );
                     },

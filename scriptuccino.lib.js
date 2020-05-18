@@ -14,6 +14,7 @@ import {default as fadeOut} from './src/fx/fadeOut';
 import {default as pop} from './src/fx/pop';
 import {default as slam} from './src/fx/slam';
 import {default as moveIn} from './src/fx/moveIn';
+import {default as moveOut} from './src/fx/moveOut';
 import {default as shiftFadeIn} from './src/fx/shiftFadeIn';
 import {default as shiftFadeOut} from './src/fx/shiftFadeOut';
 
@@ -32,6 +33,7 @@ Object.assign(self.SCRIPTUCCINO, {
       pop,
       slam,
       moveIn,
+      moveOut,
       shiftFadeIn,
       shiftFadeOut
    },

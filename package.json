@@ -1,6 +1,6 @@
 {
   "name": "@beyondthesketch/scriptuccinojs",
-  "version": "1.6.2",
+  "version": "1.7.0",
   "description": "A simple set of JavaScript function and utility modules for easily performing some common tasks.",
   "main": "index.js",
   "scripts": {
@@ -22,17 +22,17 @@
   "homepage": "https://github.com/beyondthesketch/ScriptuccinoJS#readme",
   "devDependencies": {
     "@babel/cli": "^7.8.4",
-    "@babel/core": "^7.8.7",
-    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/core": "^7.9.0",
+    "@babel/plugin-proposal-object-rest-spread": "^7.9.5",
     "@babel/plugin-transform-object-assign": "^7.8.3",
     "@babel/plugin-transform-spread": "^7.8.3",
-    "@babel/preset-env": "^7.8.7",
-    "babel-loader": "^8.0.6",
+    "@babel/preset-env": "^7.9.5",
+    "babel-loader": "^8.1.0",
     "babel-minify": "^0.5.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-minify": "^0.5.1",
-    "jest": "^24.9.0",
-    "webpack": "^4.42.0",
+    "jest": "^25.5.0",
+    "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
     "webpack-dev-server": "^3.10.3"
   },

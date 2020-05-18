@@ -39,6 +39,31 @@ test('Calls applyTransition with correct arguments if the elements opacity is no
     expect(applyTransition).toHaveBeenCalledWith(domElement, { property: 'opacity' }, { opacity: '1' }, callback);
 });
 
+test('Calls applyTransition with the expected arguments if settings are provided', () => {
+    const domElement = document.createElement('div');
+    domElement.style.opacity = 0;
+    const callback = () => {};
+    global.console.warn = jest.fn();
+    fadeIn(domElement, callback, {
+        duration: 3000,
+        curve: 'ease-in-out'
+    });
+
+    expect(applyTransition).toHaveBeenCalledWith(domElement, { property: 'opacity', curve: 'ease-in-out', duration: 3000 }, { opacity: '1' }, callback);
+});
+
+test('Calls applyTransition with correct arguments even if settings are provided with a different transition property', () => {
+    const domElement = document.createElement('div');
+    domElement.style.opacity = 0;
+    const callback = () => {};
+    global.console.warn = jest.fn();
+    fadeIn(domElement, callback, {
+        property: 'color',
+    });
+
+    expect(applyTransition).toHaveBeenCalledWith(domElement, { property: 'opacity' }, { opacity: '1' }, callback);
+});
+
 test('Does not call applyTransition if the target opacity is 1', () => {
     const domElement = document.createElement('div');
     domElement.style.opacity = 1;
