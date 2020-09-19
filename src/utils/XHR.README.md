@@ -4,7 +4,7 @@
 
 **method: string** _The HTTP method to use,_
 
-**data: object** _used with POST requests to submit data to the API/server_
+**data: any** _used with POST, PUT or PATCH requests to submit data to the API/server_
 
 **cached: boolean**  _Allow a cached response - only used for GET requests_
 

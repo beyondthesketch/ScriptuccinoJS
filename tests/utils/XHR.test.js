@@ -332,6 +332,28 @@ test('Does not call send if send is a falsey in the supplied config', () => {
     });
 });
 
+[
+  {},
+  'string',
+  1234,
+  JSON.stringify({ foo: 'bar'}),
+  [1, 2, 3],
+  new Map(),
+].forEach((method) => {
+  test(`Calls send with the data supplied in config regardless of that data's type`,
+    () => {
+      global.XMLHttpRequest = mockXHRWithEventProps;
+      const mockData = {};
+      const request = XHR({
+        uri: '/foo',
+        method: 'POST',
+        data: mockData,
+      });
+
+      expect(request.send).toHaveBeenCalledWith(mockData)
+    });
+});
+
 test('Calls send with null if method is GET', () => {
     global.XMLHttpRequest = mockXHRWithEventProps;
     const mockData = {};
