@@ -132,7 +132,6 @@ const XHR = (config) => {
               || config.method === 'PUT'
             )
             && config.data
-            && typeof config.data === 'object'
             ?
             config.data
             :
