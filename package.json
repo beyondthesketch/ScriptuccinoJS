@@ -22,20 +22,20 @@
   },
   "homepage": "https://github.com/beyondthesketch/ScriptuccinoJS#readme",
   "devDependencies": {
-    "@babel/cli": "^7.10.1",
-    "@babel/core": "^7.10.2",
-    "@babel/plugin-proposal-object-rest-spread": "^7.10.1",
-    "@babel/plugin-transform-object-assign": "^7.10.1",
-    "@babel/plugin-transform-spread": "^7.10.1",
-    "@babel/preset-env": "^7.10.2",
+    "@babel/cli": "^7.11.6",
+    "@babel/core": "^7.11.6",
+    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
+    "@babel/plugin-transform-object-assign": "^7.10.4",
+    "@babel/plugin-transform-spread": "^7.11.0",
+    "@babel/preset-env": "^7.11.5",
     "babel-loader": "^8.1.0",
     "babel-minify": "^0.5.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-minify": "^0.5.1",
     "jest": "^25.5.4",
     "semantic-release": "^17.1.2",
-    "webpack": "^4.43.0",
-    "webpack-cli": "^3.3.11",
+    "webpack": "^4.44.2",
+    "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   },
   "files": [
@@ -47,6 +47,8 @@
   ],
   "publishConfig": {
     "access": "public",
-    "branches": ["master"]
+    "branches": [
+      "master"
+    ]
   }
 }
