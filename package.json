@@ -44,5 +44,9 @@
     "index.js",
     "scriptuccino.js",
     "modules/"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public",
+    "branches": ["master"]
+  }
 }
