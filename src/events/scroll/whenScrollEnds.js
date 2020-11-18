@@ -1,12 +1,5 @@
 /** ScriptuccinoJS - whenScrollEnds | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-
-function debounce(fn, wait) {
-    let t;
-    return function() {
-        self.clearTimeout(t);
-        t = self.setTimeout(fn.bind(this, arguments), wait);
-    }
-}
+import debounce from './../../utils/simpleDebounce.js';
 
 const whenScrollEnds = (function() {
     const queue = [];
