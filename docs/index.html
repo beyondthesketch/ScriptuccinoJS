@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta name="content" content="width=device-width,initial-scale=1">
-        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1.7.1</title>
+        <title>JavaScript helper and utility modules for websites - ScriptuccinoJS v1</title>
         <style>
             html {
                 font: 62.5%/1.618 Verdana, Geneva, Tahoma, sans-serif;
@@ -214,7 +214,7 @@
         <div id="site-content">
             <header id="site-header">
                 <h1 class="site-title">ScriptuccinoJS</h1>
-                <small>v1.7.1</small>
+                <small>v1</small>
                 <p class="project-link"><a href="https://github.com/beyondthesketch/ScriptuccinoJS" target="_blank" rel="noopener">View on GitHub</a></p>
             </header>
             <main id="site-main">
@@ -528,6 +528,22 @@
 
                 <code class="inline-code-snippet">SCRIPTUCCINO.utils.parallelLoadCSS</code>
 
+
+                <code class="inline-code-method"><b>simpleDebounce( fn: Function, delay: Number )</b></code>
+
+                <p>Perform the supplied function only if it is not called again within the timeframe specified by <code class="inline-code-snippet">delay</code>, in milliseconds</p>
+                <p><b>ES module</b></p>
+                
+                <p>exported as named by:</p>
+                <code class="inline-code-snippet">utils/index.js</code>
+
+                <p>exported as default by:</p>
+                <code class="inline-code-snippet">utils/simpleDebounce.js</code>
+
+                <p><b>ES5 library</b></p>
+
+                <code class="inline-code-snippet">SCRIPTUCCINO.utils.simpleDebounce</code>
+
                 <h4>fx</h4>
                 
                 <p>Programmatically apply CSS transitions. Great for throw-away transitions, prototyping or quickly applying complex effects without having to figure out the CSS.</p>
@@ -834,7 +850,7 @@
                 <small>Copyright &copy; 2018 - 2020 <a href="https://www.beyondthesketch.com">Beyond The Sketch Ltd</a></small>
             </footer>
         </div>
-        <script src="js/scriptuccino.v1.7.1.js"></script>
+        <script src="js/scriptuccino.v1.x.x.js"></script>
         <script>
             (function() {
                 var fadeInElm = document.getElementById('fx-fade-in');
