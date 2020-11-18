@@ -7,6 +7,7 @@ import {default as parallelLoadCSS} from './src/utils/parallelLoadCSS';
 import {default as elementComesIntoViewport} from './src/utils/elementComesIntoViewport';
 import {default as elementIsAboveFold} from './src/utils/elementIsAboveFold';
 import {default as elementScrolledAboveFold} from './src/utils/elementScrolledAboveFold';
+import {default as simpleDebounce} from './src/utils/simpleDebounce';
 import {default as applyTransition} from './src/fx/applyTransition';
 import {default as fadeTo} from './src/fx/fadeTo';
 import {default as fadeIn} from './src/fx/fadeIn';
@@ -43,6 +44,7 @@ Object.assign(self.SCRIPTUCCINO, {
       elementScrolledAboveFold,
       lazyLoadCSS,
       parallelLoadCSS,
-      XHR
+      XHR,
+      simpleDebounce
    }
 });
