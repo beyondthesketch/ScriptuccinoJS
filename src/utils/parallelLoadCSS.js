@@ -8,6 +8,9 @@ const parallelLoadCSS = (
         if (typeof uri === 'string') {
           whenPageReady(() => {
             const req = new XMLHttpRequest();
+
+            req.open('GET', uri, true);
+
             req.responseType = 'text';
 
             req.onreadystatechange = function () {
@@ -36,7 +39,6 @@ const parallelLoadCSS = (
               }
             };
 
-            req.open('GET', uri, true);
             req.send();
           });
         }

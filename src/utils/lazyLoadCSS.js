@@ -8,6 +8,9 @@ const lazyLoadCSS = (
         if (typeof uri === 'string') {
           whenPageLoaded(() => {
             const req = new XMLHttpRequest();
+
+            req.open('GET', uri, true);
+
             req.responseType = 'text';
 
             req.onreadystatechange = function () {
@@ -36,7 +39,6 @@ const lazyLoadCSS = (
               }
             };
 
-            req.open('GET', uri, true);
             req.send();
           });
         }
