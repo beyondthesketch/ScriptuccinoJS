@@ -15,5 +15,6 @@ export {default as fadeOut} from './fx/fadeOut.js';
 export {default as pop} from './fx/pop.js';
 export {default as slam} from './fx/slam.js';
 export {default as moveIn} from './fx/moveIn.js';
+export {default as moveOut} from './fx/moveOut.js';
 export {default as shiftFadeIn} from './fx/shiftFadeIn.js';
 export {default as shiftFadeOut} from './fx/shiftFadeOut.js';
