@@ -323,7 +323,7 @@
                     <p><b>uses: whenScrollEnds</b> (as fallback)</p>
     
                     <p><strong>WARNING: This utility uses experimental web features (Intersection Observer) which is not yet finalised and could change. IT MAY BREAK/THROW ERRORS if the user agent uses a different implementation.</strong></p>
-                    <p><strong>It falls back to <code class="inline-code-snippet">whenScrollEnds</code> functionality if Intersection Observer is not supported at all. Note that this fallback implementation only considers movement through the viewport vertically and no horizontally.</strong></p>
+                    <p><strong>It falls back to <code class="inline-code-snippet">whenScrollEnds</code> functionality if Intersection Observer is not supported at all. Note that this fallback implementation only considers movement through the viewport vertically and not horizontally.</strong></p>
     
                     <p>While this function's purpose is to detect when an element <em>enters</em> the viewport, it is also often useful to detect when that element <em>exits</em> too. As a result, this function has 2 forms of use:</p>
                     <ol>
@@ -431,17 +431,6 @@
                 <code class="inline-code-method"><b>simpleDebounce( fn: Function, delay: Number )</b></code>
 
                 <p>Perform the supplied function only if it is not called again within the timeframe specified by <code class="inline-code-snippet">delay</code>, in milliseconds</p>
-                <p><b>ES module</b></p>
-                
-                <p>exported as named by:</p>
-                <code class="inline-code-snippet">utils/index.js</code>
-
-                <p>exported as default by:</p>
-                <code class="inline-code-snippet">utils/simpleDebounce.js</code>
-
-                <p><b>ES5 library</b></p>
-
-                <code class="inline-code-snippet">SCRIPTUCCINO.utils.simpleDebounce</code>
 
                 <h4>fx</h4>
                 
