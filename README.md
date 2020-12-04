@@ -106,7 +106,7 @@ Add the library to your webpage, preferably at the bottom of the body - but abov
 
 ```
 
-In your own scripts, use the `SCRIPTUCCINO` global object to access the ScriptuccinoJS modules and use the functions you need:
+In your own scripts, use the `scriptuccino` global object to access the ScriptuccinoJS modules and use the functions you need:
 
 ```javascript
 
