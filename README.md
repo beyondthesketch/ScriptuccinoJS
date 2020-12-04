@@ -112,7 +112,7 @@ In your own scripts, use the `SCRIPTUCCINO` global object to access the Scriptuc
 
 const myFoo = () => alert('foo');
 
-SCRIPTUCCINO.whenPageLoaded(myFoo);
+scriptuccino.whenPageLoaded(myFoo);
 
 ```
 
