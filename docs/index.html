@@ -591,6 +591,26 @@
                 </div>
 
                 <div class="api__method">
+                    <code class="inline-code-method"><b>moveOut( element: HTMLElement [, toDirection: String, completeFn: Function, settings: Object] )</b></code>
+                    <p><b>uses: applyTransition</b></p>
+                    
+                    <p>Move element out to the specified side of the viewport.</p>
+                    <p>The optional <code class="inline-code-snippet">toDirection</code> must be a string of one of <code class="inline-code-snippet">'top'</code>, <code class="inline-code-snippet">'right'</code> (default), <code class="inline-code-snippet">'bottom'</code> or <code class="inline-code-snippet">'left'</code></p>
+                    <p>The <code class="inline-code-snippet">settings</code> object supports any of the relevant transitions property except <code class="inline-code-snippet">property</code>, which is predefined - if supplied in the object, it will simply be ignored.</p>
+    
+                    <div>
+                        <p><b>Demo</b></p>
+                        <small>Settings: toDirection: 'right', duration: 750 milliseconds, curve: ease</small>
+                        <p>Click to reset and preview</p>
+                        <div class="fx-demo-wrapper">
+                            <div id="fx-moveout" class="fx-demo" title="Click to demo a moveOut">
+                                moveOut
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="api__method">
                     <code class="inline-code-method"><b>shiftFadeIn( element: HTMLElement [, fromDirection: String, completeFn: Function] )</b></code>
                     <p><b>uses: applyTransition</b></p>
                     
@@ -730,7 +750,7 @@
                 moveout.addEventListener(
                     'click',
                     function() {
-                        SCRIPTUCCINO.fx.moveOut(
+                        scriptuccino.moveOut(
                             moveout,
                             'right',
                             function() {
