@@ -5,6 +5,16 @@ import slam from './../../src/fx/slam.js';
 
 jest.useFakeTimers();
 
+const originalConsoleWarn = console.warn;
+
+beforeAll(() => {
+    console.warn = jest.fn();
+});
+
+afterAll(() => {
+    console.warn = originalConsoleWarn;
+});
+
 afterEach(() => {
     jest.clearAllMocks();
 });
@@ -16,7 +26,6 @@ test('Returns undefined if no DOM element is supplied for the effect', () => {
 });
 
 test('Calls console.warn if no DOM element is supplied for the effect', () => {
-    global.console.warn = jest.fn();
     slam(undefined);
 
     expect(console.warn).toHaveBeenCalledWith('ScriptuccinoJS - slam not supplied an element!');
@@ -32,7 +41,6 @@ test('Returns null if the element has an inline transition property applied - i.
 test('Calls applyTransition with correct arguments if the element is supplied and no scale or callback is supplied', () => {
     const domElement = document.createElement('div');
     domElement.style.transform = 'none';
-    global.console.warn = jest.fn();
 
     slam(domElement);
 
@@ -63,7 +71,6 @@ test('Calls applyTransition with correct arguments if the element is supplied an
 test('Calls applyTransition with correct arguments if the element is supplied and the target scale value is supplied', () => {
     const domElement = document.createElement('div');
     domElement.style.transform = 'none';
-    global.console.warn = jest.fn();
     slam(domElement, 2);
 
     jest.runAllTimers();
@@ -94,7 +101,6 @@ test('Calls applyTransition with correct arguments if the element is supplied an
     const domElement = document.createElement('div');
     const callback = () => jest.fn();
     domElement.style.transform = 'none';
-    global.console.warn = jest.fn();
     slam(domElement, 2, callback);
 
     jest.runAllTimers();
@@ -125,7 +131,6 @@ test('Does not affect any existing transforms', () => {
     const domElement = document.createElement('div');
     const callback = () => jest.fn();
     domElement.style.transform = 'matrix(1, 0.5888, 0.78292, 1, 0, 0)';
-    global.console.warn = jest.fn();
     slam(domElement, 2, callback);
 
     jest.runAllTimers();
