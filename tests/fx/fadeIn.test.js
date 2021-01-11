@@ -3,14 +3,24 @@ import applyTransition from './../../src/fx/applyTransition';
 
 import fadeIn from './../../src/fx/fadeIn.js';
 
+const originalConsoleWarn = console.warn;
+
+beforeAll(() => {
+    console.warn = jest.fn();
+});
+
+afterAll(() => {
+    console.warn = originalConsoleWarn;
+});
+
 afterEach(() => {
     jest.clearAllMocks();
 });
 
-test('Returns undefined if no DOM element is supplied for the effect', () => {
-    const result = fadeIn(undefined);
+test('Does not call applyTransition if no DOM element is supplied for the effect', () => {
+    fadeIn(undefined);
 
-    expect(result).toBeUndefined();
+    expect(applyTransition).not.toHaveBeenCalled();
 });
 
 test('Calls console.warn if no DOM element is supplied for the effect', () => {
@@ -39,7 +49,7 @@ test('Calls applyTransition with correct arguments if the elements opacity is no
     expect(applyTransition).toHaveBeenCalledWith(domElement, { property: 'opacity' }, { opacity: '1' }, callback);
 });
 
-test('Calls applyTransition with the expected arguments if settings are provided', () => {
+test('Calls applyTransition with the expected arguments if a callback and settings are provided', () => {
     const domElement = document.createElement('div');
     domElement.style.opacity = 0;
     const callback = () => {};
@@ -50,6 +60,18 @@ test('Calls applyTransition with the expected arguments if settings are provided
     });
 
     expect(applyTransition).toHaveBeenCalledWith(domElement, { property: 'opacity', curve: 'ease-in-out', duration: 3000 }, { opacity: '1' }, callback);
+});
+
+test('Calls applyTransition with the expected arguments if settings are provided without a callback', () => {
+    const domElement = document.createElement('div');
+    domElement.style.opacity = 0;
+    global.console.warn = jest.fn();
+    fadeIn(domElement, {
+        duration: 3000,
+        curve: 'ease-in-out'
+    });
+
+    expect(applyTransition).toHaveBeenCalledWith(domElement, { property: 'opacity', curve: 'ease-in-out', duration: 3000 }, { opacity: '1' }, undefined);
 });
 
 test('Calls applyTransition with correct arguments even if settings are provided with a different transition property', () => {
