@@ -1,3 +1,15 @@
+code[class*="language-"],
+pre[class*="language-"] {
+    white-space:  pre-wrap !important;
+}
+
+@media screen and (max-width: 800px) {
+    code[class*="language-"],
+    pre[class*="language-"] {
+        font-size: 0.9em !important;
+    }
+}
+
 #site-footer > small > a {
     color: #000;
     text-decoration: underline;
