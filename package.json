@@ -11,7 +11,7 @@
     "build": "npm test && babel src/**/* --ignore='src/**/*/index.js' --presets minify --out-dir esm/ && webpack --env.production",
     "postbuild": "cp ./umd/scriptuccino.js ./docs/js/",
     "prepare": "npm run build",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --config docs-webpack.config.js",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -35,6 +35,7 @@
     "babel-minify": "^0.5.1",
     "babel-preset-env": "^1.7.0",
     "babel-preset-minify": "^0.5.1",
+    "html-webpack-plugin": "^4.5.2",
     "jest": "^25.5.4",
     "semantic-release": "^17.4.4",
     "webpack": "^4.44.2",

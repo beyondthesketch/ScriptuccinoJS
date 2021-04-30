@@ -1,5 +1,6 @@
 const webpack = require('webpack');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const alias = {
     'whenPageReady.js': path.resolve(__dirname, 'src/events/page/whenPageReady.js'),
@@ -18,7 +19,7 @@ module.exports = env => (
             entry: path.resolve(__dirname, 'src/index.js'),
             output: {
                 path: path.resolve(__dirname, 'umd'),
-                filename: 'scriptuccino.js',
+                filename: 'scriptuccino.min.js',
                 library: 'scriptuccino',
                 libraryTarget: 'umd'
             },
@@ -42,11 +43,5 @@ module.exports = env => (
             plugins: [
                 new webpack.BannerPlugin('ScriptuccinoJS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License')
             ],
-            devServer: {
-                contentBase: path.join(__dirname, 'docs'),
-                compress: true,
-                port: 9000,
-                open: true
-            }
         }
 );
