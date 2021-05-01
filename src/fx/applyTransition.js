@@ -8,15 +8,16 @@ const vendors = [
 
 const transitionendProp = (function () {
   if (self.document) {
+    const testDiv = document.createElement('div');
     let prop = 'transitionend';
 
-    if ('ontransitionend' in document.body) {
+    if ('ontransitionend' in testDiv) {
       return prop;
     }
     else {
 
       for (let i = vendors.length; i--;) {
-        if (('on' + vendors[i] + 'transitionend') in document.body) {
+        if (('on' + vendors[i] + 'transitionend') in testDiv) {
           prop = vendors[i] + prop;
           break;
         }
@@ -37,14 +38,15 @@ const transitionendProp = (function () {
 
 export const transitionProperty = (function () {
   if (self.document) {
-    if ('transition' in document.body.style) {
+    const testDiv = document.createElement('div');
+    if ('transition' in testDiv.style) {
       return 'transition';
     }
     else {
       let prop;
 
       for (let i = vendors.length; i--;) {
-        if ((vendors[i] + 'Transition') in document.body.style) {
+        if ((vendors[i] + 'Transition') in testDiv.style) {
           prop = (vendors[i] + 'Transition');
           break;
         }
