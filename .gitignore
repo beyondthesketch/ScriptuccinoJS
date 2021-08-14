@@ -1,4 +1,5 @@
 .DS_Store
+docs/js/
 node_modules/
 esm/
 umd/

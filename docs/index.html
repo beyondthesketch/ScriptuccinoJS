@@ -68,6 +68,33 @@
                 width: 100%;
             } */
 
+            button {
+                box-sizing: border-box;
+                font-family: 'Raleway', Verdana, Geneva, Tahoma, sans-serif;
+                font-weight: 600;
+                padding: 0 3.4rem;
+                border: none;
+                text-transform: uppercase;
+                letter-spacing: 0.1em;
+                height: 6rem;
+                display: inline-flex;
+                justify-content: center;
+                align-items: center;
+                border-radius: 3rem;
+                color: #FFF;
+                background-color: #d58100;
+                cursor: pointer;
+                transition: background-color 500ms ease;
+            }
+            
+            button:hover {
+                background-color: #e28800;
+            }
+            button:active {
+                transition: none;
+                background-color: #b36b00;
+            }
+
             #site-header {
                 display: flex;
                 box-sizing: border-box;
@@ -95,6 +122,7 @@
                 box-sizing: border-box;
                 /* padding: 4.8rem; */
                 margin: auto;
+                overflow: hidden;
             }
 
             #site-footer {
@@ -171,7 +199,12 @@
             .site-title {
                 margin-bottom: 0;
                 font-size: 8.9vw;
+                font-weight: 400;
                 color: #d58100;
+            }
+
+            .site-subtitle {
+                font-weight: 400;
             }
 
             .project-version {
@@ -210,8 +243,18 @@
                 cursor: pointer;
             }
 
+            .fx-demo-text {
+                color: rgba(0, 0, 0, 0.4);
+                font-size: 1.1rem;
+            }
+
             .api__method {
                 margin: 2rem auto 7.5rem;
+            }
+
+            .site-button-icon {
+                font-size: 2.1rem;
+                margin: 0 0.2em 0 0;
             }
 
             @media screen and (max-width: 1024px) {
@@ -248,29 +291,65 @@
                 </div>
             </header>
             <main id="site-main">
-                <!-- <div class="pgrid_cr">
-                    <div class="pgrid_w_1">
-                        <p><strong>ScriptuccinoJS is a simple set of JavaScript function and utility modules for easily performing some common tasks.</strong></p>
-                    </div>
-                </div> -->
-
-
                 <section class="pgrid_cr pgrid_w_1">
                     <div class="pgrid_w_1">
 
-                        <h2 id="usage"><a class="named-anchor" href="#usage">Usage</a></h2>
+                        <h2 class="site-subtitle" id="installation"><a class="named-anchor" href="#installation">Installation</a></h2>
+
+                        <p>ScriptuccinoJS is available as a set of ES6 modules, as well as a UMD library.</p>
+
+                        <h3>NPM</h3>
+
+                        <p>The recommened way to install ScriptuccinoJS is via the NPM package manager:</p>
+
+<pre>
+<code class="language-html">npm install --save @beyondthesketch/scriptuccinojs</code>
+</pre>
+
+<h3>CDN</h3>
+<p>Alternatively, the files are available via CDN:</p>
+<div class="code-block pgrid_w_1">
+<pre>
+<code class="language-html">
+&lt;!-- ES Modules --&gt;
+&lt;script
+    type="module"
+    src="https://unpkg.com/@beyondthesketch/scriptuccinojs@1.8.1/index.js"
+&gt;&lt;/script&gt;
+
+&lt;!-- UMD ES5 Library --&gt;
+&lt;script
+    src="https://unpkg.com/@beyondthesketch/scriptuccinojs@1.8.1/scriptuccino.js"
+&gt;&lt;/script&gt;
+</code>
+</pre>
+</div>
+
+<p>UNPKG is a common choice, but as scriptuccino is published as an NPM package, other CDNs that host those packages could also be used, such as <strong>JSdelivr</strong></p>
+
+                        <h3>Download</h3>
+
+                        <p>If you prefer, you can download the files and host them directly:</p>
+
+                        <button><span class="site-button-icon">⬇️</span> ES Modules</button>
+                        <button><span class="site-button-icon">⬇️</span> UMD Library</button>
+
+                        <p>The ES6 modules are in the <code class="inline-code-snippet">esm</code>, directory and the ES5 UMD library is in the <code class="inline-code-snippet">umd</code> directory.</p>
+
+
+                        <h2 class="site-subtitle" id="usage"><a class="named-anchor" href="#usage">Usage</a></h2>
         
                         <p><strong>The following examples assume that the ScriptuccinoJS modules and library script are being served from a directory named <code class="inline-code-snippet">/scriptuccino/</code>.</strong></p>
         
                         <h3>ES modules</h3>
-                        <p>Import the modules you need into your javascript:</p>
+                        <p>Import the modules you need into your script from their respective files in the <code class="inline-code-snippet">esm/</code> folder:</p>
         
                         <p>Use static <code class="inline-code-snippet">import</code>:</p>
         
                         <div class="code-block pgrid_w_1">
 <pre>
 <code class="language-js">
-import whenPageLoaded from '/scriptuccino/modules/events/page/whenPageLoaded.js';
+import whenPageLoaded from '/scriptuccino/esm/whenPageLoaded.js';
 
 const myFoo = () => alert('foo');
 
@@ -287,9 +366,9 @@ whenPageLoaded(myFoo);
 <code class="language-js">
 const myFoo = () => alert('foo');
 
-import('/scriptuccino/modules/events/page/whenPageLoaded.js')
+import('/scriptuccino/esm/whenPageLoaded.js')
     .then(
-        ({ whenPageLoaded }) => whenPageLoaded(myFoo)
+        ({ default: whenPageLoaded }) => whenPageLoaded(myFoo)
     );
 </code>
 </pre>
@@ -302,7 +381,7 @@ import('/scriptuccino/modules/events/page/whenPageLoaded.js')
 <code class="language-js">
 const myFoo = () => alert('foo');
 
-const { whenPageLoaded } = await import('/scriptuccino/modules/events/page/whenPageLoaded.js');
+const { default: whenPageLoaded } = await import('/scriptuccino/esm/whenPageLoaded.js');
 
 whenPageLoaded(myFoo);
 </code>
@@ -311,7 +390,7 @@ whenPageLoaded(myFoo);
         
                         <h3>ES5 Library</h3>
         
-                        <p>Add the library to your webpage, preferably at the bottom of the body - but above your own scripts (external or inline):</p>
+                        <p>ScriptuccinoJS is also provided as a ES5 library, in a UMD file. Add the file to your webpage (found in the <code class="inline-code-snippet">umd/</code> folder), preferably at the bottom of the body - but above your own scripts (external or inline):</p>
         
                         <div class="code-block pgrid_w_1">
 <pre>
@@ -321,7 +400,7 @@ whenPageLoaded(myFoo);
 &lt;h1&gt;Foo&lt;/h1&gt;
 &lt;p&gt;Lorem ipsum dolor sit amet...&lt;/p&gt;
 
-&lt;script src="/scriptuccino/scriptuccino.js"&gt;&lt;/script&gt;
+&lt;script src="/scriptuccino/umd/scriptuccino.min.js"&gt;&lt;/script&gt;
 &lt;script src="/your.own.script.js"&gt;&lt;/script&gt;
 &lt;/body&gt;
 &lt;!-- --&gt;
@@ -329,7 +408,7 @@ whenPageLoaded(myFoo);
 </pre>
                         </div>
         
-                        <p>In your own scripts, use the ScriptuccinoJS functions you need:</p>
+                        <p>In your own scripts, use the ScriptuccinoJS functions you need using the <code class="inline-code-snippet">scriptuccino</code> global object:</p>
         
 <div class="code-block pgrid_w_1">
 <pre>
@@ -346,7 +425,7 @@ scriptuccino.whenPageLoaded(myFoo);
                 <section class="pgrid_cr pgrid_w_1">
                     <div class="pgrid_w_1">
 
-                        <h2 id="api"><a class="named-anchor" href="#api">API</a></h2>
+                        <h2 class="site-subtitle" id="api"><a class="named-anchor" href="#api">API</a></h2>
         
                         <h3>Modules</h3>
         
@@ -516,12 +595,12 @@ elementComesIntoViewport(
                             <div>
                                 <p><b>Demo</b></p>
                                 <small>Settings: duration: 2 seconds, curve: ease-in</small>
-                                <p>Click to reset and preview</p>
                                 <div class="fx-demo-wrapper">
                                     <div id="fx-fade-in" class="fx-demo" title="Click to demo a fade in">
                                         fadeIn
                                     </div>
                                 </div>
+                                <p class="fx-demo-text">Click to reset and preview</p>
                             </div>
                         </div>
                         
@@ -536,12 +615,12 @@ elementComesIntoViewport(
                             <div>
                                 <p><b>Demo</b></p>
                                 <small>Settings: duration: 2 seconds, curve: ease-in</small>
-                                <p>Click to reset and preview</p>
                                 <div class="fx-demo-wrapper">
                                     <div id="fx-fade-out" class="fx-demo" title="Click to demo a fade out">
                                         fadeOut
                                     </div>
                                 </div>
+                                <p class="fx-demo-text">Click to reset and preview</p>
                             </div>
                         </div>
         
@@ -557,12 +636,12 @@ elementComesIntoViewport(
                             <div>
                                 <p><b>Demo</b></p>
                                 <small>Settings: opacity: 20, duration: 2 seconds, curve: ease-in</small>
-                                <p>Click to reset and preview</p>
                                 <div class="fx-demo-wrapper">
                                     <div id="fx-fade-to" class="fx-demo" title="Click to demo a fade out">
                                         fadeTo
                                     </div>
                                 </div>
+                                <p class="fx-demo-text">Click to reset and preview</p>
                             </div>
                         </div>
         
@@ -577,12 +656,12 @@ elementComesIntoViewport(
             
                             <div>
                                 <p><b>Demo</b></p>
-                                <p>Click to reset and preview</p>
                                 <div class="fx-demo-wrapper">
                                     <div id="fx-pop" class="fx-demo" title="Click to demo a pop">
                                         pop
                                     </div>
                                 </div>
+                                <p class="fx-demo-text">Click to reset and preview</p>
                             </div>
                         </div>
         
@@ -597,12 +676,12 @@ elementComesIntoViewport(
             
                             <div>
                                 <p><b>Demo</b></p>
-                                <p>Click to reset and preview</p>
                                 <div class="fx-demo-wrapper">
                                     <div id="fx-slam" class="fx-demo" title="Click to demo a slam">
                                         slam
                                     </div>
                                 </div>
+                                <p class="fx-demo-text">Click to reset and preview</p>
                             </div>
                         </div>
         
@@ -618,12 +697,12 @@ elementComesIntoViewport(
                             <div>
                                 <p><b>Demo</b></p>
                                 <small>Settings: fromDirection: 'right', duration: 750 milliseconds, curve: ease</small>
-                                <p>Click to reset and preview</p>
                                 <div class="fx-demo-wrapper">
                                     <div id="fx-movein" class="fx-demo" title="Click to demo a moveIn">
                                         moveIn
                                     </div>
                                 </div>
+                                <p class="fx-demo-text">Click to reset and preview</p>
                             </div>
                         </div>
         
@@ -638,12 +717,12 @@ elementComesIntoViewport(
                             <div>
                                 <p><b>Demo</b></p>
                                 <small>Settings: toDirection: 'right', duration: 750 milliseconds, curve: ease</small>
-                                <p>Click to reset and preview</p>
                                 <div class="fx-demo-wrapper">
                                     <div id="fx-moveout" class="fx-demo" title="Click to demo a moveOut">
                                         moveOut
                                     </div>
                                 </div>
+                                <p class="fx-demo-text">Click to reset and preview</p>
                             </div>
                         </div>
         
@@ -656,12 +735,12 @@ elementComesIntoViewport(
             
                             <div>
                                 <p><b>Demo</b></p>
-                                <p>Click to reset and preview</p>
                                 <div class="fx-demo-wrapper">
                                     <div id="fx-shiftFadeIn" class="fx-demo" title="Click to demo a shiftFadeIn">
                                         shiftFadeIn
                                     </div>
                                 </div>
+                                <p class="fx-demo-text">Click to reset and preview</p>
                             </div>
                         </div>
         
@@ -674,12 +753,12 @@ elementComesIntoViewport(
             
                             <div>
                                 <p><b>Demo</b></p>
-                                <p>Click to reset and preview</p>
                                 <div class="fx-demo-wrapper">
                                     <div id="fx-shiftFadeOut" class="fx-demo" title="Click to demo a shiftFadeOut">
                                         shiftFadeOut
                                     </div>
                                 </div>
+                                <p class="fx-demo-text">Click to reset and preview</p>
                             </div>
                         </div>
                     </div>
