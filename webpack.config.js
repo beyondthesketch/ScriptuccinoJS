@@ -23,6 +23,7 @@ module.exports = env => (
                 library: 'scriptuccino',
                 libraryTarget: 'umd'
             },
+            target: ['web', 'es5'],
             module: {
                 rules: [
                     {
