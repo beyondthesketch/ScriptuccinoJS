@@ -1,4 +1,5 @@
 .DS_Store
+docs/js/
 node_modules/
-modules/
-/scriptuccino.js
+esm/
+umd/

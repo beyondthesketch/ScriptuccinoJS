@@ -1,5 +1,5 @@
 /** ScriptuccinoJS - shiftFadeOut | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import {default as applyTransition, transitionProperty } from './applyTransition.js';
+import {default as applyTransition, transitionProperty } from 'applyTransition.js';
 
 const matrixRegex = /matrix\((.+), (.+), (.+), (.+), (.+), (.+)\)/;
 

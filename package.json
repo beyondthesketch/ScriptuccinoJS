@@ -1,14 +1,17 @@
 {
   "name": "@beyondthesketch/scriptuccinojs",
-  "version": "1.7.1",
+  "version": "2.0.0-alpha",
   "description": "A simple set of JavaScript function and utility modules for easily performing some common tasks.",
   "main": "index.js",
+  "module": "src/index.js",
   "scripts": {
     "test": "jest",
-    "build:dev": "babel src/ --out-dir modules/ && webpack",
-    "build": "babel src/ --presets minify --out-dir modules/ && webpack --env.production",
+    "build:dev": "babel src/**/* --ignore='src/**/*/index.js' --out-dir esm/ && webpack",
+    "postbuild:dev": "cp ./umd/scriptuccino.min.js ./docs/js/",
+    "build": "npm test && babel src/**/* --ignore='src/**/*/index.js' --presets minify --out-dir esm/ && webpack --env production",
+    "postbuild": "cp ./umd/scriptuccino.min.js ./docs/js/",
     "prepare": "npm run build",
-    "start": "webpack-dev-server",
+    "start": "webpack-dev-server --config docs-webpack.config.js",
     "semantic-release": "semantic-release"
   },
   "repository": {
@@ -22,33 +25,56 @@
   },
   "homepage": "https://github.com/beyondthesketch/ScriptuccinoJS#readme",
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
-    "@babel/plugin-transform-object-assign": "^7.10.4",
-    "@babel/plugin-transform-spread": "^7.11.0",
-    "@babel/preset-env": "^7.11.5",
-    "babel-loader": "^8.1.0",
-    "babel-minify": "^0.5.1",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
+    "@babel/plugin-transform-object-assign": "^7.16.7",
+    "@babel/plugin-transform-spread": "^7.16.7",
+    "@babel/preset-env": "^7.17.10",
+    "babel-loader": "^8.2.5",
+    "babel-minify": "^0.5.2",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-minify": "^0.5.1",
-    "jest": "^25.5.4",
-    "semantic-release": "^17.4.4",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "babel-preset-minify": "^0.5.2",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "semantic-release": "^17.4.7",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "moduleFileExtensions": [
+      "js"
+    ],
+    "moduleDirectories": [
+      "node_modules",
+      "modules"
+    ],
+    "moduleNameMapper": {
+      "^whenPageReady.js$": "<rootDir>/src/events/page/whenPageReady.js",
+      "^whenPageLoaded.js$": "<rootDir>/src/events/page/whenPageLoaded.js",
+      "^whenScrollEnds.js$": "<rootDir>/src/events/scroll/whenScrollEnds.js",
+      "^applyTransition.js$": "<rootDir>/src/fx/applyTransition.js",
+      "^simpleDebounce.js$": "<rootDir>/src/utils/simpleDebounce.js"
+    }
   },
   "files": [
     "LICENSE",
     "README.md",
     "index.js",
-    "scriptuccino.js",
-    "modules/"
+    "esm/",
+    "umd/"
   ],
   "publishConfig": {
     "access": "public",
     "branches": [
-      "master"
+      "master",
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
     ]
   }
 }

@@ -1,5 +1,6 @@
 /** ScriptuccinoJS - whenScrollEnds | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import debounce from './../../utils/simpleDebounce.js';
+
+import simpleDebounce from 'simpleDebounce.js';
 
 const whenScrollEnds = (function() {
     const queue = [];
@@ -7,7 +8,7 @@ const whenScrollEnds = (function() {
 
         self.addEventListener(
             'scroll',
-            debounce(
+            simpleDebounce(
                 function () {
                     if (!!queue.length) {
                         queue.forEach(

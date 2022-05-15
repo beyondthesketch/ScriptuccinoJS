@@ -1,5 +1,5 @@
 /** ScriptuccinoJS - lazyLoadCSS | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import whenPageLoaded from './../events/page/whenPageLoaded.js';
+import whenPageLoaded from 'whenPageLoaded.js';
 
 const lazyLoadCSS = (
   function () {

@@ -3,7 +3,7 @@ import {default as applyTransition, transitionProperty } from './applyTransition
 
 const matrixRegex = /matrix\((.+), (.+), (.+), (.+), (.+), (.+)\)/;
 
-const moveOut = (element, toDirection = 'right', completeFn, settings) => {
+const moveOut = (element, toDirection = 'right', ...otherArgs) => {
     if (!element) {
         return console && console.warn( 'ScriptuccinoJS - moveOut not supplied an element!' );
     }
@@ -11,6 +11,8 @@ const moveOut = (element, toDirection = 'right', completeFn, settings) => {
     if (!!element.style[transitionProperty]) {
         return null;
     }
+    const completeFn = (typeof otherArgs[0] === 'function' && otherArgs[0]) || undefined;
+    const settings = (typeof otherArgs[0] === 'object' && otherArgs[0]) || (typeof otherArgs[1] === 'object' && otherArgs[1]) || undefined;
     const config = {
         duration: 750,
         curve: 'ease',

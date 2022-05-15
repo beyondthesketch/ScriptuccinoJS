@@ -1,9 +1,9 @@
 /** ScriptuccinoJS - moveIn | Copyright (c) Beyond The Sketch Ltd | Licensed under MIT License */
-import {default as applyTransition, transitionProperty } from './applyTransition.js';
+import {default as applyTransition, transitionProperty } from 'applyTransition.js';
 
 const matrixRegex = /matrix\((.+), (.+), (.+), (.+), (.+), (.+)\)/;
 
-const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
+const moveIn = (element, fromDirection = 'right', ...otherArgs) => {
     if (!element) {
         return console && console.warn( 'ScriptuccinoJS - moveIn not supplied an element!' );
     }
@@ -11,6 +11,8 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
     if (!!element.style[transitionProperty]) {
         return null;
     }
+    const completeFn = (typeof otherArgs[0] === 'function' && otherArgs[0]) || undefined;
+    const settings = (typeof otherArgs[0] === 'object' && otherArgs[0]) || (typeof otherArgs[1] === 'object' && otherArgs[1]) || undefined;
     const config = {
         duration: 750,
         curve: 'ease',
@@ -97,6 +99,10 @@ const moveIn = (element, fromDirection = 'right', completeFn, settings) => {
                         0
                     );
                     if (completeFn && typeof completeFn === 'function') {
+                        self.setTimeout(
+                            () => {element.style.opacity = ''},
+                            0
+                        );
                         completeFn.call(element);
                     }
                 }
