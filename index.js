@@ -1,1 +1,1 @@
-module.exports = require('./umd/scriptuccino.js');
+module.exports = require('./umd/scriptuccino.min.js');
