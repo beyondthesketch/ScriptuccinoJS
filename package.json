@@ -8,7 +8,7 @@
     "test": "jest",
     "build:dev": "babel src/**/* --ignore='src/**/*/index.js' --out-dir esm/ && webpack",
     "postbuild:dev": "cp ./umd/scriptuccino.min.js ./docs/js/",
-    "build": "npm test && babel src/**/* --ignore='src/**/*/index.js' --presets minify --out-dir esm/ && webpack --env.production",
+    "build": "npm test && babel src/**/* --ignore='src/**/*/index.js' --presets minify --out-dir esm/ && webpack --env production",
     "postbuild": "cp ./umd/scriptuccino.min.js ./docs/js/",
     "prepare": "npm run build",
     "start": "webpack-dev-server --config docs-webpack.config.js",
