@@ -25,24 +25,26 @@
   },
   "homepage": "https://github.com/beyondthesketch/ScriptuccinoJS#readme",
   "devDependencies": {
-    "@babel/cli": "^7.14.8",
-    "@babel/core": "^7.11.6",
-    "@babel/plugin-proposal-object-rest-spread": "^7.11.0",
-    "@babel/plugin-transform-object-assign": "^7.10.4",
-    "@babel/plugin-transform-spread": "^7.11.0",
-    "@babel/preset-env": "^7.11.5",
-    "babel-loader": "^8.1.0",
-    "babel-minify": "^0.5.1",
+    "@babel/cli": "^7.17.10",
+    "@babel/core": "^7.17.10",
+    "@babel/plugin-proposal-object-rest-spread": "^7.17.3",
+    "@babel/plugin-transform-object-assign": "^7.16.7",
+    "@babel/plugin-transform-spread": "^7.16.7",
+    "@babel/preset-env": "^7.17.10",
+    "babel-loader": "^8.2.5",
+    "babel-minify": "^0.5.2",
     "babel-preset-env": "^1.7.0",
-    "babel-preset-minify": "^0.5.1",
-    "html-webpack-plugin": "^4.5.2",
-    "jest": "^25.5.4",
-    "semantic-release": "^17.4.4",
-    "webpack": "^4.44.2",
-    "webpack-cli": "^3.3.12",
-    "webpack-dev-server": "^3.11.0"
+    "babel-preset-minify": "^0.5.2",
+    "html-webpack-plugin": "^5.5.0",
+    "jest": "^28.1.0",
+    "jest-environment-jsdom": "^28.1.0",
+    "semantic-release": "^17.4.7",
+    "webpack": "^5.72.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.9.0"
   },
   "jest": {
+    "testEnvironment": "jsdom",
     "moduleFileExtensions": [
       "js"
     ],
@@ -68,7 +70,11 @@
   "publishConfig": {
     "access": "public",
     "branches": [
-      "master"
+      "master",
+      {
+        "name": "alpha",
+        "prerelease": true
+      }
     ]
   }
 }

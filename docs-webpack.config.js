@@ -8,10 +8,11 @@ module.exports = env => {
     config.plugins.push(
         new HtmlWebpackPlugin(
             {
-                filename: `index.html`,
-                title: `ScriptuccinoJS - Beyond The Sketch`,
-                template: `./docs/index.html`,
+                filename: 'index.html',
+                title: 'ScriptuccinoJS - Beyond The Sketch',
+                template: './docs/index.html',
                 inject: 'head',
+                scriptLoading: 'blocking',
                 minify: {
                     collapseWhitespace: true,
                     removeComments: true,
@@ -26,7 +27,9 @@ module.exports = env => {
     );
     
     config.devServer = {
-        contentBase: path.join(__dirname, 'docs'),
+        static: {
+            directory: path.join(__dirname, 'docs'),
+        },
         compress: true,
         port: 9000,
         open: true
