@@ -49,7 +49,11 @@
   "publishConfig": {
     "access": "public",
     "branches": [
-      "master"
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
     ]
   }
 }
