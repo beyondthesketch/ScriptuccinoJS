@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "build:dev": "babel src/ --out-dir modules/ && webpack",
-    "build": "babel src/ --presets minify --out-dir modules/ && webpack --env.production",
+    "build:dev": "babel src/ --out-dir modules/ && babel src/ --presets=@babel/preset-env --out-dir compat/ && webpack",
+    "build": "babel src/ --presets minify --out-dir modules/ && babel src/ --presets=@babel/preset-env,minify --out-dir compat/ && webpack --env.production",
     "prepare": "npm run build",
     "start": "webpack-dev-server",
     "semantic-release": "semantic-release"
@@ -43,12 +43,17 @@
     "README.md",
     "index.js",
     "scriptuccino.js",
-    "modules/"
+    "modules/",
+    "compat/"
   ],
   "publishConfig": {
     "access": "public",
     "branches": [
-      "master"
+      "master",
+      {
+        "name": "beta",
+        "prerelease": true
+      }
     ]
   }
 }
